@@ -66,3 +66,12 @@
     git=http://github.com/phiamo/MopaBootstrapBundle.git
     target=/bundles/Mopa/BootstrapBundle
     version=origin/v2.x_sf2.0
+
+[StofDoctrineExtensionsBundle]
+    git=https://github.com/stof/StofDoctrineExtensionsBundle.git
+    target=/bundles/Stof/DoctrineExtensionsBundle
+    version=origin/1.0.x
+
+[DoctrineExtensions]
+    git=https://github.com/l3pp4rd/DoctrineExtensions.git
+    target=/gedmo-doctrine-extensions
