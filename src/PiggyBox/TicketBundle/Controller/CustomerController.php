@@ -19,7 +19,7 @@ class CustomerController extends Controller
     /**
      * Lists all Customer entities.
      *
-     * @Route("/", name="customer")
+     * @Route("/", name="_search")
      * @Template()
      */
     public function indexAction()

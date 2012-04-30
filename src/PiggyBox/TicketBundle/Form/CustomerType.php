@@ -28,7 +28,7 @@ class CustomerType extends AbstractType
                     'class' => 'span3',
                 )
             ))            
-            ->add('email', 'text', array(
+            ->add('email', 'email', array(
                 'widget_addon' => array(
                         'icon' => 'envelope'
                 ),
@@ -45,7 +45,7 @@ class CustomerType extends AbstractType
                     'class' => 'span3',
                 )
             ))           
-            ->add('comment')
+            ->add('comment','textarea')
         ;
     }
 
