@@ -1,0 +1,24 @@
+{% extends "PiggyBoxTicketBundle::layout.html.twig" %}
+
+{% block content %}
+
+<div id="content" class="container">
+    <div class="row">
+        <div class="span12">
+            <form action="{{ path('customer_create') }}" method="post" {{ form_enctype(form) }}>
+            <fieldset>
+
+                {{ form_widget(form) }}
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Create</button>
+                            <a href="{{ path('customer') }}" class="btn">
+                Back to the list
+            </a>
+                </div>
+            </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

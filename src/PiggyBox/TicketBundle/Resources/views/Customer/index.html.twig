@@ -1,0 +1,40 @@
+{% extends "PiggyBoxTicketBundle::layout.html.twig" %}
+
+{% block content %}
+<h1>Customer list</h1>
+
+<table class="records_list table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Comment</th>
+            <th>Createdat</th>
+            <th>Modifiedat</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('customer_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.firstname }}</td>
+            <td>{{ entity.lastname }}</td>
+            <td>{{ entity.email }}</td>
+            <td>{{ entity.phone }}</td>
+            <td>{{ entity.comment }}</td>
+            <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif%}</td>
+            <td>{% if entity.modifiedat %}{{ entity.modifiedat|date('Y-m-d H:i:s') }}{% endif%}</td>
+            <td>                    <a href="{{ path('customer_show', { 'id': entity.id }) }}" class="btn btn-info">show</a>                    <a href="{{ path('customer_edit', { 'id': entity.id }) }}" class="btn btn-info">edit</a>            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<a href="{{ path('customer_new') }}"  class="btn primary">
+    Create a new entry
+</a>
+{% endblock %}

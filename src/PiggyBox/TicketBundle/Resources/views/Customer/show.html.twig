@@ -1,0 +1,55 @@
+{% extends "PiggyBoxTicketBundle::layout.html.twig" %}
+
+{% block content %}
+<h1>Customer</h1>
+
+<table class="record_properties table table-bordered">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Firstname</th>
+            <td>{{ entity.firstname }}</td>
+        </tr>
+        <tr>
+            <th>Lastname</th>
+            <td>{{ entity.lastname }}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{ entity.email }}</td>
+        </tr>
+        <tr>
+            <th>Phone</th>
+            <td>{{ entity.phone }}</td>
+        </tr>
+        <tr>
+            <th>Comment</th>
+            <td>{{ entity.comment }}</td>
+        </tr>
+        <tr>
+            <th>Createdat</th>
+            <td>{{ entity.createdat|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Modifiedat</th>
+            <td>{{ entity.modifiedat|date('Y-m-d H:i:s') }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<a href="{{ path('customer') }}" class="btn">
+    Back to the list
+</a>
+    <a href="{{ path('customer_edit', { 'id': entity.id }) }}" class="btn btn-primary">
+        Edit
+    </a>
+    <form action="{{ path('customer_delete', { 'id': entity.id }) }}" method="post">
+        <div class="form-actions">
+            {{ form_widget(delete_form) }}
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </div>
+    </form>
+{% endblock %}
