@@ -17,7 +17,6 @@ class CustomerType extends AbstractType
                 ),
                 'attr' => array(
                     'class' => 'span3',
-                        'placeholder' => 'Which kind of usic?',
                 )
             ))
             ->add('firstname', 'text', array(
@@ -27,7 +26,6 @@ class CustomerType extends AbstractType
                 ),
                 'attr' => array(
                     'class' => 'span3',
-                        'placeholder' => 'Which kind of usic?',
                 )
             ))            
             ->add('email', 'text', array(
@@ -36,10 +34,17 @@ class CustomerType extends AbstractType
                 ),
                 'attr' => array(
                     'class' => 'span3',
-                        'placeholder' => 'Which kind of usic?',
                 )
             ))
-            ->add('phone')            
+            ->add('phone', 'text', array(
+                'label'        => 'Téléphone',
+                'widget_addon' => array(
+                        'text' => '&#9742;'
+                ),
+                'attr' => array(
+                    'class' => 'span3',
+                )
+            ))           
             ->add('comment')
         ;
     }
