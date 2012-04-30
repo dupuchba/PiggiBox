@@ -9,18 +9,28 @@
         <meta name="copyright" lang="fr" content="Julien Bourdeau" />
         <meta name="description" content="Un systeme de gestion des tickets Resto" />
 
-        <meta name="robots" content="noindex" />
-
-        <link rel="stylesheet" media="screen" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
-        <link rel="stylesheet" media="screen" type="text/css" href="{{ asset('css/style.css') }}" />               
+        <meta name="robots" content="noindex" />              
            
         <meta charset="UTF-8" />
         <title>{% block title %}Gestion des avoirs des tickets restaurant!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+        {% block stylesheets %}
+            {% stylesheets
+            '@PiggyBoxTicketBundle/Resources/public/css/*'
+            %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+        {% endblock %}
+        
+        
     </head>
     <body>
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            {% javascripts
+            '@PiggyBoxTicketBundle/Resources/public/js/*'
+            %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% endblock %}
     </body>
 </html>
