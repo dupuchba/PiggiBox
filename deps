@@ -35,7 +35,7 @@
 
 [metadata]
     git=http://github.com/schmittjoh/metadata.git
-    version=1.0.0
+    version=1.1.0
 
 [SensioFrameworkExtraBundle]
     git=http://github.com/sensio/SensioFrameworkExtraBundle.git
@@ -75,3 +75,15 @@
 [DoctrineExtensions]
     git=https://github.com/l3pp4rd/DoctrineExtensions.git
     target=/gedmo-doctrine-extensions
+
+[FOSRest]
+	git=git://github.com/FriendsOfSymfony/FOSRest.git
+	target=fos/FOS/Rest
+
+[FOSRestBundle]
+	git=git://github.com/FriendsOfSymfony/FOSRestBundle.git
+	target=bundles/FOS/RestBundle
+
+[JMSSerializerBundle]
+    git=git://github.com/schmittjoh/JMSSerializerBundle.git
+    target=bundles/JMS/SerializerBundle

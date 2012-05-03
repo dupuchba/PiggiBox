@@ -17,6 +17,9 @@ $loader->registerNamespaces(array(
     'Mopa'             => __DIR__.'/../vendor/bundles',
     'Stof'             => __DIR__.'/../vendor/bundles',
     'Gedmo'            => __DIR__.'/../vendor/gedmo-doctrine-extensions/lib',
+	'JMS'              => __DIR__.'/../vendor/bundles',
+	'FOS\\Rest' => __DIR__.'/../vendor/fos',
+    'FOS'       => __DIR__.'/../vendor/bundles',
 ));
 $loader->registerPrefixes(array(
     'Twig_Extensions_' => __DIR__.'/../vendor/twig-extensions/lib',
