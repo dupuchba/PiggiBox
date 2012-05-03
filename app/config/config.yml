@@ -6,6 +6,7 @@ framework:
     #esi:             ~
     #translator:      { fallback: %locale% }
     secret:          %secret%
+    ide:             textmate
     charset:         UTF-8
     router:          { resource: "%kernel.root_dir%/config/routing.yml" }
     form:            true
