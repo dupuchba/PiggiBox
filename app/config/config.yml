@@ -68,3 +68,8 @@ stof_doctrine_extensions:
     orm:
         default:
             timestampable: true
+
+# Sensio Extra Framework Bundle Configuration
+sensio_framework_extra:
+    view:
+        annotations: false            
