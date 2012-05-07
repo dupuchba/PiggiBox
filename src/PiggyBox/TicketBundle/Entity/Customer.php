@@ -4,6 +4,7 @@ namespace PiggyBox\TicketBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * PiggyBox\TicketBundle\Entity\Customer
@@ -73,6 +74,15 @@ class Customer
      */
     private $modifiedat;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Account", mappedBy="Customer")
+     */
+    private $accounts;
+
+    public function __construct()
+    {
+        $this->accounts = new ArrayCollections();
+    }
 
     /**
      * Get id
@@ -202,5 +212,25 @@ class Customer
     public function getModifiedat()
     {
         return $this->modifiedat;
+    }
+
+    /**
+     * Add accounts
+     *
+     * @param PiggyBox\TicketBundle\Entity\Account $accounts
+     */
+    public function addAccount(\PiggyBox\TicketBundle\Entity\Account $accounts)
+    {
+        $this->accounts[] = $accounts;
+    }
+
+    /**
+     * Get accounts
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getAccounts()
+    {
+        return $this->accounts;
     }
 }
