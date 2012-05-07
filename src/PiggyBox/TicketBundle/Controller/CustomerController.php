@@ -41,6 +41,17 @@ class CustomerController extends Controller
     }
 
     /**
+     * Make an operation with a Customer entity.
+     *
+     * @Route("/operation", name="customer_operation")
+     * @Template()
+     */
+    public function operationAction()
+    {
+        return array();
+    }
+
+    /**
      * Finds and displays a Customer entity.
      *
      * @Route("/{id}/show", name="customer_show")
