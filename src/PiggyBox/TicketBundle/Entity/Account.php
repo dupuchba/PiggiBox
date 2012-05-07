@@ -3,6 +3,7 @@
 namespace PiggyBox\TicketBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * PiggyBox\TicketBundle\Entity\Account
@@ -38,6 +39,7 @@ class Account
     /**
      * @var datetime $createdat
      *
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(name="createdat", type="datetime")
      */
     private $createdat;
@@ -45,6 +47,7 @@ class Account
     /**
      * @var datetime $modifiedat
      *
+     * @Gedmo\Timestampable(on="update")
      * @ORM\Column(name="modifiedat", type="datetime")
      */
     private $modifiedat;
@@ -106,16 +109,6 @@ class Account
     }
 
     /**
-     * Set createdat
-     *
-     * @param datetime $createdat
-     */
-    public function setCreatedat($createdat)
-    {
-        $this->createdat = $createdat;
-    }
-
-    /**
      * Get createdat
      *
      * @return datetime 
@@ -123,16 +116,6 @@ class Account
     public function getCreatedat()
     {
         return $this->createdat;
-    }
-
-    /**
-     * Set modifiedat
-     *
-     * @param datetime $modifiedat
-     */
-    public function setModifiedat($modifiedat)
-    {
-        $this->modifiedat = $modifiedat;
     }
 
     /**
