@@ -19,11 +19,17 @@ class CustomerController extends Controller
     /**
      * Lists all Customer entities.
      *
-     * @Route("/", name="_search")
+     * @Route("/", name="customer_search")
      * @Template()
      */
     public function indexAction()
     {
+        $request = $this->getRequest();
+        
+        if ($request->getMethod() == 'POST') {
+            var_dump($this->get('request')->request);
+        }
+
         $em = $this->getDoctrine()->getEntityManager();
 
         $entities = $em->getRepository('PiggyBoxTicketBundle:Customer')->findAll();
