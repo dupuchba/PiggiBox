@@ -27,14 +27,14 @@ class CustomerController extends Controller
         $request = $this->getRequest();
         
         if ($request->getMethod() == 'POST') {
+            var_dump($request->request->get('lastname'));
+            die();
+            $em = $this->getDoctrine()->getEntityManager();
+            $em->getRepository('PiggyBoxTicketBundle:Customer')->findOneBy(array('lastname',));;
             var_dump($this->get('request')->request);
         }
 
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $entities = $em->getRepository('PiggyBoxTicketBundle:Customer')->findAll();
-
-        return array('entities' => $entities);
+        return array();
     }
 
     /**
