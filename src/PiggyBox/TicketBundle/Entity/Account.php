@@ -49,6 +49,11 @@ class Account
      */
     private $modifiedat;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Customer", inversedBy="accounts")
+     * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
+     */
+    protected $customer;
 
     /**
      * Get id
@@ -138,5 +143,25 @@ class Account
     public function getModifiedat()
     {
         return $this->modifiedat;
+    }
+
+    /**
+     * Set customer
+     *
+     * @param PiggyBox\TicketBundle\Entity\Customer $customer
+     */
+    public function setCustomer(\PiggyBox\TicketBundle\Entity\Customer $customer)
+    {
+        $this->customer = $customer;
+    }
+
+    /**
+     * Get customer
+     *
+     * @return PiggyBox\TicketBundle\Entity\Customer 
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
     }
 }
