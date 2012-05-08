@@ -104,7 +104,6 @@ class CustomerController extends Controller
     public function createAction()
     {
         $entity  = new Customer();
-        $entity->addAccount(new Account());
         $request = $this->getRequest();
         $form    = $this->createForm(new CustomerType(), $entity);
         $form->bindRequest($request);
