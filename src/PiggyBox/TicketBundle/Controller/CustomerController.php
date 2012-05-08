@@ -85,7 +85,10 @@ class CustomerController extends Controller
     public function newAction()
     {
         $customer = new Customer();
-        
+        $account = new Account();
+
+        $customer->addAccount($account);
+
         $form   = $this->createForm(new CustomerType(), $customer);
 
         return array(

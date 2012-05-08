@@ -49,6 +49,8 @@ class CustomerType extends AbstractType
                 'label'         => 'Commentaire'
                 ))
         ;
+
+        $builder->add('accounts', 'collection', array('type' => new AccountType()));
     }
 
     public function getName()

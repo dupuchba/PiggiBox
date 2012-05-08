@@ -7,15 +7,14 @@
         <div class="span12">
             <form class="form-horizontal" action="{{ path('customer_create') }}" method="post" {{ form_enctype(form) }}>
             
-            {{ form_widget(form) }}
+                {{ form_widget(form) }}        
+
                 <div class="form-actions">
                     <button type="submit" class="btn btn-large btn-success" name="action" value="create"><i class='icon-plus icon-white'></i> Ajouter</button>
                     <a href="search.php" class="btn btn-large"><i class='icon-remove'></i> Annuler</a>
                 </div>
             </form>
 
-
-                            
         </div>
     </div>
 </div>
