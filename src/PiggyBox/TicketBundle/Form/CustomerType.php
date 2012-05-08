@@ -48,9 +48,13 @@ class CustomerType extends AbstractType
             ->add('comment','textarea', array(
                 'label'         => 'Commentaire'
                 ))
+            ->add('accounts', 'collection', array(
+                'label_render' => false,
+                'type' => new AccountType()
+                ))
         ;
 
-        $builder->add('accounts', 'collection', array('type' => new AccountType()));
+        
     }
 
     public function getName()
