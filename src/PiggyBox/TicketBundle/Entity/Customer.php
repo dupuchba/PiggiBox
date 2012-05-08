@@ -81,7 +81,7 @@ class Customer
 
     public function __construct()
     {
-        $this->accounts = new ArrayCollections();
+        $this->accounts = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
