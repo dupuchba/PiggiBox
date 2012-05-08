@@ -12,8 +12,6 @@ class AccountType extends AbstractType
         $builder
             ->add('balance')
             ->add('ticket_value')
-            ->add('createdat')
-            ->add('modifiedat')
             ->add('customer')
         ;
     }

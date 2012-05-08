@@ -45,7 +45,9 @@ class CustomerType extends AbstractType
                     'class' => 'span3',
                 )
             ))           
-            ->add('comment','textarea')
+            ->add('comment','textarea', array(
+                'label'         => 'Commentaire'
+                ))
         ;
     }
 
