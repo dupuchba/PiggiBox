@@ -8,6 +8,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use PiggyBox\TicketBundle\Entity\Customer;
 use PiggyBox\TicketBundle\Form\CustomerType;
+use PiggyBox\TicketBundle\Entity\Account;
+use PiggyBox\TicketBundle\Form\AccountType;
 
 /**
  * Customer controller.
@@ -82,11 +84,12 @@ class CustomerController extends Controller
      */
     public function newAction()
     {
-        $entity = new Customer();
-        $form   = $this->createForm(new CustomerType(), $entity);
+        $customer = new Customer();
+        
+        $form   = $this->createForm(new CustomerType(), $customer);
 
         return array(
-            'entity' => $entity,
+            'entity' => $customer,
             'form'   => $form->createView()
         );
     }
@@ -101,6 +104,7 @@ class CustomerController extends Controller
     public function createAction()
     {
         $entity  = new Customer();
+        $entity->addAccount(new Account());
         $request = $this->getRequest();
         $form    = $this->createForm(new CustomerType(), $entity);
         $form->bindRequest($request);

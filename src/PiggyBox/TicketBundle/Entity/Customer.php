@@ -75,7 +75,7 @@ class Customer
     private $modifiedat;
 
     /**
-     * @ORM\OneToMany(targetEntity="Account", mappedBy="Customer")
+     * @ORM\OneToMany(targetEntity="Account", mappedBy="Customer",cascade={"persist", "remove"})
      */
     private $accounts;
 
