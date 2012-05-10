@@ -84,10 +84,7 @@ class CustomerController extends Controller
      */
     public function newAction()
     {
-        $customer = new Customer();
         $account = new Account();
-
-        $customer->addAccount($account);
 
         $form   = $this->createForm(new AccountType(), $account);
 
@@ -107,6 +104,7 @@ class CustomerController extends Controller
     public function createAction()
     {
         $entity  = new Account();
+
         $request = $this->getRequest();
         $form    = $this->createForm(new AccountType(), $entity);
         $form->bindRequest($request);

@@ -75,7 +75,7 @@ class Customer
     private $modifiedat;
 
     /**
-     * @ORM\OneToMany(targetEntity="Account", mappedBy="Customer",cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="Account", mappedBy="Customer")
      */
     private $accounts;
 
@@ -232,5 +232,10 @@ class Customer
     public function getAccounts()
     {
         return $this->accounts;
+    }
+
+    public function __toString()
+    {
+        return $this->getLastname();
     }
 }

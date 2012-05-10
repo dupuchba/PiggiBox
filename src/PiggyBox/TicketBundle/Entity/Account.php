@@ -53,7 +53,7 @@ class Account
     private $modifiedat;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Customer", inversedBy="accounts")
+     * @ORM\ManyToOne(targetEntity="Customer", inversedBy="accounts",cascade={"persist"})
      * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
      */
     protected $customer;
@@ -146,5 +146,10 @@ class Account
     public function getCustomer()
     {
         return $this->customer;
+    }
+
+    public function __toString()
+    {
+        return $this->getBalance();
     }
 }
