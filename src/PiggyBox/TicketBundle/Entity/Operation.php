@@ -118,4 +118,24 @@ class Operation
     {
         return $this->createdat;
     }
+
+    /**
+     * Set account
+     *
+     * @param PiggyBox\TicketBundle\Entity\Account $account
+     */
+    public function setAccount(\PiggyBox\TicketBundle\Entity\Account $account)
+    {
+        $this->account = $account;
+    }
+
+    /**
+     * Get account
+     *
+     * @return PiggyBox\TicketBundle\Entity\Account 
+     */
+    public function getAccount()
+    {
+        return $this->account;
+    }
 }

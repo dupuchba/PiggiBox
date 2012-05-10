@@ -152,4 +152,28 @@ class Account
     {
         return $this->customer;
     }
+    public function __construct()
+    {
+        $this->operations = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add operations
+     *
+     * @param PiggyBox\TicketBundle\Entity\Operation $operations
+     */
+    public function addOperation(\PiggyBox\TicketBundle\Entity\Operation $operations)
+    {
+        $this->operations[] = $operations;
+    }
+
+    /**
+     * Get operations
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getOperations()
+    {
+        return $this->operations;
+    }
 }
