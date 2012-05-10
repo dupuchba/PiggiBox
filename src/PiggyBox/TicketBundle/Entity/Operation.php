@@ -3,6 +3,7 @@
 namespace PiggyBox\TicketBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * PiggyBox\TicketBundle\Entity\Operation
@@ -38,6 +39,7 @@ class Operation
     /**
      * @var datetime $createdat
      *
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(name="createdat", type="datetime")
      */
     private $createdat;
@@ -97,16 +99,6 @@ class Operation
     public function getNewBalance()
     {
         return $this->new_balance;
-    }
-
-    /**
-     * Set createdat
-     *
-     * @param datetime $createdat
-     */
-    public function setCreatedat($createdat)
-    {
-        $this->createdat = $createdat;
     }
 
     /**
