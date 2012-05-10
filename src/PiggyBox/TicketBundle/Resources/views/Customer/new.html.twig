@@ -10,29 +10,22 @@
 
                 <form class="form-horizontal" action="{{ path('customer_create') }}" method="post" {{ form_enctype(form) }}>
                 
-                    {{ form_errors(form.customer.lastname) }}
                     {{ form_row(form.customer.lastname) }}
 
-                    {{ form_errors(form.customer.firstname) }}
                     {{ form_row(form.customer.firstname) }}
 
-                    {{ form_errors(form.customer.email) }}
                     {{ form_row(form.customer.email) }}
 
-                    {{ form_errors(form.customer.phone) }}
                     {{ form_row(form.customer.phone) }}
 
                     <hr />
 
-                    {{ form_errors(form.ticket_value) }}
                     {{ form_row(form.ticket_value) }}
 
-                    {{ form_errors(form.balance) }}
                     {{ form_row(form.balance) }}
 
                     <hr />
 
-                    {{ form_errors(form.customer.comment) }}
                     {{ form_row(form.customer.comment) }}     
 
                     <div class="form-actions">
