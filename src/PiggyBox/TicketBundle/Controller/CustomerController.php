@@ -54,13 +54,13 @@ class CustomerController extends Controller
 
         $em = $this->getDoctrine()->getEntityManager();
 
-        $customer = $em->getRepository('PiggyBoxTicketBundle:Customer')->find($id);
+        $account = $em->getRepository('PiggyBoxTicketBundle:Account')->find($id);
 
-        if (!$customer) {
-            throw $this->createNotFoundException('Unable to find Customer entity.');
+        if (!$account) {
+            throw $this->createNotFoundException('Unable to find Account entity.');
         }
 
-        return array('customer'=> $customer);
+        return array('account'=> $account);
     }
 
     /**
@@ -149,13 +149,13 @@ class CustomerController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository('PiggyBoxTicketBundle:Customer')->find($id);
+        $entity = $em->getRepository('PiggyBoxTicketBundle:Account')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Customer entity.');
+            throw $this->createNotFoundException('Unable to find Account entity.');
         }
 
-        $editForm = $this->createForm(new CustomerType(), $entity);
+        $editForm = $this->createForm(new AccountType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(

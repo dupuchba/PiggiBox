@@ -13,12 +13,12 @@
     			
                 <ul class="unstyled userinfo">
                     <li title='Email'><i class='icon-envelope'></i>
-                        <a href='mailto:{{ customer.email }}'>{{ customer.email }}
+                        <a href='mailto:{{ account.customer.email }}'>{{ account.customer.email }}
                         </a>
                     </li>
 
                      <li title='Téléphone'>&#9742;
-                        {{ customer.phone }}
+                        {{ account.customer.phone }}
                     </li>
 
                     <li>
@@ -26,7 +26,7 @@
                     </li>
 
                     <li title='A propos'><i class='icon-tag'></i>
-                        {{ customer.comment }}
+                        {{ account.customer.comment }}
                     </li>
                 </ul>
 
@@ -34,7 +34,7 @@
 
                  
 
-                <a href="{{ path('customer_edit', { 'id': customer.id} ) }}" class="btn pull-right"><i class="icon-pencil"></i> Modifier</a>  
+                <a href="{{ path('customer_edit', { 'id': account.id} ) }}" class="btn pull-right"><i class="icon-pencil"></i> Modifier</a>  
 
 
     			
