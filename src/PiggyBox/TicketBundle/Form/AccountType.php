@@ -42,6 +42,6 @@ class AccountType extends AbstractType
 
     public function getName()
     {
-        return 'piggybox_ticketbundle_accounttype';
+        return 'accounts';
     }
 }
