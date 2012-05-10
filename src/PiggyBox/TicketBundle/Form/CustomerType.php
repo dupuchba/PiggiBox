@@ -48,17 +48,20 @@ class CustomerType extends AbstractType
             ->add('comment','textarea', array(
                 'label'         => 'Commentaire'
                 ))
-            ->add('accounts', 'collection', array(
-                'label_render' => false,
-                'type' => new AccountType()
-                ))
         ;
 
         
     }
 
+    public function getDefaultOptions(array $options)
+    {
+        return array(
+            'data_class' => 'PiggyBox\TicketBundle\Entity\Customer',
+        );
+    }
+
     public function getName()
     {
-        return 'piggybox_ticketbundle_customertype';
+        return 'customer';
     }
 }

@@ -89,10 +89,10 @@ class CustomerController extends Controller
 
         $customer->addAccount($account);
 
-        $form   = $this->createForm(new CustomerType(), $customer);
+        $form   = $this->createForm(new AccountType(), $account);
 
         return array(
-            'entity' => $customer,
+            'entity' => $account,
             'form'   => $form->createView()
         );
     }
@@ -106,9 +106,9 @@ class CustomerController extends Controller
      */
     public function createAction()
     {
-        $entity  = new Customer();
+        $entity  = new Account();
         $request = $this->getRequest();
-        $form    = $this->createForm(new CustomerType(), $entity);
+        $form    = $this->createForm(new AccountType(), $entity);
         $form->bindRequest($request);
 
         if ($form->isValid()) {

@@ -30,6 +30,7 @@ class AccountType extends AbstractType
                     'class' => 'input-small',
                 )
             ))
+            ->add('customer', new CustomerType())
         ;
     }
 
