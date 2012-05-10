@@ -3,6 +3,7 @@
 namespace PiggyBox\TicketBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * PiggyBox\TicketBundle\Entity\Merchant
@@ -98,6 +99,14 @@ class Merchant
      */
     private $modifiedat;
 
+    /**
+    * @ORM\ManyToMany(targetEntity="Customer", mappedBy="merchants")
+    */
+    private $customers;
+
+    public function __construct() {
+        $this->customers = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -327,5 +336,25 @@ class Merchant
     public function getModifiedat()
     {
         return $this->modifiedat;
+    }
+
+    /**
+     * Add customers
+     *
+     * @param PiggyBox\TicketBundle\Entity\Customer $customers
+     */
+    public function addCustomer(\PiggyBox\TicketBundle\Entity\Customer $customers)
+    {
+        $this->customers[] = $customers;
+    }
+
+    /**
+     * Get customers
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getCustomers()
+    {
+        return $this->customers;
     }
 }
