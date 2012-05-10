@@ -45,12 +45,21 @@ class CustomerController extends Controller
     /**
      * Make an operation with a Customer entity.
      *
-     * @Route("/operation", name="customer_operation")
+     * @Route("/operation/{id}", name="customer_operation")
      * @Template()
      */
-    public function operationAction()
+    public function operationAction($id)
     {
-        return array();
+
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $customer = $em->getRepository('PiggyBoxTicketBundle:Customer')->find($id);
+
+        if (!$customer) {
+            throw $this->createNotFoundException('Unable to find Customer entity.');
+        }
+
+        return array('customer'=> $customer);
     }
 
     /**
