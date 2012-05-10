@@ -85,9 +85,16 @@ class Customer
      */
     private $accounts;
 
+    /**
+    * @ORM\ManyToMany(targetEntity="Merchant", inversedBy="users")
+    * @ORM\JoinTable(name="user_merchants")
+    */
+    private $merchants;
+
     public function __construct()
     {
         $this->accounts = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->merchants = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -240,8 +247,23 @@ class Customer
         return $this->accounts;
     }
 
-    public function __toString()
+    /**
+     * Add merchants
+     *
+     * @param PiggyBox\TicketBundle\Entity\Merchant $merchants
+     */
+    public function addMerchant(\PiggyBox\TicketBundle\Entity\Merchant $merchants)
     {
-        return $this->getLastname();
+        $this->merchants[] = $merchants;
+    }
+
+    /**
+     * Get merchants
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getMerchants()
+    {
+        return $this->merchants;
     }
 }
