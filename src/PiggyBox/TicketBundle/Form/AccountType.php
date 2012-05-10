@@ -33,6 +33,13 @@ class AccountType extends AbstractType
         ;
     }
 
+    public function getDefaultOptions(array $options)
+    {
+        return array(
+            'data_class' => 'PiggyBox\TicketBundle\Entity\Account',
+        );
+    }
+
     public function getName()
     {
         return 'piggybox_ticketbundle_accounttype';
