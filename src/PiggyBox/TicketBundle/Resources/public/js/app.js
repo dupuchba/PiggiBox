@@ -15,15 +15,15 @@
 
 
 function updatecalcul() {
-    var solde = $('#payer input#thesolde').val();
-    var montant = $('#payer input#montant').val();
-    var nombre = $('#payer input#nombre').val();
-    var valticket = $('#payer input#valeur').val();
+    var solde = $('span#thesolde').val();
+    var montant = $('input#montant.input-small').val();
+    var nombre = $('input#nombre.input-mini').val();
+    var valticket = $('input#valeur.input-mini').val();
 
     var nbrmin = (montant - solde) / valticket;
     var result = Number(solde) + Number((nombre * valticket)) - Number(montant);
 
-    $('.nbrminval span').html(Math.ceil(nbrmin));
+    $('.nbrminval span').html(Math.ceil(nbrmin));    
 
     if (result<0) {
         $('.reste').show();
