@@ -10,6 +10,7 @@ use PiggyBox\TicketBundle\Entity\Customer;
 use PiggyBox\TicketBundle\Form\CustomerType;
 use PiggyBox\TicketBundle\Entity\Account;
 use PiggyBox\TicketBundle\Form\AccountType;
+use PiggyBox\TicketBundle\Entity\Merchant;
 
 /**
  * Customer controller.
@@ -113,10 +114,31 @@ class CustomerController extends Controller
     public function createAction()
     {
         $entity  = new Account();
+/*        var_dump($entity->getCustomer());die(); 
+        $entity->getCustomer()->addMerchant(new Merchant());*/
 
         $request = $this->getRequest();
         $form    = $this->createForm(new AccountType(), $entity);
         $form->bindRequest($request);
+
+/*        $merchant = new Merchant();
+        $merchant->setMerchantType("test");
+        $merchant->setMerchantName("test");
+        $merchant->setStreetAddress(5);
+        $merchant->setCountry("test");
+        $merchant->setPostalCode(5);
+        $merchant->setSteetNumber(5);
+        $merchant->setPhone(5);
+        $merchant->setEmail("test");
+        $merchant->setUserName("test");
+        $merchant->setCreatedat("test");
+        $merchant->setModifiedat("test");
+
+        $entity->getCustomer()->addMerchant(new Merchant());
+
+        $form->setData($entity);*/
+
+/*        var_dump($form->getErrors());die();*/
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();

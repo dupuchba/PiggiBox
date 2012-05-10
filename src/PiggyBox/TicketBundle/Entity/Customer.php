@@ -81,7 +81,7 @@ class Customer
     private $modifiedat;
 
     /**
-     * @ORM\OneToMany(targetEntity="Account", mappedBy="Customer")
+     * @ORM\OneToMany(targetEntity="Account", mappedBy="customer")
      */
     private $accounts;
 

@@ -42,6 +42,12 @@ class Operation
      */
     private $createdat;
 
+    /**
+    * @ORM\ManyToOne(targetEntity="Account", inversedBy="operations", cascade={"remove"})
+    * @ORM\JoinColumn(name="account_id", referencedColumnName="id")
+    */
+    private $account;
+
 
     /**
      * Get id

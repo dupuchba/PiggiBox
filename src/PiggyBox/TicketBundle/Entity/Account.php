@@ -56,7 +56,12 @@ class Account
      * @ORM\ManyToOne(targetEntity="Customer", inversedBy="accounts",cascade={"persist"})
      * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
      */
-    protected $customer;
+    private $customer;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Operation", mappedBy="account",cascade={"remove", "persist"})
+     */
+    private $operations;
 
     /**
      * Get id
@@ -146,10 +151,5 @@ class Account
     public function getCustomer()
     {
         return $this->customer;
-    }
-
-    public function __toString()
-    {
-        return $this->getBalance();
     }
 }
