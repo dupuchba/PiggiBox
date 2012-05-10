@@ -5,12 +5,15 @@ namespace PiggyBox\TicketBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * PiggyBox\TicketBundle\Entity\Customer
  *
  * @ORM\Table()
  * @ORM\Entity
+ * @UniqueEntity("email")
  */
 class Customer
 {
@@ -26,6 +29,7 @@ class Customer
     /**
      * @var string $firstname
      *
+     * @Assert\NotBlank()
      * @ORM\Column(name="firstname", type="string", length=255)
      */
     private $firstname;
@@ -33,6 +37,7 @@ class Customer
     /**
      * @var string $lastname
      *
+     * @Assert\NotBlank()
      * @ORM\Column(name="lastname", type="string", length=255)
      */
     private $lastname;
@@ -40,7 +45,8 @@ class Customer
     /**
      * @var string $email
      *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @Assert\Email()
+     * @ORM\Column(name="email", type="string", length=255,unique=true)
      */
     private $email;
 
