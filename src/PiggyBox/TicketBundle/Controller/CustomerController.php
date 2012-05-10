@@ -149,17 +149,17 @@ class CustomerController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository('PiggyBoxTicketBundle:Account')->find($id);
+        $account = $em->getRepository('PiggyBoxTicketBundle:Account')->find($id);
 
-        if (!$entity) {
+        if (!$account) {
             throw $this->createNotFoundException('Unable to find Account entity.');
         }
 
-        $editForm = $this->createForm(new AccountType(), $entity);
+        $editForm = $this->createForm(new AccountType(), $account);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
+            'account'      => $account,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
@@ -176,13 +176,13 @@ class CustomerController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository('PiggyBoxTicketBundle:Customer')->find($id);
+        $account = $em->getRepository('PiggyBoxTicketBundle:Account')->find($id);
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Customer entity.');
+        if (!$account) {
+            throw $this->createNotFoundException('Unable to find Account entity.');
         }
 
-        $editForm   = $this->createForm(new CustomerType(), $entity);
+        $editForm   = $this->createForm(new AccountType(), $account);
         $deleteForm = $this->createDeleteForm($id);
 
         $request = $this->getRequest();
@@ -190,14 +190,14 @@ class CustomerController extends Controller
         $editForm->bindRequest($request);
 
         if ($editForm->isValid()) {
-            $em->persist($entity);
+            $em->persist($account);
             $em->flush();
 
             return $this->redirect($this->generateUrl('customer_edit', array('id' => $id)));
         }
 
         return array(
-            'entity'      => $entity,
+            'account'      => $account,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );

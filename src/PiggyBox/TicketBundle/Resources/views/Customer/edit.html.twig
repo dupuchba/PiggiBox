@@ -8,7 +8,7 @@
 
             <h2>Modifier un client</h2>
 
-                <form class="form-horizontal" action="{{ path('customer_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+                <form class="form-horizontal" action="{{ path('customer_update', { 'id': account.id }) }}" method="post" {{ form_enctype(edit_form) }}>
                 
                     {{ form_row(edit_form.customer.lastname) }}
 
@@ -32,7 +32,7 @@
 
                     <div class="form-actions">
                         <button type="submit" class="btn btn-large btn-primary" name="action" value="update"><i class='icon-pencil icon-white'></i> Modifier</button>
-                        <a href="fiche.php?id=<?php echo $data['id']; ?>" class="btn btn-large"><i class='icon-remove'></i> Annuler</a>
+                        <a href="{{ path('customer_operation', { 'id': account.id }) }}" class="btn btn-large"><i class='icon-remove'></i> Annuler</a>
                         <a class="btn btn-large btn-danger pull-right confirmsuppr"><i class='icon-trash icon-white'></i> Supprimer</a>
                             <div id="confirmsuppr" class="span5 pull-right">
                                 <p>Etes-vous sure de vouloir supprimer ce client? <br />
