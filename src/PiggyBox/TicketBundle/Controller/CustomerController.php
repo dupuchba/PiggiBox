@@ -114,31 +114,15 @@ class CustomerController extends Controller
     public function createAction()
     {
         $entity  = new Account();
-/*        var_dump($entity->getCustomer());die(); 
-        $entity->getCustomer()->addMerchant(new Merchant());*/
+        $em = $this->getDoctrine()->getEntityManager();
+        $merchant = $em->getRepository('PiggyBoxTicketBundle:Merchant')->find(1);
+
 
         $request = $this->getRequest();
         $form    = $this->createForm(new AccountType(), $entity);
         $form->bindRequest($request);
 
-/*        $merchant = new Merchant();
-        $merchant->setMerchantType("test");
-        $merchant->setMerchantName("test");
-        $merchant->setStreetAddress(5);
-        $merchant->setCountry("test");
-        $merchant->setPostalCode(5);
-        $merchant->setSteetNumber(5);
-        $merchant->setPhone(5);
-        $merchant->setEmail("test");
-        $merchant->setUserName("test");
-        $merchant->setCreatedat("test");
-        $merchant->setModifiedat("test");
-
-        $entity->getCustomer()->addMerchant(new Merchant());
-
-        $form->setData($entity);*/
-
-/*        var_dump($form->getErrors());die();*/
+        $entity->getCustomer()->addMerchant($merchant);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
