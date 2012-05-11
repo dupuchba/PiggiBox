@@ -23,18 +23,18 @@ class Operation
     private $id;
 
     /**
-     * @var float $previous_balance
+     * @var float $previousBalance
      *
-     * @ORM\Column(name="previous_balance", type="float")
+     * @ORM\Column(name="previousBalance", type="float")
      */
-    private $previous_balance;
+    private $previousBalance;
 
     /**
-     * @var float $new_balance
+     * @var float $newBalance
      *
-     * @ORM\Column(name="new_balance", type="float")
+     * @ORM\Column(name="newBalance", type="float")
      */
-    private $new_balance;
+    private $newBalance;
 
     /**
      * @var datetime $createdat
@@ -62,43 +62,43 @@ class Operation
     }
 
     /**
-     * Set previous_balance
+     * Set previousBalance
      *
      * @param float $previousBalance
      */
     public function setPreviousBalance($previousBalance)
     {
-        $this->previous_balance = $previousBalance;
+        $this->previousBalance = $previousBalance;
     }
 
     /**
-     * Get previous_balance
+     * Get previousBalance
      *
      * @return float 
      */
     public function getPreviousBalance()
     {
-        return $this->previous_balance;
+        return $this->previousBalance;
     }
 
     /**
-     * Set new_balance
+     * Set newBalance
      *
      * @param float $newBalance
      */
     public function setNewBalance($newBalance)
     {
-        $this->new_balance = $newBalance;
+        $this->newBalance = $newBalance;
     }
 
     /**
-     * Get new_balance
+     * Get newBalance
      *
      * @return float 
      */
     public function getNewBalance()
     {
-        return $this->new_balance;
+        return $this->newBalance;
     }
 
     /**
