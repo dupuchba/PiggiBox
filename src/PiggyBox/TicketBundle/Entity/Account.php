@@ -59,7 +59,7 @@ class Account
     private $customer;
 
     /**
-     * @ORM\OneToMany(targetEntity="Operation", mappedBy="account",cascade={"remove", "persist"})
+     * @ORM\OneToMany(targetEntity="Operation", mappedBy="account")
      */
     private $operations;
 
