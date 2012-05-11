@@ -6,7 +6,7 @@
 
     <services>
         <service id="piggybox.account_listener" class="PiggyBox\TicketBundle\Listener\AccountListener">
-            <tag name="doctrine.event_listener" event="postUpdate" />
+            <tag name="doctrine.event_listener" event="onFlush" />
         </service>        
     </services>
 </container>
