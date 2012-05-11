@@ -4,6 +4,7 @@ namespace PiggyBox\TicketBundle\Listener;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Event\OnFlushEventArgs;
+use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use PiggyBox\TicketBundle\Entity\Account;
 use PiggyBox\TicketBundle\Entity\Operation;
@@ -17,7 +18,7 @@ class AccountListener
 
 
         public function onFlush(OnFlushEventArgs $args) {
-
+                //var_dump($this->getPreviousBalance());die();
                 $this->em = $args->getEntityManager();
                 $eventManager = $this->em->getEventManager();
 
@@ -26,23 +27,29 @@ class AccountListener
                 $this->uow= $this->em->getUnitOfWork();
 
                 //Iterate through Update:
-                foreach ($this->uow->getScheduledEntityUpdates() as $entity) {
+                foreach ($this->uow->getScheduledEntityUpdates() as $account) {
                         
-                        if ($entity instanceof Account ) {
+                        if ($account instanceof Account ) {
 
                                 $meta = $this->em->getClassMetadata('PiggyBox\TicketBundle\Entity\Account');                        
-                                $balance = $meta->getReflectionProperty('balance')->getValue($entity);
+                                $balance = $meta->getReflectionProperty('balance')->getValue($account);
+                                $previous_balance = 0;
+
+
+                                if (!$account->getOperations()->isEmpty()) {
+                                        $previous_balance =  $account->getOperations()->last()->getNewBalance();
+                                }
 
                                 $operation = new Operation();
-                                $operation->setAccount($entity);
+                                $operation->setAccount($account);
                                 $operation->setNewBalance($balance);
-                                $operation->setPreviousBalance($entity->getBalance());                                
+                                $operation->setPreviousBalance($previous_balance);                                
 
                                 $this->em->persist($operation);
                                 $this->em->flush();
-                                
+
                         // recalculate changeset, since we might messed up the relations
-                        $this -> em -> getUnitOfWork() -> recomputeSingleEntityChangeSet($meta, $entity);
+                        $this -> em -> getUnitOfWork() -> recomputeSingleEntityChangeSet($meta, $account);
                         }
                 }
 
