@@ -22,12 +22,13 @@ class CustomerController extends Controller
     /**
      * Lists all Customer entities.
      *
-     * @Route("/", name="customer_search")
+     * @Route("/search.{_format}", name="customer_search", defaults={"_format" = "~"})
      * @Template()
      */
     public function indexAction()
     {
-        $request = $this->getRequest();
+        //requete qui recupere le parameter mais je test 2,3 truk sur backbone
+        /*$request = $this->getRequest();
         
         if ($request->getMethod() == 'POST') {
             $em = $this->getDoctrine()->getEntityManager();
@@ -38,9 +39,23 @@ class CustomerController extends Controller
             }
             else var_dump('yeah');
             die();
-        }
+        }*/
 
-        return array();
+        $em = $this->getDoctrine()->getEntityManager();
+        $account = $em->getRepository('PiggyBoxTicketBundle:Customer')->findAll();
+
+        $view = View::create();
+        $handler = $this->get('fos_rest.view_handler');
+        if ('html' === $this->getRequest()->getRequestFormat()){
+            $view->setData(array('account'=> $account));
+        }
+            
+        else{
+            $view->setData($account);
+        }
+        $view->setTemplate('PiggyBoxTicketBundle:Customer:index.html.twig');
+
+        return $view;
     }
 
     /**
