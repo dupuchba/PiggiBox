@@ -11,6 +11,7 @@ use PiggyBox\TicketBundle\Form\CustomerType;
 use PiggyBox\TicketBundle\Entity\Account;
 use PiggyBox\TicketBundle\Form\AccountType;
 use PiggyBox\TicketBundle\Entity\Merchant;
+use FOS\RestBundle\View\View;
 
 /**
  * Customer controller.
