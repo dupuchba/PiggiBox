@@ -25,7 +25,7 @@ a){var b=F.exec(a);b&&(b[1]=(b[1]||"").toLowerCase(),b[3]=b[3]&&new RegExp("(?:^
 
 
 function updatecalcul() {
-    var solde = $('#payer input#thesolde').val();
+    var solde = $('span#thesolde').val();
     var montant = $('input#montant.input-small').val();
     var nombre = $('input#nombre.input-mini').val();
     var valticket = $('input#valeur.input-mini').val();
@@ -33,7 +33,7 @@ function updatecalcul() {
     var nbrmin = (montant - solde) / valticket;
     var result = Number(solde) + Number((nombre * valticket)) - Number(montant);
 
-    $('.nbrminval span').html(Math.ceil(nbrmin));
+    $('span.hintitem').html(Math.ceil(nbrmin));    
 
     if (result<0) {
         $('.reste').show();
@@ -46,7 +46,7 @@ function updatecalcul() {
     };
 }
 
-    $('#payer input#montant').keyup(updatecalcul);
-    $('#payer input#nombre').keyup(updatecalcul);
-    $('#payer input#valticket').keyup(updatecalcul);
+    $('input#montant.input-small').keyup(updatecalcul);
+    $('input#nombre.input-mini').keyup(updatecalcul);
+    $('input#valeur.input-mini').keyup(updatecalcul);
 
