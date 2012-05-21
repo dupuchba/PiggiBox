@@ -77,13 +77,18 @@
     target=/gedmo-doctrine-extensions
 
 [FOSRest]
-	git=git://github.com/FriendsOfSymfony/FOSRest.git
+	git=https://github.com/FriendsOfSymfony/FOSRest.git
 	target=fos/FOS/Rest
 
 [FOSRestBundle]
-	git=git://github.com/FriendsOfSymfony/FOSRestBundle.git
+	git=https://github.com/FriendsOfSymfony/FOSRestBundle.git
 	target=bundles/FOS/RestBundle
 
 [JMSSerializerBundle]
-    git=git://github.com/schmittjoh/JMSSerializerBundle.git
+    git=https://github.com/schmittjoh/JMSSerializerBundle.git
     target=bundles/JMS/SerializerBundle
+
+[FOSUserBundle]
+    git=https://github.com/FriendsOfSymfony/FOSUserBundle.git
+    target=bundles/FOS/UserBundle
+    version=1.2.0    
