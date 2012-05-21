@@ -239,6 +239,7 @@ class Merchant extends BaseUser
     {
         return $this->shop_type;
     }
+
     public function __construct()
     {
         parent::__construct();

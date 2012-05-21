@@ -9,7 +9,7 @@ class MerchantType extends BaseType
 {
     public function buildForm(FormBuilder $builder, array $options)
     {
-        parent::buildForm($builder, $options);
+        //parent::buildForm($builder, $options);
 
         $builder
             ->add('merchant_lastname', 'text', array(
@@ -30,7 +30,6 @@ class MerchantType extends BaseType
                         'class' => 'input-xlarge',
                     )
                 ))
-            ->add('username')
             ->add('plainPassword', 'repeated',array('type' => 'password'), array(
                     'label'        => 'Votre mot de passe',
                     'widget_addon' => array(
@@ -81,7 +80,7 @@ class MerchantType extends BaseType
                         'text' => 'N°'
                 ),
                 'attr' => array(
-                    'class' => 'span1',
+                    'class' => 'input-xlarge',
                 )
             ))
             ->add('street_name', 'text', array(
@@ -89,13 +88,29 @@ class MerchantType extends BaseType
                 'widget_addon' => array(
                         'text' => 'Rue'
                 ),
-                'widget_type'  => "inline",
                 'attr' => array(
-                    'class' => 'span4',
+                    'class' => 'input-xlarge',
                 )
             ))
-            ->add('zipcode')
-            ->add('city')
+            ->add('zipcode', 'text', array(
+                'label_render'        => false,
+                'widget_addon' => array(
+                        'text' => 'CP'
+                ),
+                'attr' => array(
+                    'class' => 'input-xlarge',
+                )
+            ))
+            ->add('city', 'text', array(
+                'label_render'        => false,
+                'widget_addon' => array(
+                        'text' => 'Ville'
+                ),
+                'attr' => array(
+                    'class' => 'input-xlarge',
+                )
+            ))
+            ->add('username','hidden')
             ->add('shop_type')
         ;
     }

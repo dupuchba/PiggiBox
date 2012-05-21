@@ -65,5 +65,22 @@
             {% endblock %}
         </div>
 
+        {% block javascripts %}
+            {% javascripts
+                '@PiggyBoxUserBundle/Resources/public/js/vendor/jquery-1.7.2.min.js'                
+            %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+            
+            <!-- NOTE: fonction qui permet dimprimer la valeur de email dans username. a retravailler -->
+            <!-- TODO: integrer ca un peu mieux dans un fichier js -->            
+            <script type="text/javascript">
+            $('input#fos_user_registration_form_email').keyup(function (){
+                $('input#fos_user_registration_form_username').val($('input#fos_user_registration_form_email').val())
+                console.log("hidden field value is : " + $('input#fos_user_registration_form_username').val());
+            });
+            </script>
+            {% endjavascripts %}
+        {% endblock %}
+
     </body>
 </html>
