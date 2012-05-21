@@ -12,6 +12,15 @@ class MerchantType extends BaseType
         parent::buildForm($builder, $options);
 
         $builder
+            ->add('username', 'text', array(
+                'label'        => 'Nom',
+                'widget_addon' => array(
+                        'icon' => 'user'
+                ),
+                'attr' => array(
+                    'class' => 'span3',
+                )
+            ))
             ->add('username')
             ->add('email')
             ->add('emailCanonical')
