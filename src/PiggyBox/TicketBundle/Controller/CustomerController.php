@@ -76,7 +76,13 @@ class CustomerController extends Controller
             throw $this->createNotFoundException('Unable to find Account entity.');
         }
 
-        return array('account'=> $account);
+        if($account->getBalance() > 0) {
+            $class = 'positive';
+        } else {
+            $class = 'negative';
+        }
+
+        return array('account'=> $account, 'class' => $class);
     }
 
 
@@ -270,7 +276,7 @@ class CustomerController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('customer'));
+        return $this->redirect($this->generateUrl('customer_list'));
     }
 
     private function createDeleteForm($id)

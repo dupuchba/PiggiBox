@@ -8,7 +8,7 @@
 
     		<div id="client" class="span8">
 
-                <h2><span class="caps"></span> <span class="uppercase"></span></h2>
+                <h2><span class="caps">{{ account.customer.firstname }}</span> <span class="uppercase">{{ account.customer.lastname }}</span></h2>
 
     			
                 <ul class="unstyled userinfo">
@@ -19,10 +19,6 @@
 
                      <li title='Téléphone'>&#9742;
                         {{ account.customer.phone }}
-                    </li>
-
-                    <li>
-                        <i class="icon-home"></i>
                     </li>
 
                     <li title='A propos'><i class='icon-tag'></i>
@@ -43,7 +39,7 @@
             <div class="span3 offset1">
                 <div class="well">
 
-                    <div id="solde" class="">
+                    <div id="solde" class="{{ class }}">
                         <span id="thesolde">{{ account.balance }}</span> &euro;
                     </div>
 
