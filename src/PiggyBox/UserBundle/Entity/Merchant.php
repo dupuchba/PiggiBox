@@ -44,11 +44,25 @@ class Merchant extends BaseUser
     private $shop_name;
 
     /**
+     * @var string $phone
+     *
+     * @ORM\Column(name="phone", type="string", length=16)
+     */
+    private $phone;
+
+    /**
      * @var string $street_number
      *
      * @ORM\Column(name="street_number", type="string", length=12)
      */
     private $street_number;
+
+    /**
+     * @var string $street_name
+     *
+     * @ORM\Column(name="street_name", type="string", length=255)
+     */
+    private $street_name;
 
     /**
      * @var string $zipcode
@@ -72,7 +86,7 @@ class Merchant extends BaseUser
     private $shop_type;
 
     /**
-     * @ORM\OneToMany(targetEntity="\PiggyBox\UserBundle\Entity\Account", mappedBy="merchant")
+     * @ORM\OneToMany(targetEntity="\PiggyBox\TicketBundle\Entity\Account", mappedBy="merchant")
      */
     private $accounts;
 
@@ -227,15 +241,16 @@ class Merchant extends BaseUser
     }
     public function __construct()
     {
+        parent::__construct();
         $this->accounts = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
      * Add accounts
      *
-     * @param PiggyBox\UserBundle\Entity\Account $accounts
+     * @param PiggyBox\TicketBundle\Entity\Account $accounts
      */
-    public function addAccount(\PiggyBox\UserBundle\Entity\Account $accounts)
+    public function addAccount(\PiggyBox\TicketBundle\Entity\Account $accounts)
     {
         $this->accounts[] = $accounts;
     }
@@ -248,5 +263,45 @@ class Merchant extends BaseUser
     public function getAccounts()
     {
         return $this->accounts;
+    }
+
+    /**
+     * Set phone
+     *
+     * @param string $phone
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+    }
+
+    /**
+     * Get phone
+     *
+     * @return string 
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * Set street_name
+     *
+     * @param string $streetName
+     */
+    public function setStreetName($streetName)
+    {
+        $this->street_name = $streetName;
+    }
+
+    /**
+     * Get street_name
+     *
+     * @return string 
+     */
+    public function getStreetName()
+    {
+        return $this->street_name;
     }
 }

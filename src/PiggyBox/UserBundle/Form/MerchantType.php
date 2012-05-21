@@ -12,27 +12,91 @@ class MerchantType extends BaseType
         parent::buildForm($builder, $options);
 
         $builder
-            ->add('username', 'text', array(
-                'label'        => 'Nom',
+            ->add('merchant_lastname', 'text', array(
+                    'label'        => 'Votre Nom',
+                    'widget_addon' => array(
+                            'icon' => 'user'
+                    ),
+                    'attr' => array(
+                        'class' => 'input-xlarge',
+                    )
+                ))
+            ->add('merchant_firstname', 'text', array(
+                    'label'        => 'Votre Prénom',
+                    'widget_addon' => array(
+                            'icon' => 'user'
+                    ),
+                    'attr' => array(
+                        'class' => 'input-xlarge',
+                    )
+                ))
+            ->add('username')
+            ->add('plainPassword', 'repeated',array('type' => 'password'), array(
+                    'label'        => 'Votre mot de passe',
+                    'widget_addon' => array(
+                            'icon' => 'lock'
+                    ),
+                    'attr' => array(
+                        'class' => 'input-xlarge',
+                    )
+                    ))
+            ->add('shop_name', 'text', array(
+                    'label'        => 'Nom de votre boutique',
+                    'widget_addon' => array(
+                            'icon' => 'home'
+                    ),
+                    'attr' => array(
+                        'class' => 'input-xlarge',
+                    )
+            ))        
+            ->add('shop_name', 'text', array(
+                    'label'        => 'Nom de votre boutique',
+                    'widget_addon' => array(
+                            'icon' => 'home'
+                    ),
+                    'attr' => array(
+                        'class' => 'input-xlarge',
+                    ) 
+            ))               
+            ->add('email', 'email', array(
                 'widget_addon' => array(
-                        'icon' => 'user'
+                        'icon' => 'envelope'
                 ),
                 'attr' => array(
-                    'class' => 'span3',
+                    'class' => 'input-xlarge',
+                )
+            ))        
+            ->add('phone', 'text', array(
+                'label'        => 'Téléphone',
+                'widget_addon' => array(
+                        'text' => '&#9742;'
+                ),
+                'attr' => array(
+                    'class' => 'input-xlarge',
                 )
             ))
-            ->add('username')
-            ->add('email')
-            ->add('emailCanonical')
-            ->add('roles')
-            ->add('merchant_type')
-            ->add('merchant_name')
-            ->add('street_address')
-            ->add('country')
-            ->add('postal_code')
-            ->add('steet_number')
-            ->add('phone')
-            ->add('user_name')
+            ->add('street_number', 'text', array(
+                'label'        => 'Adresse',
+                'widget_addon' => array(
+                        'text' => 'N°'
+                ),
+                'attr' => array(
+                    'class' => 'span1',
+                )
+            ))
+            ->add('street_name', 'text', array(
+                'label_render'        => false,
+                'widget_addon' => array(
+                        'text' => 'Rue'
+                ),
+                'widget_type'  => "inline",
+                'attr' => array(
+                    'class' => 'span4',
+                )
+            ))
+            ->add('zipcode')
+            ->add('city')
+            ->add('shop_type')
         ;
     }
 
