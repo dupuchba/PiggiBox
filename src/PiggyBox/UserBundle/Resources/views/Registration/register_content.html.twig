@@ -1,0 +1,23 @@
+{% form_theme form theme %}
+
+<div id="content" class="container">
+    <div class="row">
+        <div class="span12">
+
+            <h2>Vos informations</h2>
+
+                <form class="form-horizontal" action="{{ path('fos_user_registration_register') }}" method="post" class="fos_user_registration_register" {{ form_enctype(form) }}>
+                
+                    {{ form_row(form.username) }}   
+
+                    {{ form_rest(form) }}
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-large btn-success" name="action" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}"><i class='icon-plus icon-white'></i> Ajouter</button>
+                        <a href="search.php" class="btn btn-large"><i class='icon-remove'></i> Annuler</a>
+                    </div>
+                </form>
+
+        </div>
+    </div>
+</div>

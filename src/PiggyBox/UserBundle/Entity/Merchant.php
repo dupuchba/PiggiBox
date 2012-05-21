@@ -1,8 +1,8 @@
 <?php
+
 namespace PiggyBox\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Entity\User as BaseUser;
 
 /**
@@ -23,84 +23,58 @@ class Merchant extends BaseUser
     protected $id;
 
     /**
-     * @var string $merchant_type
+     * @var string $merchant_lastname
      *
-     * @ORM\Column(name="merchant_type", type="string", length=255)
+     * @ORM\Column(name="merchant_lastname", type="string", length=255)
      */
-    private $merchant_type;
+    private $merchant_lastname;
 
     /**
-     * @var string $merchant_name
+     * @var string $merchant_firstname
      *
-     * @ORM\Column(name="merchant_name", type="string", length=255)
+     * @ORM\Column(name="merchant_firstname", type="string", length=255)
      */
-    private $merchant_name;
+    private $merchant_firstname;
 
     /**
-     * @var string $street_address
+     * @var string $shop_name
      *
-     * @ORM\Column(name="street_address", type="string", length=255)
+     * @ORM\Column(name="shop_name", type="string", length=255)
      */
-    private $street_address;
+    private $shop_name;
 
     /**
-     * @var string $country
+     * @var string $street_number
      *
-     * @ORM\Column(name="country", type="string", length=255)
+     * @ORM\Column(name="street_number", type="string", length=12)
      */
-    private $country;
+    private $street_number;
 
     /**
-     * @var string $postal_code
+     * @var string $zipcode
      *
-     * @ORM\Column(name="postal_code", type="string", length=255)
+     * @ORM\Column(name="zipcode", type="string", length=10)
      */
-    private $postal_code;
+    private $zipcode;
 
     /**
-     * @var integer $steet_number
+     * @var string $city
      *
-     * @ORM\Column(name="steet_number", type="integer")
+     * @ORM\Column(name="city", type="string", length=255)
      */
-    private $steet_number;
+    private $city;
 
     /**
-     * @var string $phone
+     * @var string $shop_type
      *
-     * @ORM\Column(name="phone", type="string", length=24)
+     * @ORM\Column(name="shop_type", type="string", length=255)
      */
-    private $phone;
+    private $shop_type;
 
     /**
-     * @var string $user_name
-     *
-     * @ORM\Column(name="user_name", type="string", length=255)
+     * @ORM\OneToMany(targetEntity="\PiggyBox\UserBundle\Entity\Account", mappedBy="merchant")
      */
-    private $user_name;
-
-    /**
-     * @var datetime $createdat
-     *
-     * @ORM\Column(name="createdat", type="datetime")
-     */
-    private $createdat;
-
-    /**
-     * @var datetime $modifiedat
-     *
-     * @ORM\Column(name="modifiedat", type="datetime")
-     */
-    private $modifiedat;
-
-    /**
-    * @ORM\ManyToMany(targetEntity="\PiggyBox\TicketBundle\Entity\Customer", mappedBy="merchants")
-    */
-    private $customers;
-
-    public function __construct() {
-        parent::__construct();
-        $this->customers = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+    private $accounts;
 
     /**
      * Get id
@@ -113,222 +87,166 @@ class Merchant extends BaseUser
     }
 
     /**
-     * Set merchant_type
+     * Set merchant_lastname
      *
-     * @param string $merchantType
+     * @param string $merchantLastname
      */
-    public function setMerchantType($merchantType)
+    public function setMerchantLastname($merchantLastname)
     {
-        $this->merchant_type = $merchantType;
+        $this->merchant_lastname = $merchantLastname;
     }
 
     /**
-     * Get merchant_type
-     *
-     * @return string 
-     */
-    public function getMerchantType()
-    {
-        return $this->merchant_type;
-    }
-
-    /**
-     * Set merchant_name
-     *
-     * @param string $merchantName
-     */
-    public function setMerchantName($merchantName)
-    {
-        $this->merchant_name = $merchantName;
-    }
-
-    /**
-     * Get merchant_name
+     * Get merchant_lastname
      *
      * @return string 
      */
-    public function getMerchantName()
+    public function getMerchantLastname()
     {
-        return $this->merchant_name;
+        return $this->merchant_lastname;
     }
 
     /**
-     * Set street_address
+     * Set merchant_firstname
      *
-     * @param string $streetAddress
+     * @param string $merchantFirstname
      */
-    public function setStreetAddress($streetAddress)
+    public function setMerchantFirstname($merchantFirstname)
     {
-        $this->street_address = $streetAddress;
+        $this->merchant_firstname = $merchantFirstname;
     }
 
     /**
-     * Get street_address
-     *
-     * @return string 
-     */
-    public function getStreetAddress()
-    {
-        return $this->street_address;
-    }
-
-    /**
-     * Set country
-     *
-     * @param string $country
-     */
-    public function setCountry($country)
-    {
-        $this->country = $country;
-    }
-
-    /**
-     * Get country
+     * Get merchant_firstname
      *
      * @return string 
      */
-    public function getCountry()
+    public function getMerchantFirstname()
     {
-        return $this->country;
+        return $this->merchant_firstname;
     }
 
     /**
-     * Set postal_code
+     * Set shop_name
      *
-     * @param string $postalCode
+     * @param string $shopName
      */
-    public function setPostalCode($postalCode)
+    public function setShopName($shopName)
     {
-        $this->postal_code = $postalCode;
+        $this->shop_name = $shopName;
     }
 
     /**
-     * Get postal_code
-     *
-     * @return string 
-     */
-    public function getPostalCode()
-    {
-        return $this->postal_code;
-    }
-
-    /**
-     * Set steet_number
-     *
-     * @param integer $steetNumber
-     */
-    public function setSteetNumber($steetNumber)
-    {
-        $this->steet_number = $steetNumber;
-    }
-
-    /**
-     * Get steet_number
-     *
-     * @return integer 
-     */
-    public function getSteetNumber()
-    {
-        return $this->steet_number;
-    }
-
-    /**
-     * Set phone
-     *
-     * @param string $phone
-     */
-    public function setPhone($phone)
-    {
-        $this->phone = $phone;
-    }
-
-    /**
-     * Get phone
+     * Get shop_name
      *
      * @return string 
      */
-    public function getPhone()
+    public function getShopName()
     {
-        return $this->phone;
+        return $this->shop_name;
     }
 
     /**
-     * Set user_name
+     * Set street_number
      *
-     * @param string $userName
+     * @param string $streetNumber
      */
-    public function setUserName($userName)
+    public function setStreetNumber($streetNumber)
     {
-        $this->user_name = $userName;
+        $this->street_number = $streetNumber;
     }
 
     /**
-     * Get user_name
+     * Get street_number
      *
      * @return string 
      */
-    public function getUserName()
+    public function getStreetNumber()
     {
-        return $this->user_name;
+        return $this->street_number;
     }
 
     /**
-     * Set createdat
+     * Set zipcode
      *
-     * @param datetime $createdat
+     * @param string $zipcode
      */
-    public function setCreatedat($createdat)
+    public function setZipcode($zipcode)
     {
-        $this->createdat = $createdat;
+        $this->zipcode = $zipcode;
     }
 
     /**
-     * Get createdat
+     * Get zipcode
      *
-     * @return datetime 
+     * @return string 
      */
-    public function getCreatedat()
+    public function getZipcode()
     {
-        return $this->createdat;
+        return $this->zipcode;
     }
 
     /**
-     * Set modifiedat
+     * Set city
      *
-     * @param datetime $modifiedat
+     * @param string $city
      */
-    public function setModifiedat($modifiedat)
+    public function setCity($city)
     {
-        $this->modifiedat = $modifiedat;
+        $this->city = $city;
     }
 
     /**
-     * Get modifiedat
+     * Get city
      *
-     * @return datetime 
+     * @return string 
      */
-    public function getModifiedat()
+    public function getCity()
     {
-        return $this->modifiedat;
+        return $this->city;
     }
 
     /**
-     * Add customers
+     * Set shop_type
      *
-     * @param PiggyBox\TicketBundle\Entity\Customer $customers
+     * @param string $shopType
      */
-    public function addCustomer(\PiggyBox\TicketBundle\Entity\Customer $customers)
+    public function setShopType($shopType)
     {
-        $this->customers[] = $customers;
+        $this->shop_type = $shopType;
     }
 
     /**
-     * Get customers
+     * Get shop_type
+     *
+     * @return string 
+     */
+    public function getShopType()
+    {
+        return $this->shop_type;
+    }
+    public function __construct()
+    {
+        $this->accounts = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add accounts
+     *
+     * @param PiggyBox\UserBundle\Entity\Account $accounts
+     */
+    public function addAccount(\PiggyBox\UserBundle\Entity\Account $accounts)
+    {
+        $this->accounts[] = $accounts;
+    }
+
+    /**
+     * Get accounts
      *
      * @return Doctrine\Common\Collections\Collection 
      */
-    public function getCustomers()
+    public function getAccounts()
     {
-        return $this->customers;
+        return $this->accounts;
     }
 }

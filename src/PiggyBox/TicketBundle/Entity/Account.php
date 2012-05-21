@@ -59,6 +59,12 @@ class Account
     private $customer;
 
     /**
+     * @ORM\ManyToOne(targetEntity="\PiggyBox\UserBundle\Entity\Merchant", inversedBy="accounts")
+     * @ORM\JoinColumn(name="merchant_id", referencedColumnName="id")
+     */
+    private $merchant;
+
+    /**
      * @ORM\OneToMany(targetEntity="Operation", mappedBy="account")
      */
     private $operations;
@@ -175,5 +181,25 @@ class Account
     public function getOperations()
     {
         return $this->operations;
+    }
+
+    /**
+     * Set merchant
+     *
+     * @param PiggyBox\UserBundle\Entity\Merchant $merchant
+     */
+    public function setMerchant(\PiggyBox\UserBundle\Entity\Merchant $merchant)
+    {
+        $this->merchant = $merchant;
+    }
+
+    /**
+     * Get merchant
+     *
+     * @return PiggyBox\UserBundle\Entity\Merchant 
+     */
+    public function getMerchant()
+    {
+        return $this->merchant;
     }
 }
