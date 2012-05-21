@@ -32,7 +32,7 @@ class Account
     /**
      * @var float $ticket_value
      *
-     * @ORM\Column(name="ticket_value", type="float")
+     * @ORM\Column(name="ticket_value", type="float", nullable=true)
      */
     private $ticket_value;
 

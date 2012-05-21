@@ -79,6 +79,32 @@ class CustomerController extends Controller
         return array('account'=> $account);
     }
 
+
+    /**
+     * Finds and displays a Customer entity.
+     *
+     * @Route("/list", name="customer_list")
+     * @Template()
+     */
+    public function listAction()
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $customers = $em->getRepository('PiggyBoxTicketBundle:Customer')->findAll();
+        //TODO: findMyCustomer() pour obtenir la liste des SES clients
+        //TODO: recuperer seulement l'account du marchant en cours
+
+        if (!$customers) {
+            throw $this->createNotFoundException('Unable to find Customer entity.');
+        }
+
+        $letters = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
+
+        return array(
+            'customers'      => $customers,
+            'letters'       => $letters        );
+    }
+
     /**
      * Finds and displays a Customer entity.
      *

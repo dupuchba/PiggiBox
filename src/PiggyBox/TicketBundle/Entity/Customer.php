@@ -46,21 +46,21 @@ class Customer
      * @var string $email
      *
      * @Assert\Email()
-     * @ORM\Column(name="email", type="string", length=255,unique=true)
+     * @ORM\Column(name="email", type="string", length=255,unique=true, nullable=true)
      */
     private $email;
 
     /**
      * @var string $phone
      *
-     * @ORM\Column(name="phone", type="string", length=24)
+     * @ORM\Column(name="phone", type="string", length=24, nullable=true)
      */
     private $phone;
 
     /**
      * @var string $comment
      *
-     * @ORM\Column(name="comment", type="string", length=255)
+     * @ORM\Column(name="comment", type="string", length=255, nullable=true)
      */
     private $comment;
 
