@@ -4,6 +4,7 @@ namespace PiggyBox\TicketBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use FOS\UserBundle\Entity\User as BaseUser;
 
 /**
  * PiggyBox\TicketBundle\Entity\Merchant
@@ -11,7 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Table()
  * @ORM\Entity
  */
-class Merchant
+class Merchant extends BaseUser
 {
     /**
      * @var integer $id
@@ -20,7 +21,7 @@ class Merchant
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string $merchant_type
@@ -72,13 +73,6 @@ class Merchant
     private $phone;
 
     /**
-     * @var string $email
-     *
-     * @ORM\Column(name="email", type="string", length=255)
-     */
-    private $email;
-
-    /**
      * @var string $user_name
      *
      * @ORM\Column(name="user_name", type="string", length=255)
@@ -105,6 +99,7 @@ class Merchant
     private $customers;
 
     public function __construct() {
+        parent::__construct();
         $this->customers = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -256,26 +251,6 @@ class Merchant
     public function getPhone()
     {
         return $this->phone;
-    }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string 
-     */
-    public function getEmail()
-    {
-        return $this->email;
     }
 
     /**

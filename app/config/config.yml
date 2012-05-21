@@ -73,3 +73,9 @@ stof_doctrine_extensions:
 sensio_framework_extra:
     view:
         annotations: false            
+
+# FOSUserBundle config
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: PiggyBox\TicketBundle\Entity\Merchant
