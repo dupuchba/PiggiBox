@@ -1,13 +1,12 @@
 <?php
-
-namespace PiggyBox\TicketBundle\Entity;
+namespace PiggyBox\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Entity\User as BaseUser;
 
 /**
- * PiggyBox\TicketBundle\Entity\Merchant
+ * PiggyBox\UserBundle\Entity\Merchant
  *
  * @ORM\Table()
  * @ORM\Entity
@@ -94,7 +93,7 @@ class Merchant extends BaseUser
     private $modifiedat;
 
     /**
-    * @ORM\ManyToMany(targetEntity="Customer", mappedBy="merchants")
+    * @ORM\ManyToMany(targetEntity="\PiggyBox\TicketBundle\Entity\Customer", mappedBy="merchants")
     */
     private $customers;
 

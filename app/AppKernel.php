@@ -23,6 +23,7 @@ class AppKernel extends Kernel
 			new JMS\SerializerBundle\JMSSerializerBundle($this),
 			new FOS\RestBundle\FOSRestBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new PiggyBox\UserBundle\PiggyBoxUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
