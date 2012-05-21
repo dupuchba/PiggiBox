@@ -18,7 +18,8 @@ class AccountType extends AbstractType
                 ),
                 'attr' => array(
                     'class' => 'input-small',
-                )
+                ),
+                'required'  => false
             ))
             ->add('balance', 'text', array(
                 'label'        => 'Solde',
@@ -28,7 +29,8 @@ class AccountType extends AbstractType
                 ),
                 'attr' => array(
                     'class' => 'input-small',
-                )
+                ),
+                'required'  => false
             ))
             ->add('customer', new CustomerType())
         ;

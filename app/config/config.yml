@@ -82,3 +82,11 @@ fos_user:
     registration:
         form:
             type: piggybox_userbundle_merchanttype
+
+# Configuration pour lextension twig text
+#TODO: A ajouter dans services.xml
+services:
+    twig.extension.text:
+       class: Twig_Extensions_Extension_Text
+       tags:
+           - { name: twig.extension }

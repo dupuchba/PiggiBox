@@ -1,0 +1,49 @@
+{% extends "PiggyBoxTicketBundle::layout.html.twig" %}
+
+{% block content %}
+
+<div id="content" class="container">
+    <div class="row">
+        <div class="span12">
+
+            <h2>Modifier un client</h2>
+
+                <div class="subnav">
+                    <ul class="nav nav-pills">
+
+                        {% for letter in letters %}
+                            <li><a href="#{{ letter }}">{{ letter }}</a></li>
+                        {% endfor %}
+
+                    </ul>
+                </div>
+                
+                <table class="table table-condensed table-striped" style="margin-top: 24px;">
+
+                <tr>
+                    <th scope="col" width="150px">NOM</th>
+                    <th scope="col" width="150px">PRENOM</th>
+                    <th scope="col" width="80px">SOLDE</th>
+                    <th scope="col" width="400px">COMMENTAIRE</th>
+                </tr>
+
+                <?php //TODO: AJOUTER LIEN ANCHOR sur lettres ?>
+
+                {% for customer in customers %}
+
+                    <tr class="" onclick="window.location.href='{{ path('customer_edit', { 'id': customer.id} ) }}';">
+                        <td class="uppercase">{{ customer.lastname }}</td>
+                        <td class="caps">{{ customer.firstname }}</td>
+                        <td>solde</td>
+                        <td>{{ customer.comment }}</td>
+                    </tr>
+                {% endfor %}
+
+                </table>
+
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

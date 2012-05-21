@@ -33,8 +33,9 @@ class CustomerType extends AbstractType
                         'icon' => 'envelope'
                 ),
                 'attr' => array(
-                    'class' => 'span3',
-                )
+                    'class' => 'span3'
+                ),
+                'required'  => false
             ))
             ->add('phone', 'text', array(
                 'label'        => 'Téléphone',
@@ -42,11 +43,13 @@ class CustomerType extends AbstractType
                         'text' => '&#9742;'
                 ),
                 'attr' => array(
-                    'class' => 'span3',
-                )
+                    'class' => 'span3'
+                ),
+                'required'  => false
             ))           
             ->add('comment','textarea', array(
-                'label'         => 'Commentaire'
+                'label'         => 'Commentaire',
+                'required'  => false
                 ))
         ;
 
