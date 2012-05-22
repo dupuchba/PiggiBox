@@ -1,19 +1,21 @@
+$(function() {
 
-	$("a.confirmsuppr").click(function () {
-		$("#confirmsuppr").show("slow");
-	});
-	$("a.hidesuppr").click(function () {
-		$("#confirmsuppr").hide("slow");
-	});
-
-
-	$("a.hint").click(function () {
-		myrel = "#"+this.rel;
-		//alert(myrel);
-		$(myrel).toggle();
-	});
+//NOTE: Customer:edit.html.twig permet de montrer le message de suppression        
+    $("a.confirmsuppr").click(function () {
+        $("#confirmsuppr").show("slow");
+    });
+    $("a.hidesuppr").click(function () {
+        $("#confirmsuppr").hide("slow");
+    });
 
 
+    $("a.hint").click(function () {
+        myrel = "#"+this.rel;
+        //alert(myrel);
+        $(myrel).toggle();
+    });
+
+//NOTE: fichier operation.html.twig fonction de calcul instantané pour le prix ficher
 function updatecalcul() {
     var solde = $('span#thesolde').val();
     var montant = $('input#montant.input-small').val();
@@ -38,5 +40,21 @@ function updatecalcul() {
 
     $('input#montant.input-small').keyup(updatecalcul);
     $('input#nombre.input-mini').keyup(updatecalcul);
-    $('input#valeur.input-mini').keyup(updatecalcul);
+    $('input#valeur.input-mini').keyup(updatecalcul);    
+
+
+$('#resetbalanceform').submit(function(){
+    console.log("submit the form");
+    $.ajax({
+        url: Routing.generate('customer_resetbalance', { id: 1 }),
+        method: 'post',
+        success: function() {
+            alert("It has been a fucking success");
+        }
+    });
+});
+
+
+});
+
 

@@ -210,7 +210,7 @@ class CustomerController extends Controller
     /**
      * Edits an existing Customer entity.
      *
-     * @Route("/{id}/update", name="customer_update")
+     * @Route("/{id}/update", name="customer_update",options={"expose"=true})
      * @Method("post")
      * @Template("PiggyBoxTicketBundle:Customer:edit.html.twig")
      */
@@ -279,5 +279,31 @@ class CustomerController extends Controller
             ->add('id', 'hidden')
             ->getForm()
         ;
+    }
+
+    /**
+     * Edits an existing Customer entity.
+     *
+     * @Route("/{id}/reset", name="customer_resetbalance",options={"expose"=true})
+     * @Method("post")
+     */
+    public function resetBalanceAction($id)
+    {
+         $request = $this->container->get('request');
+
+        if($request->isXmlHttpRequest()){
+           $em = $this->getDoctrine()->getEntityManager();
+
+            $account = $em->getRepository('PiggyBoxTicketBundle:Account')->find($id);
+
+            if (!$account) {
+                throw $this->createNotFoundException('Unable to find Account entity.');
+            }
+
+            $account->setBalance(0);
+            $em->persist($account);
+            $em->flush();
+        } 
+    return $this->redirect($this->generateUrl('customer_operation', array('id' => $id)));    
     }
 }

@@ -42,17 +42,18 @@ function updatecalcul() {
     $('input#nombre.input-mini').keyup(updatecalcul);
     $('input#valeur.input-mini').keyup(updatecalcul);    
 
-
-$('.btn btn-inverse pull-right').click(function() {    
-    $.ajax({
-            url: '',
-            method: 'post',
-            data: {},
-            success: function(data) {
-                data
-            }
-        });
-});;
+//NOTE: fonction ajax qui ecoute le formulaire pour faire une requete post pour la valeur
+$('#resetbalanceform').submit(function(){
+    console.log("submit the form" + $('input#reset-id').val());
+    $.ajax({    
+        url: Routing.generate('customer_resetbalance', { id: $('input#reset-id').val() }),
+        type:"POST",
+        success: function() {
+            alert("It has been a fucking success");
+        }
+    });
+    return false;
+});
 
 
 });
