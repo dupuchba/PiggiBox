@@ -86,7 +86,7 @@ class Customer
     private $accounts;
 
     /**
-    * @ORM\ManyToMany(targetEntity="Merchant", inversedBy="users")
+    * @ORM\ManyToMany(targetEntity="\PiggyBox\UserBundle\Entity\Merchant", inversedBy="users")
     * @ORM\JoinTable(name="user_merchants")
     */
     private $merchants;
@@ -250,9 +250,9 @@ class Customer
     /**
      * Add merchants
      *
-     * @param PiggyBox\TicketBundle\Entity\Merchant $merchants
+     * @param \PiggyBox\UserBundle\Entity\Merchant $merchants
      */
-    public function addMerchant(\PiggyBox\TicketBundle\Entity\Merchant $merchants)
+    public function addMerchant(\PiggyBox\UserBundle\Entity\Merchant $merchants)
     {
         $this->merchants[] = $merchants;
     }

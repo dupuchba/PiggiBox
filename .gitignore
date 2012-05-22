@@ -1,3 +1,4 @@
+/app/config/parameters.ini
 /web/bundles/
 /app/bootstrap*
 /app/cache/*

@@ -47,10 +47,10 @@
 
                 </div>
 
-                <form class="nomargin" method="post" action="#">
-                    <input type="hidden" name="id" value="" />
+                <form id="resetbalanceform" class="nomargin" method="post" action="#">
+                    <input id="reset-id" type="hidden" name="id" value="{{account.id}}" />
                     <input type="hidden" name="solde" value="" />
-                    <button class="btn btn-inverse pull-right" name="action" value="raz" type="submit"><i class="icon-refresh icon-white"></i> Remise à zéro</button>
+                    <button id="resetbalance" class="btn btn-inverse pull-right" name="action" value="raz" type="submit"><i class="icon-refresh icon-white"></i> Remise à zéro</button>
                 </form>
                 
             </div>
@@ -72,9 +72,9 @@
                     <p>Montant à payer = Nombre de ticket x Valeur d'un ticket</p>
                 </div>
                 
-                <form class="form-horizontal" method="post" action="#">
+                <form id="setbalanceform" class="form-horizontal" method="post" action="#">
                 
-                    <input type="hidden" name="id" value="#" />
+                    <input id="set-id" type="hidden" name="id" value="#" />
                     <input type="text" name="solde" id="thesolde" class="hide" value="#" />
 
                     

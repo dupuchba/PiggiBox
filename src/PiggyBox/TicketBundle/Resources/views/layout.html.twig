@@ -73,6 +73,9 @@
         </div>
 
         {% block javascripts %}
+            <!-- NOTE: necessaire pour le bundle FOSJsRoutingBundle -->
+            <script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+            <script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
             {% javascripts
                 '@PiggyBoxTicketBundle/Resources/public/js/vendor/jquery-1.7.2.min.js'
                 '@PiggyBoxTicketBundle/Resources/public/js/vendor/bootstrap.min.js'

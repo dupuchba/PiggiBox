@@ -106,8 +106,6 @@ small {
 }
 
 #toolbox {
-		/* TODO: Hidden for tablets */
-		display: none;
 	position: fixed;
 	float: left;
 	top: 100px;

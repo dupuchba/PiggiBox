@@ -5,8 +5,11 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="piggybox.account_listener" class="PiggyBox\TicketBundle\Listener\AccountListener">
-            <tag name="doctrine.event_listener" event="onFlush" />           
+
+        <service id="piggybox_userbundle.registration.form.type" class="PiggyBox\UserBundle\Form\MerchantType">
+            <tag name="form.type" alias="piggybox_userbundle_merchanttype" />
+            <argument>%fos_user.model.user.class%</argument>
         </service>
+                
     </services>
 </container>

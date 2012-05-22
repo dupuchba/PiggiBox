@@ -4,7 +4,7 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: %locale% }
+    translator:      { fallback: %locale% }
     secret:          %secret%
     ide:             textmate
     charset:         UTF-8
@@ -59,6 +59,10 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
 
+#Configuration pour envoyer des email durant le développement
+# swiftmailer:
+#     delivery_address:  baptiste.dupuch@gmail.com
+
 jms_security_extra:
     secure_controllers:  true
     secure_all_services: false
@@ -78,8 +82,16 @@ sensio_framework_extra:
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
-    user_class: PiggyBox\TicketBundle\Entity\Merchant
+    user_class: PiggyBox\UserBundle\Entity\Merchant
+    registration:
+        confirmation:
+            enabled:    true # change to true for required email confirmation
+            template:   FOSUserBundle:Registration:email.txt.twig
+        form:
+            type: piggybox_userbundle_merchanttype
 
+# Configuration pour lextension twig text
+#TODO: A ajouter dans services.xml
 services:
     twig.extension.text:
        class: Twig_Extensions_Extension_Text
