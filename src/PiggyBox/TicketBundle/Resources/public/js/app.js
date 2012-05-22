@@ -1,19 +1,21 @@
+$(function() {
 
-	$("a.confirmsuppr").click(function () {
-		$("#confirmsuppr").show("slow");
-	});
-	$("a.hidesuppr").click(function () {
-		$("#confirmsuppr").hide("slow");
-	});
-
-
-	$("a.hint").click(function () {
-		myrel = "#"+this.rel;
-		//alert(myrel);
-		$(myrel).toggle();
-	});
+//NOTE: Customer:edit.html.twig permet de montrer le message de suppression        
+    $("a.confirmsuppr").click(function () {
+        $("#confirmsuppr").show("slow");
+    });
+    $("a.hidesuppr").click(function () {
+        $("#confirmsuppr").hide("slow");
+    });
 
 
+    $("a.hint").click(function () {
+        myrel = "#"+this.rel;
+        //alert(myrel);
+        $(myrel).toggle();
+    });
+
+//NOTE: fichier operation.html.twig fonction de calcul instantané pour le prix ficher
 function updatecalcul() {
     var solde = $('span#thesolde').val();
     var montant = $('input#montant.input-small').val();
@@ -38,5 +40,21 @@ function updatecalcul() {
 
     $('input#montant.input-small').keyup(updatecalcul);
     $('input#nombre.input-mini').keyup(updatecalcul);
-    $('input#valeur.input-mini').keyup(updatecalcul);
+    $('input#valeur.input-mini').keyup(updatecalcul);    
+
+
+$('.btn btn-inverse pull-right').click(function() {    
+    $.ajax({
+            url: '',
+            method: 'post',
+            data: {},
+            success: function(data) {
+                data
+            }
+        });
+});;
+
+
+});
+
 
