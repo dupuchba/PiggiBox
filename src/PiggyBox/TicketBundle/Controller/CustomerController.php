@@ -284,10 +284,10 @@ class CustomerController extends Controller
     /**
      * Edits an existing Customer entity.
      *
-     * @Route("/{id}/reset", name="customer_resetbalance",options={"expose"=true})
+     * @Route("/{id}/{balance}/setbalance", name="customer_setbalance",options={"expose"=true})
      * @Method("post")
      */
-    public function resetBalanceAction($id)
+    public function setBalanceAction($id,$balance)
     {
          $request = $this->container->get('request');
 
@@ -300,7 +300,7 @@ class CustomerController extends Controller
                 throw $this->createNotFoundException('Unable to find Account entity.');
             }
 
-            $account->setBalance(0);
+            $account->setBalance($balance);
             $em->persist($account);
             $em->flush();
         } 
