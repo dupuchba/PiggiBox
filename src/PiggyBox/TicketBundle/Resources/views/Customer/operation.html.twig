@@ -2,6 +2,7 @@
 
 {% block content %}
 
+
 <div id="content" class="container">
 
         <div class="row">
@@ -68,7 +69,7 @@
                 <h2 class="">Payer <a class="hint label label-info" rel="hint1">Aide</a></h2>
 
                 <div id="hint1" class="hintcontent alert alert-info">
-                    <a class="close" data-dismiss="alert">?</a>
+                    <a class="close" data-dismiss="alert">&times;</a>
                     <p>Montant à payer = Nombre de ticket x Valeur d'un ticket</p>
                 </div>
                 
@@ -89,7 +90,7 @@
                     <i class="icon-remove"></i>
                     
                     <div class="input-append">
-                        <input name="valeur" id="valeur" class="input-mini" type="text" value="" /><span class="add-on">&euro;</span>
+                        <input name="valeur" id="valeur" class="input-mini" type="text" value="{{ account.ticketvalue }}" /><span class="add-on">&euro;</span>
                     </div>
                     
 
@@ -123,7 +124,7 @@
                 <h4 class="marged">Modifier solde <a class="hint label label-info" rel="hint2">Aide</a></h4>
 
                 <div id="hint2" class="hintcontent alert alert-info">
-                    <a class="close" data-dismiss="alert">?</a>
+                    <a class="close" data-dismiss="alert">&times;</a>
                     <p>Pour modifier un solde entrez le montant total du solde. 
                     Cette case peut servir pour des cas particulier ou bien pour corriger une erreur.</p>
                 </div>
@@ -148,7 +149,7 @@
                 <h4 class="marged">Ajouter du crédit <a class="hint label label-info" rel="hint3">Aide</a></h4>
 
                 <div id="hint3" class="hintcontent alert alert-info">
-                    <a class="close" data-dismiss="alert">?</a>
+                    <a class="close" data-dismiss="alert">&times;</a>
                     <p>Sans forcément faire d'achat un client peut vous donner ses tickets restaurant afin
                     de créditer son compte. Entrez le nombre de ticket et la valeur d'un ticket pour les
                     ajouter à son solde.</p>
@@ -165,7 +166,7 @@
                     <i class="icon-remove"></i>
 
                     <div class="input-append">
-                        <input name="valeur" id="valeur" class="input-mini" type="text" value="" /><span class="add-on">&euro;</span>
+                        <input name="valeur" id="valeur" class="input-mini" type="text" value="{{ account.ticketvalue }}" /><span class="add-on">&euro;</span>
                     </div>
 
                     <button class="btn" name="action" value="addcredit" type="submit">Créditer</button>
@@ -193,7 +194,7 @@
                 <h2>Historique <a class="hint label label-info" rel="hint4">Aide</a></h2>
 
                 <div id="hint4" class="hintcontent alert alert-info">
-                    <a class="close" data-dismiss="alert">?</a>
+                    <a class="close" data-dismiss="alert">&times;</a>
                     <p>Le tableau suivant affiche les 6 dernieres opérations du client.
                     Toutes les opérations sont sauvegarder dans la base de données mais seulement
                     les 6 dernières sont affichées.</p>

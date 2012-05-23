@@ -76,6 +76,11 @@ class CustomerController extends Controller
             throw $this->createNotFoundException('Unable to find Account entity.');
         }
 
+        //var_dump($account->getTicketValue() ); die();
+        if( ! $account->getTicketValue() ) {
+            $account->setTicketValue(1);
+        }
+
         if($account->getBalance() > 0) {
             $class = 'positive';
         } else {
