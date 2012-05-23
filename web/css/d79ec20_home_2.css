@@ -1,6 +1,6 @@
 
 hr.soften {
-    background: url('../img/line.jpg');
+    background: url('../../bundles/piggyboxuser/img/line.jpg');
     border: 0 none;
     height: 16px;
     margin: 54px 0 38px;
@@ -64,7 +64,7 @@ h1#branding-banner {
     width: 600px;
     height: 100px;
     margin: 24px auto;
-    background: url("../img/branding-banner.png");
+    background: url("../../bundles/piggyboxuser/img/branding-banner.png");
     text-indent: 9999px;
 }
 
@@ -72,5 +72,5 @@ h1#branding-banner {
     width: 900px;
     height: 370px;
     margin: 32px auto 0;
-    background: url("../img/piggybox-pc-ipad-hero.png");
+    background: url("../../bundles/piggyboxuser/img/piggybox-pc-ipad-hero.png");
 }
