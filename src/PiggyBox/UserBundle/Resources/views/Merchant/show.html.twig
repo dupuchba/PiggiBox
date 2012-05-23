@@ -1,0 +1,118 @@
+<h1>Merchant</h1>
+
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Username</th>
+            <td>{{ entity.username }}</td>
+        </tr>
+        <tr>
+            <th>Usernamecanonical</th>
+            <td>{{ entity.usernameCanonical }}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{ entity.email }}</td>
+        </tr>
+        <tr>
+            <th>Emailcanonical</th>
+            <td>{{ entity.emailCanonical }}</td>
+        </tr>
+        <tr>
+            <th>Enabled</th>
+            <td>{{ entity.enabled }}</td>
+        </tr>
+        <tr>
+            <th>Salt</th>
+            <td>{{ entity.salt }}</td>
+        </tr>
+        <tr>
+            <th>Password</th>
+            <td>{{ entity.password }}</td>
+        </tr>
+        <tr>
+            <th>Lastlogin</th>
+            <td>{{ entity.lastLogin|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Locked</th>
+            <td>{{ entity.locked }}</td>
+        </tr>
+        <tr>
+            <th>Expired</th>
+            <td>{{ entity.expired }}</td>
+        </tr>
+        <tr>
+            <th>Expiresat</th>
+            <td>{{ entity.expiresAt|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Confirmationtoken</th>
+            <td>{{ entity.confirmationToken }}</td>
+        </tr>
+        <tr>
+            <th>Passwordrequestedat</th>
+            <td>{{ entity.passwordRequestedAt|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Roles</th>
+            <td>{{ entity.roles }}</td>
+        </tr>
+        <tr>
+            <th>Credentialsexpired</th>
+            <td>{{ entity.credentialsExpired }}</td>
+        </tr>
+        <tr>
+            <th>Credentialsexpireat</th>
+            <td>{{ entity.credentialsExpireAt|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Merchant_lastname</th>
+            <td>{{ entity.merchantlastname }}</td>
+        </tr>
+        <tr>
+            <th>Merchant_firstname</th>
+            <td>{{ entity.merchantfirstname }}</td>
+        </tr>
+        <tr>
+            <th>Shop_name</th>
+            <td>{{ entity.shopname }}</td>
+        </tr>
+        <tr>
+            <th>Phone</th>
+            <td>{{ entity.phone }}</td>
+        </tr>
+        <tr>
+            <th>Street_number</th>
+            <td>{{ entity.streetnumber }}</td>
+        </tr>
+        <tr>
+            <th>Street_name</th>
+            <td>{{ entity.streetname }}</td>
+        </tr>
+        <tr>
+            <th>Zipcode</th>
+            <td>{{ entity.zipcode }}</td>
+        </tr>
+        <tr>
+            <th>City</th>
+            <td>{{ entity.city }}</td>
+        </tr>
+        <tr>
+            <th>Shop_type</th>
+            <td>{{ entity.shoptype }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>

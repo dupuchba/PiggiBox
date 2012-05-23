@@ -52,16 +52,30 @@ function updatecalcul() {
     $('input#nombre.input-mini').keyup(updatecalcul);
     $('input#valeur.input-mini').keyup(updatecalcul);    
 
-
+//NOTE: operation.html.twig => fonction ajax qui ecoute le formulaire pour faire une requete post pour la valeur
+//TODO: faire un append sur lhistorique
 $('#resetbalanceform').submit(function(){
-    console.log("submit the form");
-    $.ajax({
-        url: Routing.generate('customer_resetbalance', { id: 1 }),
-        method: 'post',
+    $.ajax({    
+        url: Routing.generate('customer_setbalance', { id: $('input#reset-id').val(), "balance": 0 }),
+        type:"POST",
         success: function() {
             alert("It has been a fucking success");
         }
     });
+    return false;
+});
+
+//NOTE: operation.html.twig => fonction permettant de setter la valeur de balance lors du paiement
+//TODO: trouver un moyen pour savoir si c'est un avoir ou un credit (aller chercher du coté nom)
+$('#setbalanceform').submit(function(){
+    $.ajax({    
+        url: Routing.generate('customer_setbalance', { id: $('input#set-id').val(), "balance": 0 }),
+        type:"POST",
+        success: function() {
+            alert("It has been a fucking success");
+        }
+    });
+    return false;
 });
 
 

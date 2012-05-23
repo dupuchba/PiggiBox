@@ -168,7 +168,7 @@ class CustomerController extends Controller
     {
         $entity  = new Account();
         $em = $this->getDoctrine()->getEntityManager();
-        $merchant = $em->getRepository('PiggyBoxTicketBundle:Merchant')->find(1);
+        $merchant = $em->getRepository('PiggyBoxUserBundle:Merchant')->find(1);
 
 
         $request = $this->getRequest();
