@@ -198,11 +198,15 @@ h2 {
 h4{
 	margin-bottom: 12px;
 }
-#searchbyname{
+#customersearch_keyword{
 	font-size: 36px;
     height: 36px;
     line-height: 36px;
     margin-bottom: 0;
+}
+
+#customersearch_button{
+	float: left;
 }
 
 

@@ -13,7 +13,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Table()
  * @ORM\Entity
- * @UniqueEntity(fields = "email", message = "L'email est déjà utilisé par un autre utilisateur")
  */
 class Customer
 {
@@ -46,7 +45,7 @@ class Customer
      * @var string $email
      *
      * @Assert\Email()
-     * @ORM\Column(name="email", type="string", length=255,unique=true, nullable=true)
+     * @ORM\Column(name="email", type="string", length=255, nullable=true)
      */
     private $email;
 

@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use PiggyBox\TicketBundle\Entity\Customer;
 use PiggyBox\TicketBundle\Form\CustomerType;
+use PiggyBox\TicketBundle\Form\CustomerSearchType;
 use PiggyBox\TicketBundle\Entity\Account;
 use PiggyBox\TicketBundle\Form\AccountType;
 use PiggyBox\TicketBundle\Entity\Merchant;
@@ -42,7 +43,7 @@ class CustomerController extends Controller
             die();
         }*/
 
-        $em = $this->getDoctrine()->getEntityManager();
+        /*$em = $this->getDoctrine()->getEntityManager();
         $account = $em->getRepository('PiggyBoxTicketBundle:Customer')->findAll();
 
         $view = View::create();
@@ -56,7 +57,16 @@ class CustomerController extends Controller
         }
         $view->setTemplate('PiggyBoxTicketBundle:Customer:index.html.twig');
 
-        return $view;
+        return $view;*/
+
+		$customer = new Customer();
+
+        $form = $this->container->get('form.factory')->create(new CustomerSearchType());
+
+		return array(
+            'entity' => $customer,
+            'form'   => $form->createView()
+        );
     }
 
     /**
@@ -157,7 +167,7 @@ class CustomerController extends Controller
     {
         $entity  = new Account();
         $em = $this->getDoctrine()->getEntityManager();
-        $merchant = $em->getRepository('PiggyBoxTicketBundle:Merchant')->find(1);
+        $merchant = $em->getRepository('PiggyBoxUserBundle:Merchant')->find(2);
 
 
         $request = $this->getRequest();

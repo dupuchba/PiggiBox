@@ -9,13 +9,24 @@
     
             
                 <h2>Rechercher par nom</h2>
-                
-                <form class="span10 offset1" method="post" action="#">
-                
-                    <input type="text" name="lastname" id="searchbyname" class="span4" />
-                    
-                    <button type="submit" class="btn btn-large"><i class='icon-search'></i> Rechercher</button>
-                
+                <br>
+                <br>
+                <form class="span10 offset1" method="post" action="{{ path('customer_search') }}">
+                	<div class="row">
+						<div class="span4">
+                            {{ form_row(form.keyword) }}
+                            {{ form_rest(form) }}                  
+                        </div>
+                        <div class="span2">
+                            <button id="customersearch_button" type="submit" class="btn btn-large">
+                                <i class='icon-search'></i> Rechercher
+                            </button>
+                        </div>
+                                              
+                        
+					</div>
+					
+
                 </form>
         
             </div>

@@ -133,10 +133,10 @@
                 </div>
                 
                 
-                <form class="form-horizontal" method="post" action="">
+                <form id="modifybalanceform" class="form-horizontal" method="post" action="">
 
-                    <input type="hidden" name="id" value="" />
-                    <input type="hidden" name="solde" value="" />
+                    <input id="modify-id" type="hidden" name="id" value="{{ account.id }}" />
+                    <input id="modify-balance" type="hidden" name="solde" value="" />
 
                     <div class="input-append">
                         <input name="newsolde" id="newsolde" class="input-small" type="text" value="" placeholder="Ex: 10,24" /><span class="add-on">&euro;</span>
@@ -158,18 +158,18 @@
                     ajouter à son solde.</p>
                 </div>
                 
-                <form class="form-horizontal" method="post" action="#">
+                <form id="addbalanceform" class="form-horizontal" method="post" action="">
 
-                    <input type="hidden" name="id" value="" />
+                    <input id="add-id" type="hidden" name="id" value="{{account.id}}" />
                     <input type="hidden" name="solde" value="" />
                 
 
-                    <input name="nombre" id="nombre" class="input-mini" type="text" placeholder="Ex: 2" value="" />
+                    <input id="add-ticket-number" name="nombre"  class="input-mini" type="text" placeholder="Ex: 2" value="" />
 
                     <i class="icon-remove"></i>
 
                     <div class="input-append">
-                        <input name="valeur" id="valeur" class="input-mini" type="text" value="" /><span class="add-on">&euro;</span>
+                        <input id="add-ticket-value" name="valeur"  class="input-mini" type="text" value="" /><span class="add-on">&euro;</span>
                     </div>
 
                     <button class="btn" name="action" value="addcredit" type="submit">Créditer</button>
