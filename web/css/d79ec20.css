@@ -296,10 +296,10 @@ footer#footer {
 
 
 textarea#contactform { 
-    width:500px !important; 
-    min-width:500px !important; 
-    height:120px !important; 
-    min-height:120px !important; 
+    width:527px !important; 
+    min-width:527px !important; 
+    height:100px !important; 
+    min-height:100px !important; 
 }
 
 
@@ -377,4 +377,12 @@ h1#branding-banner {
     height: 370px;
     margin: 32px auto 0;
     background: url("../../bundles/piggyboxuser/img/piggybox-pc-ipad-hero.png");
+}
+
+#herosuccess h1 {
+    font-size: 108px;
+    text-align: center;
+}
+#herosuccess a.btn {
+    margin: 12px 0 12px 210px;
 }

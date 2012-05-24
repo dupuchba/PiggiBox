@@ -74,3 +74,12 @@ h1#branding-banner {
     margin: 32px auto 0;
     background: url("../img/piggybox-pc-ipad-hero.png");
 }
+
+#herosuccess h1 {
+    font-size: 86px;
+    line-height: 120px;
+    text-align: center;
+}
+#herosuccess a.btn {
+    margin: 12px 0 12px 210px;
+}
