@@ -118,6 +118,9 @@ $('#searchform').keyup(function(){
     return false;
 });
 
+//NOTE: index.html.twig permet de faire un focus sur le champ de recherche
+$('input#customersearch_keyword').focus();
+
 });
 
 

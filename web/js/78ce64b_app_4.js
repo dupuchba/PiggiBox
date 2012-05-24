@@ -118,6 +118,8 @@ $('#searchform').keyup(function(){
     return false;
 });
 
+$('input#customersearch_keyword').focus();
+
 });
 
 

@@ -36,7 +36,7 @@ class CustomerController extends Controller
 
     $form = $this->container->get('form.factory')->create(new CustomerSearchType());
 
-    $searchresult = new ArrayCollection();
+    $searchresult = '';
     $keyword = '';
 
     $request = $this->container->get('request');
