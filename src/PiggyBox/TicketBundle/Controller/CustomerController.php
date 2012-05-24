@@ -177,7 +177,7 @@ class CustomerController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('customer_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('customer_operation', array('id' => $entity->getId())));
 
         }
 
