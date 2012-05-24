@@ -1,13 +1,41 @@
-<div class="fos_user_user_show">
-    <p>{{ 'profile.show.username'|trans({}, 'FOSUserBundle') }}: {{ user.username }}</p>
-    <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.email }}</p>
-    <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.merchantlastname }}</p>
-    <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.merchantfirstname }}</p>
-    <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.shopname }}</p>
-    <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.streetnumber }}</p>
-    <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.zipcode }}</p>
-    <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.city }}</p>
-    <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.shoptype }}</p>
-    <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.phone }}</p>
-    <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.streetname }}</p>
+<div id="content" class="container">
+
+    <div class="row">
+        <div class="span12">
+
+            <div class="fos_user_user_show">
+
+                <h2>Vos Informations <small>{{ user.shopname }}</small></h2>
+
+                <p>Les informations ci-dessous correspondent à celle que vous nous avez communiquées lors de votre inscription.
+                Ces informations sont notamment utilisées dans les email de relance envoyées vos clients.</p>
+
+                <p>Si vous souhaitez les modifier il faut pour l'instant <a href="#">nous contacter</a>.</p>
+
+                <div class="row">
+                    <div class="span8 offset2 well-large">
+                        <table class="table table-bordered">
+
+                            <tr><td> Nom de la boutique </td> <td> {{ user.shopname }} </td></tr>
+
+                            <tr><td> Nom </td> <td> {{ user.merchantlastname }} </td></tr>
+                            <tr><td> Prénom </td> <td> {{ user.merchantfirstname }} </td></tr>
+
+                            <tr><td> Email </td> <td> {{ user.email }} </td></tr>
+                            <tr><td> Téléphone </td> <td> {{ user.phone }} </td></tr>
+                            <tr><td> Adresse </td> 
+                                                <td> {{ user.streetnumber }} {{ user.streetname }} <br />
+                                                     {{ user.zipcode }} {{ user.city }}
+                                                 </td></tr>
+
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
 </div>
+
