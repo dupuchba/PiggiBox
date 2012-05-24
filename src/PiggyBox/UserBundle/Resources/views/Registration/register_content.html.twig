@@ -9,6 +9,8 @@
 
                 <form class="form-horizontal" action="{{ path('fos_user_registration_register') }}" method="post" class="fos_user_registration_register" {{ form_enctype(form) }}>
 
+                    {{ form_errors(form) }}
+
                     {{ form_row(form.merchant_lastname) }}
 
                     {{ form_row(form.merchant_firstname) }}
