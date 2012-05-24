@@ -9,7 +9,7 @@
             <h2>Modifier un client</h2>
 
                 <form class="form-horizontal" action="{{ path('customer_update', { 'id': account.id }) }}" method="post" {{ form_enctype(edit_form) }}>
-                
+
                     {{ form_row(edit_form.customer.lastname) }}
 
                     {{ form_row(edit_form.customer.firstname) }}
@@ -26,9 +26,9 @@
 
                     <hr />
 
-                    {{ form_row(edit_form.customer.comment) }}   
+                    {{ form_row(edit_form.customer.comment) }}
 
-                    {{ form_rest(edit_form) }}  
+                    {{ form_rest(edit_form) }}
 
                     <div class="form-actions">
                         <button type="submit" class="btn btn-large btn-primary" name="action" value="update"><i class='icon-pencil icon-white'></i> Modifier</button>

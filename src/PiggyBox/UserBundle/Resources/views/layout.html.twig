@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
+
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <meta http-equiv="content-language" content="fr" />
 
@@ -9,8 +9,8 @@
         <meta name="copyright" lang="fr" content="Julien Bourdeau" />
         <meta name="description" content="Un systeme de gestion des tickets Resto" />
 
-        <meta name="robots" content="noindex" />              
-           
+        <meta name="robots" content="noindex" />
+
         <meta charset="UTF-8" />
         <title>{% block title %}Inscription - Gestion des avoirs des tickets restaurant!{% endblock %}</title>
         {% block stylesheets %}
@@ -20,8 +20,8 @@
             <link rel="stylesheet" href="{{ asset_url }}" />
             {% endstylesheets %}
         {% endblock %}
-        
-        
+
+
     </head>
     <body>
 
@@ -29,7 +29,7 @@
             <header id="header" class="container">
 
             <div id="branding" class="row">
-                <div class="span12">                
+                <div class="span12">
                     <div class="pull-right"><br /><img src="{{ asset('bundles/piggyboxticket/img/logos.png') }}" /></div>
                     <a href="{{ path('customer_search') }}"></a>
                 </div>
@@ -67,19 +67,19 @@
 
         {% block javascripts %}
             {% javascripts
-                '@PiggyBoxUserBundle/Resources/public/js/vendor/jquery-1.7.2.min.js'                
+                '@PiggyBoxUserBundle/Resources/public/js/vendor/jquery-1.7.2.min.js'
             %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
-            
+
             <!-- NOTE: fonction qui permet dimprimer la valeur de email dans username. a retravailler -->
-            <!-- TODO: integrer ca un peu mieux dans un fichier js -->            
+            <!-- TODO: integrer ca un peu mieux dans un fichier js -->
             <script type="text/javascript">
             $(function() {
-              
+
                 $('input#fos_user_registration_form_email').keyup(function (){
                     $('input#fos_user_registration_form_username').val($('input#fos_user_registration_form_email').val())
-                    }); 
-            
+                    });
+
             });
             </script>
             {% endjavascripts %}

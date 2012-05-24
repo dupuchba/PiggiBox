@@ -7,12 +7,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use PiggyBox\TicketBundle\Entity\Customer;
-use PiggyBox\TicketBundle\Form\CustomerType;
 use PiggyBox\TicketBundle\Form\CustomerSearchType;
 use PiggyBox\TicketBundle\Entity\Account;
 use PiggyBox\TicketBundle\Form\AccountType;
 use PiggyBox\TicketBundle\Entity\Merchant;
 use FOS\RestBundle\View\View;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Customer controller.
@@ -24,49 +24,55 @@ class CustomerController extends Controller
     /**
      * Lists all Customer entities.
      *
-     * @Route("/search.{_format}", name="customer_search", defaults={"_format" = "~"})
+     * @Route("/search.{_format}", name="customer_search", defaults={"_format" = "~"},options={"expose"=true})
      * @Template()
      */
     public function indexAction()
     {
-        //requete qui recupere le parameter mais je test 2,3 truk sur backbone
-        /*$request = $this->getRequest();
-        
-        if ($request->getMethod() == 'POST') {
+
+    $form = $this->container->get('form.factory')->create(new CustomerSearchType());
+
+    $searchresult = new ArrayCollection();
+    $keyword = '';
+
+    $request = $this->container->get('request');
+
+    if ($request->isXmlHttpRequest()) {
+
+    $keyword = $request->request->get('keyword');
+    $keyword = rtrim($keyword);
+
+        if ($keyword != '') {
             $em = $this->getDoctrine()->getEntityManager();
-            $request_param = $request->request->get('lastname');
-            $customer = $em->getRepository('PiggyBoxTicketBundle:Customer')->findByLastname($request_param);
-            if($customer){
-                var_dump('nothing');                
-            }
-            else var_dump('yeah');
-            die();
-        }*/
+            $repository = $this->getDoctrine()->getRepository('PiggyBoxTicketBundle:Customer');
 
-        /*$em = $this->getDoctrine()->getEntityManager();
-        $account = $em->getRepository('PiggyBoxTicketBundle:Customer')->findAll();
+                $query = $repository->createQueryBuilder('a')
+                    ->where('a.firstname LIKE :keyword OR a.lastname LIKE :keyword')
+                    ->orderBy('a.lastname', 'ASC')
+                    ->setParameter('keyword', '%'.$keyword.'%')
+                    ->getQuery();
 
-        $view = View::create();
-        $handler = $this->get('fos_rest.view_handler');
-        if ('html' === $this->getRequest()->getRequestFormat()){
-            $view->setData(array('account'=> $account));
+               $searchresult = $query->getResult();
+        } else {
+            $searchresult = '[]';
         }
-            
-        else{
-            $view->setData($account);
-        }
-        $view->setTemplate('PiggyBoxTicketBundle:Customer:index.html.twig');
+    }
 
-        return $view;*/
+    $view = View::create();
+    $handler = $this->get('fos_rest.view_handler');
 
-		$customer = new Customer();
+    if ('html' === $this->getRequest()->getRequestFormat()) {
+        $view->setData(array('form'=> $form,
+                             'searchresult' => $searchresult));
+        var_dump('HTML');
+    } else {
+        $view->setData($searchresult);
+        var_dump('json');
+    }
+    $view->setTemplate('PiggyBoxTicketBundle:Customer:index.html.twig');
 
-        $form = $this->container->get('form.factory')->create(new CustomerSearchType());
+    return $view;
 
-		return array(
-            'entity' => $customer,
-            'form'   => $form->createView()
-        );
     }
 
     /**
@@ -88,7 +94,6 @@ class CustomerController extends Controller
 
         return array('account'=> $account);
     }
-
 
     /**
      * Finds and displays a Customer entity.
@@ -182,7 +187,7 @@ class CustomerController extends Controller
             $em->flush();
 
             return $this->redirect($this->generateUrl('customer_show', array('id' => $entity->getId())));
-            
+
         }
 
         return array(
@@ -301,7 +306,7 @@ class CustomerController extends Controller
     {
          $request = $this->container->get('request');
 
-        if($request->isXmlHttpRequest()){
+        if ($request->isXmlHttpRequest()) {
            $em = $this->getDoctrine()->getEntityManager();
 
             $account = $em->getRepository('PiggyBoxTicketBundle:Account')->find($id);
@@ -313,7 +318,8 @@ class CustomerController extends Controller
             $account->setBalance($balance);
             $em->persist($account);
             $em->flush();
-        } 
-    return $this->redirect($this->generateUrl('customer_operation', array('id' => $id)));    
+        }
+
+    return $this->redirect($this->generateUrl('customer_operation', array('id' => $id)));
     }
 }

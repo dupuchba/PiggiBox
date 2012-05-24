@@ -47,7 +47,7 @@ class MerchantType extends BaseType
                     'attr' => array(
                         'class' => 'input-xlarge',
                     )
-            ))        
+            ))
             ->add('shop_name', 'text', array(
                     'label'        => 'Nom de votre boutique',
                     'widget_addon' => array(
@@ -55,8 +55,8 @@ class MerchantType extends BaseType
                     ),
                     'attr' => array(
                         'class' => 'input-xlarge',
-                    ) 
-            ))               
+                    )
+            ))
             ->add('email', 'email', array(
                 'widget_addon' => array(
                         'icon' => 'envelope'
@@ -64,7 +64,7 @@ class MerchantType extends BaseType
                 'attr' => array(
                     'class' => 'input-xlarge',
                 )
-            ))        
+            ))
             ->add('phone', 'text', array(
                 'label'        => 'Téléphone',
                 'widget_addon' => array(
@@ -110,7 +110,7 @@ class MerchantType extends BaseType
                     'class' => 'span3',
                 )
             ))
-            ->add('username','hidden')            
+            ->add('username','hidden')
             ->add('shop_type', 'choice', array(
                 'label'        => 'Type de commerce',
                 'choices'      => array(

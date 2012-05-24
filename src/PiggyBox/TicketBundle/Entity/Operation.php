@@ -50,11 +50,10 @@ class Operation
     */
     private $account;
 
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -74,7 +73,7 @@ class Operation
     /**
      * Get previousBalance
      *
-     * @return float 
+     * @return float
      */
     public function getPreviousBalance()
     {
@@ -94,7 +93,7 @@ class Operation
     /**
      * Get newBalance
      *
-     * @return float 
+     * @return float
      */
     public function getNewBalance()
     {
@@ -104,7 +103,7 @@ class Operation
     /**
      * Get createdat
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getCreatedat()
     {
@@ -124,7 +123,7 @@ class Operation
     /**
      * Get account
      *
-     * @return PiggyBox\TicketBundle\Entity\Account 
+     * @return PiggyBox\TicketBundle\Entity\Account
      */
     public function getAccount()
     {
