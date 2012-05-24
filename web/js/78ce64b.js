@@ -155,19 +155,20 @@ console.log("balance " + newbalance);
 
 //NOTE: index.html.twig => fonction permettant de rechercher dynamiquement les utilisateurs
 $('.loading').hide();
-$('#searchform').submit(function(){
+$('#searchform').keyup(function(){
     $('.loading').show();
     var keyword = $('#customersearch_keyword').val();
-    var DATA = 'keyword=' + keyword;
+
+    var DATA = 'keyword='+keyword;
 
     $.ajax({    
-        url: Routing.generate('customer_search'),
+        url: Routing.generate('customer_search' , { "_format": "json"}),
         data: DATA,
         type:"POST",
         cache: false,
-        success: function() {
+        success: function(data) {
             $('#searchresult').html(data);
-            $('.loading').hide();
+            //$('.loading').hide();
         }
     });
     return false;
