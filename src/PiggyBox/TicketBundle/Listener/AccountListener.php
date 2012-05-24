@@ -1,7 +1,11 @@
 <?php
 namespace PiggyBox\TicketBundle\Listener;
 
+use Doctrine\Common\EventSubscriber;
+use Doctrine\ORM\Events;
 use Doctrine\ORM\Event\OnFlushEventArgs;
+use Doctrine\ORM\Event\PreUpdateEventArgs;
+use Doctrine\ORM\Mapping\ClassMetadata;
 use PiggyBox\TicketBundle\Entity\Account;
 use PiggyBox\TicketBundle\Entity\Operation;
 

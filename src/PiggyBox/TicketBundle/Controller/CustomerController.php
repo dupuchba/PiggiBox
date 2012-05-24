@@ -252,7 +252,7 @@ class CustomerController extends Controller
     public function updateAction($id)
     {
         $em = $this->getDoctrine()->getEntityManager();
-        $eventManager = $this->em->getEventManager();
+        //$eventManager = $this->em->getEventManager();
 
         $account = $em->getRepository('PiggyBoxTicketBundle:Account')->find($id);
 
@@ -269,12 +269,12 @@ class CustomerController extends Controller
 
         if ($editForm->isValid()) {
 
-            $eventManager->removeEventListener('onFlush', $this);
+            //$eventManager->removeEventListener('onFlush', $this);
 
             $em->persist($account);
             $em->flush();
 
-            $eventManager->addEventListener('onFlush', $this);
+            //$eventManager->addEventListener('onFlush', $this);
 
             return $this->redirect($this->generateUrl('customer_edit', array('id' => $id)));
         }
