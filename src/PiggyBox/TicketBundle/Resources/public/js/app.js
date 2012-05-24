@@ -121,6 +121,9 @@ $('#searchform').keyup(function(){
 //NOTE: index.html.twig permet de faire un focus sur le champ de recherche
 $('input#customersearch_keyword').focus();
 
+//NOTE: new.html.twig permet de faire un focus sur le champ de nom
+$('input#accounts_customer_lastname').focus();
+
 });
 
 
