@@ -289,6 +289,20 @@ footer#footer {
 	text-align: center;
 }
 
+
+
+
+
+
+
+textarea#contactform { 
+    width:500px !important; 
+    min-width:500px !important; 
+    height:120px !important; 
+    min-height:120px !important; 
+}
+
+
 hr.soften {
     background: url('../../bundles/piggyboxuser/img/line.jpg');
     border: 0 none;
