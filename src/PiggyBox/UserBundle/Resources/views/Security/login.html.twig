@@ -1,11 +1,11 @@
 {% extends "PiggyBoxUserBundle::layout.html.twig" %}
 
-{% block content %}
+{% block fos_user_content %}
 
     <div id="content" class="container">
 
 
-       <div class="row">
+       	<div class="row">
             <div class="span12">
                 <div id="branding"></div>
             </div>
@@ -14,13 +14,23 @@
         <div class="row">
             <div class="span8 offset2">
                 
-                <form action="#" method="post" class="well form-inline"> 
-                    <h3>Connexion</h3>
-                    <input type="text" class="span4" name="login" placeholder="Adresse Email" />
-                    <input type="password" class="span2" name="password" placeholder="Mot de passe" />
-                    <button class="btn btn-primary">Ok</button>
-                    
-                </form>
+				{% if error %}
+					<div>{{ error|trans({}, 'FOSUserBundle') }}</div>
+				{% endif %}
+
+				<form action="{{ path("fos_user_security_check") }}" method="post">
+				
+					<h3>Connexion</h3>
+					
+					<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+					<input type="text" id="username" class="span4" name="_username" placeholder="Adresse Email" value="{{ last_username }}" />
+
+					<input type="password" id="password" class="span2" name="_password" placeholder="Mot de passe" />
+
+					<button type="submit" id="_submit" name="_submit" class="btn btn-primary">Ok</button>
+
+				</form>
 
                 <div class="pull-right"><small><a href="#">Mot de passe oublié ?</a></small></div>
 
@@ -44,4 +54,4 @@
         
     </div>
 
-{% endblock %}
+{% endblock fos_user_content %}
