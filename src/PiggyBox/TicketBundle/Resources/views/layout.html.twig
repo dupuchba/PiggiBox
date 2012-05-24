@@ -79,11 +79,14 @@
             </div>
 
             {% block content %}{% endblock%}
+            {% block fos_user_content %}{% endblock fos_user_content %}
 
             <footer id="footer">
                 <small>Logiciel réalisé et proposé par <a href="http://www.piggybox.fr">PiggyBox</a>.</small>
             </footer>
         </div>
+
+
 
         {% block javascripts %}
             <!-- NOTE: necessaire pour le bundle FOSJsRoutingBundle -->
