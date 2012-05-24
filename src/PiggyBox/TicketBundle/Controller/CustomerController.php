@@ -31,6 +31,8 @@ class CustomerController extends Controller
      */
     public function indexAction()
     {
+    $securityContext = $this->get('security.context');
+    $user = $securityContext->getToken()->getUser();
 
     $form = $this->container->get('form.factory')->create(new CustomerSearchType());
 
@@ -118,20 +120,16 @@ class CustomerController extends Controller
      */
     public function listAction()
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $securityContext = $this->get('security.context');
+        $user = $securityContext->getToken()->getUser();
 
-        $customers = $em->getRepository('PiggyBoxTicketBundle:Customer')->findAll();
-        //TODO: findMyCustomer() pour obtenir la liste des SES clients
-        //TODO: recuperer seulement l'account du marchant en cours
-
-        if (!$customers) {
-            throw $this->createNotFoundException('Unable to find Customer entity.');
-        }
+        $customers = new ArrayCollection();
+        $accounts = $user->getAccounts();
 
         $letters = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
 
         return array(
-            'customers'      => $customers,
+            'accounts'      => $accounts->toArray(),
             'letters'       => $letters        );
     }
 
@@ -191,13 +189,14 @@ class CustomerController extends Controller
         $entity  = new Account();
         $em = $this->getDoctrine()->getEntityManager();
 
-        $merchant = $em->getRepository('PiggyBoxUserBundle:Merchant')->find(1);
+        $securityContext = $this->get('security.context');
+        $merchant = $securityContext->getToken()->getUser();
 
         $request = $this->getRequest();
         $form    = $this->createForm(new AccountType(), $entity);
         $form->bindRequest($request);
 
-        $entity->getCustomer()->addMerchant($merchant);
+        $entity->setMerchant($merchant);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
@@ -226,6 +225,7 @@ class CustomerController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
 
         $account = $em->getRepository('PiggyBoxTicketBundle:Account')->find($id);
+
 
         if (!$account) {
             throw $this->createNotFoundException('Unable to find Account entity.');

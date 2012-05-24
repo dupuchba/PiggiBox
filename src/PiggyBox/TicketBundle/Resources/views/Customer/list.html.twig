@@ -29,13 +29,13 @@
 
                 <?php //TODO: AJOUTER LIEN ANCHOR sur lettres ?>
 
-                {% for customer in customers %}
+                {% for account in accounts %}
 
-                    <tr class="" onclick="window.location.href='{{ path('customer_edit', { 'id': customer.id} ) }}';">
-                        <td class="uppercase">{{ customer.lastname }}</td>
-                        <td class="caps">{{ customer.firstname }}</td>
+                    <tr class="" onclick="window.location.href='{{ path('customer_edit', { 'id': account.id} ) }}';">
+                        <td class="uppercase">{{ account.customer.lastname }}</td>
+                        <td class="caps">{{ account.customer.firstname }}</td>
                         <td>solde</td>
-                        <td>{{ customer.comment }}</td>
+                        <td>{{ account.customer.comment }}</td>
                     </tr>
                 {% endfor %}
 
