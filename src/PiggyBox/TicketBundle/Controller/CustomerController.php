@@ -13,6 +13,7 @@ use PiggyBox\TicketBundle\Form\AccountType;
 use PiggyBox\TicketBundle\Entity\Merchant;
 use FOS\RestBundle\View\View;
 use Doctrine\Common\Collections\ArrayCollection;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 
 /**
  * Customer controller.
@@ -25,6 +26,7 @@ class CustomerController extends Controller
      * Lists all Customer entities.
      *
      * @Route("/search.{_format}", name="customer_search", defaults={"_format" = "~"},options={"expose"=true})
+     * @Secure(roles="ROLE_MERCHANT")
      * @Template()
      */
     public function indexAction()
@@ -79,6 +81,7 @@ class CustomerController extends Controller
      * Make an operation with a Customer entity.
      *
      * @Route("/operation/{id}", name="customer_operation")
+     * @Secure(roles="ROLE_MERCHANT")
      * @Template()
      */
     public function operationAction($id)
@@ -110,6 +113,7 @@ class CustomerController extends Controller
      * Finds and displays a Customer entity.
      *
      * @Route("/list", name="customer_list")
+     * @Secure(roles="ROLE_MERCHANT")
      * @Template()
      */
     public function listAction()
@@ -135,6 +139,7 @@ class CustomerController extends Controller
      * Finds and displays a Customer entity.
      *
      * @Route("/{id}/show", name="customer_show")
+     * @Secure(roles="ROLE_MERCHANT")
      * @Template()
      */
     public function showAction($id)
@@ -158,6 +163,7 @@ class CustomerController extends Controller
      * Displays a form to create a new Customer entity.
      *
      * @Route("/new", name="customer_new")
+     * @Secure(roles="ROLE_MERCHANT")
      * @Template()
      */
     public function newAction()
@@ -176,6 +182,7 @@ class CustomerController extends Controller
      * Creates a new Customer entity.
      *
      * @Route("/create", name="customer_create")
+     * @Secure(roles="ROLE_MERCHANT")
      * @Method("post")
      * @Template("PiggyBoxTicketBundle:Customer:new.html.twig")
      */
@@ -211,6 +218,7 @@ class CustomerController extends Controller
      * Displays a form to edit an existing Customer entity.
      *
      * @Route("/{id}/edit", name="customer_edit")
+     * @Secure(roles="ROLE_MERCHANT")
      * @Template()
      */
     public function editAction($id)
@@ -237,6 +245,7 @@ class CustomerController extends Controller
      * Edits an existing Customer entity.
      *
      * @Route("/{id}/update", name="customer_update",options={"expose"=true})
+     * @Secure(roles="ROLE_MERCHANT")
      * @Method("post")
      * @Template("PiggyBoxTicketBundle:Customer:edit.html.twig")
      */
@@ -281,6 +290,7 @@ class CustomerController extends Controller
      * Deletes a Customer entity.
      *
      * @Route("/{id}/delete", name="customer_delete")
+     * @Secure(roles="ROLE_MERCHANT")
      * @Method("post")
      */
     public function deleteAction($id)
@@ -304,7 +314,9 @@ class CustomerController extends Controller
 
         return $this->redirect($this->generateUrl('customer_list'));
     }
-
+    /**
+    * @Secure(roles="ROLE_MERCHANT")
+    */
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder(array('id' => $id))
@@ -317,6 +329,7 @@ class CustomerController extends Controller
      * Edits an existing Customer entity.
      *
      * @Route("/{id}/{balance}/setbalance", name="customer_setbalance",options={"expose"=true})
+     * @Secure(roles="ROLE_MERCHANT")
      * @Method("post")
      */
     public function setBalanceAction($id,$balance)
@@ -344,6 +357,7 @@ class CustomerController extends Controller
      * Display stats.
      *
      * @Route("/statistiques", name="customer_stats")
+     * @Secure(roles="ROLE_MERCHANT")
      * @Template()
      */
     public function statsAction()
