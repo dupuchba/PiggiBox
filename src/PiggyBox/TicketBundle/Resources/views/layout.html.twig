@@ -52,12 +52,12 @@
                                     <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Vos informations</a></li>
+                                    <li><a href="{{ path('fos_user_profile_show')}}">Vos informations</a></li>
                                     <li><a href="#">Formation et Aide</a></li>
                                     <li class="divider"></li>
                                     <li><a href="#">Contacter Piggybox</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="#">Déconnexion</a></li>
+                                    <li><a href="{{path('fos_user_security_logout')}}">Déconnexion</a></li>
                                 </ul>
                             </li>
                         </ul>
