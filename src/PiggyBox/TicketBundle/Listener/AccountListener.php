@@ -16,7 +16,7 @@ class AccountListener
         private $uow = null;
         private $attachedEvents;
 
-        /*TODO gérer la modification de l'utilisateur pour ne pas appeller cet évenement */
+        /*TODO: gérer la modification de l'utilisateur pour ne pas appeller cet évenement */
         public function onFlush(OnFlushEventArgs $args) {
                 //var_dump($this->getPreviousBalance());die();
                 $this->em = $args->getEntityManager();

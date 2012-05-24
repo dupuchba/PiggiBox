@@ -98,6 +98,13 @@ small {
 	background: none;
 }
 
+.navbar .nav > li {
+    margin-right: 21px;
+}
+.navbar .nav > li > a {
+    font-size: 21px;
+}
+
 .subnav {
     background-color: #EEEEEE;
     background-image: -moz-linear-gradient(center top , #F5F5F5 0%, #EEEEEE 100%);
