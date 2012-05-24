@@ -97,25 +97,23 @@ console.log("balance " + newbalance);
     return false;
 });
 
-//NOTE: index.html.twig => fonction permettant de rechercher dynamiquement les utilisateurs
-$('.loading').hide();
-$('#searchform').keyup(function(){
-    $('.loading').show();
-    var keyword = $('#customersearch_keyword').val();
 
-    var DATA = 'keyword='+keyword;
-
-    $.ajax({    
-        url: Routing.generate('customer_search' , { "_format": "json"}),
-        data: DATA,
-        type:"POST",
-        cache: false,
-        success: function(data) {
-            $('#searchresult').html(data);
-            //$('.loading').hide();
-        }
-    });
-    return false;
+$('#customersearch_keyword').typeahead({
+    property: "firstname",
+    source: function(typehead, query){
+        console.log("dans le typehead " + query);
+        $.ajax({
+            url: Routing.generate('customer_search' , { "_format": "json"}),
+            type:"POST",
+            data: 'keyword='+query,
+            async: false,
+            success: function(data){
+                console.log(data);
+                typehead.process(data);
+            }   
+        });
+    }
+    
 });
 
 //NOTE: index.html.twig permet de faire un focus sur le champ de recherche

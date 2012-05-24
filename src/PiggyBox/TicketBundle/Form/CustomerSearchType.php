@@ -14,7 +14,8 @@ class CustomerSearchType extends AbstractType
                 'label_render'        => false,
                 'attr' => array(
                     'class' => 'span4',
-                    'autocomplete' => 'off'
+                    'autocomplete' => 'off',
+                    'data-provide' => 'typeahead'
                 )
             ));
     }
