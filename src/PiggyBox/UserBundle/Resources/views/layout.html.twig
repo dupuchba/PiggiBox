@@ -15,7 +15,8 @@
         <title>{% block title %}Inscription - Gestion des avoirs des tickets restaurant!{% endblock %}</title>
         {% block stylesheets %}
             {% stylesheets filter='cssrewrite'
-            	'bundles/piggyboxticket/css/*'
+                'bundles/piggyboxticket/css/*'
+                'bundles/piggyboxuser/css/home.css'
             %}
             <link rel="stylesheet" href="{{ asset_url }}" />
             {% endstylesheets %}
@@ -28,18 +29,23 @@
         <div id="maintcontainer">
             <header id="header" class="container">
 
-            <div id="branding" class="row">
-                <div class="span12">
-                    <div class="pull-right"><br /><img src="{{ asset('bundles/piggyboxticket/img/logos.png') }}" /></div>
-                    <a href="{{ path('customer_search') }}"></a>
+                <div class="jumbotron masthead">
+
+                    <div class="inner">
+                        <h1 id="branding-banner">PiggyBox</h1>
+                        <p>Un logiciel simple pour conserver et gérer en magasin les avoirs de vos clients sur leurs Tickets Restaurant.</p>
+                        
+
+                    </div>
+
                 </div>
-            </div>
 
             <div class="clear"></div>
 
             </header>
         </div>
 
+        {#
         <div>
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
@@ -50,6 +56,7 @@
                 <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
             {% endif %}
         </div>
+        #}
 
         {% for key, message in app.session.getFlashes() %}
         <div class="{{ key }}">
@@ -67,7 +74,9 @@
 
         {% block javascripts %}
             {% javascripts
-                '@PiggyBoxUserBundle/Resources/public/js/vendor/jquery-1.7.2.min.js'
+
+                'bundles/piggyboxuser/js/vendor/jquery-1.7.2.min.js'
+                'bundles/piggyboxuser/js/vendor/bootstrap.min.js'                
             %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
 

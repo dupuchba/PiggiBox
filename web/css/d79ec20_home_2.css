@@ -1,0 +1,76 @@
+
+hr.soften {
+    background: url('../../bundles/piggyboxuser/img/line.jpg');
+    border: 0 none;
+    height: 16px;
+    margin: 54px 0 38px;
+}
+
+.btn-xlarge {
+    padding: 12px 24px;
+    font-size: 21px;
+
+}
+.jumbotron {
+    position: relative;
+}
+.jumbotron h1 {
+    font-size: 81px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 1;
+    margin-bottom: 9px;
+}
+.jumbotron p {
+    font-weight: 300;
+    margin-bottom: 18px;
+}
+.jumbotron .btn-large {
+    border-radius: 6px 6px 6px 6px;
+    font-size: 20px;
+    font-weight: normal;
+    margin-right: 10px;
+    padding: 14px 24px;
+}
+.jumbotron .btn-large small {
+    font-size: 14px;
+}
+.masthead {
+    margin-bottom: 72px;
+    padding-top: 36px;
+}
+.masthead h1, .masthead p {
+    text-align: center;
+}
+.masthead h1 {
+    margin-bottom: 18px;
+}
+.masthead p {
+    font-size: 30px;
+    line-height: 36px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.subhead {
+    margin-bottom: 9px;
+    padding-bottom: 0;
+}
+.subhead h1 {
+    font-size: 54px;
+}
+
+h1#branding-banner {
+    display: block;
+    width: 600px;
+    height: 100px;
+    margin: 24px auto;
+    background: url("../../bundles/piggyboxuser/img/branding-banner.png");
+    text-indent: 9999px;
+}
+
+#hero-banner {
+    width: 900px;
+    height: 370px;
+    margin: 32px auto 0;
+    background: url("../../bundles/piggyboxuser/img/piggybox-pc-ipad-hero.png");
+}

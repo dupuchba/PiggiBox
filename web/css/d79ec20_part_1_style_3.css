@@ -82,7 +82,7 @@ small {
 	margin: 21px 0px;
 	width: 500px;
 	height: 72px;
-	background: url('../img/piggybox-header-ban.png');
+	background: url('../../bundles/piggyboxticket/img/piggybox-header-ban.png');
 }
 
 #toolbox {
@@ -96,13 +96,6 @@ small {
 }
 #toolbox a:hover {
 	background: none;
-}
-
-.navbar .nav > li {
-    margin-right: 21px;
-}
-.navbar .nav > li > a {
-    font-size: 21px;
 }
 
 .subnav {
@@ -124,6 +117,7 @@ small {
     margin: 0;
     padding-bottom: 11px;
     padding-top: 11px;
+    font-size: 21px;
 }
 .subnav .nav > .active > a, .subnav .nav > .active > a:hover {
     background-color: #E9E9E9;
@@ -185,15 +179,11 @@ h2 {
 h4{
 	margin-bottom: 12px;
 }
-#customersearch_keyword{
+#searchbyname{
 	font-size: 36px;
     height: 36px;
     line-height: 36px;
     margin-bottom: 0;
-}
-
-#customersearch_button{
-	float: left;
 }
 
 

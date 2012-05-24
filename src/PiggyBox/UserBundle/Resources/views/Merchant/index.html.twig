@@ -1,0 +1,47 @@
+{% extends "PiggyBoxUserBundle::layout.html.twig" %}
+
+{% block content %}
+
+    <div id="content" class="container">
+
+
+       <div class="row">
+            <div class="span12">
+                <div id="branding"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="span8 offset2">
+                
+                <form action="#" method="post" class="well form-inline"> 
+                    <h3>Connexion</h3>
+                    <input type="text" class="span4" name="login" placeholder="Adresse Email" />
+                    <input type="password" class="span2" name="password" placeholder="Mot de passe" />
+                    <button class="btn btn-primary">Ok</button>
+                    
+                </form>
+
+                <div class="pull-right"><small><a href="#">Mot de passe oublié ?</a></small></div>
+
+            </div>
+        </div>
+
+        <hr class="soften" />
+
+        <div class="row">
+            <div class="span5 offset4">
+
+                <a href="http://www.piggybox.fr/" class="btn btn-info btn-xlarge">Découvrir</a>
+                &nbsp; &nbsp; &nbsp; 
+                <a href="{{ path('fos_user_registration_register') }}" class="btn btn-success btn-xlarge">Utiliser</a>
+
+            </div>
+        </div>
+
+        <hr class="soften" />
+
+        
+    </div>
+
+{% endblock %}

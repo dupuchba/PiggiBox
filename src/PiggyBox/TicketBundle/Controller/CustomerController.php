@@ -92,7 +92,18 @@ class CustomerController extends Controller
             throw $this->createNotFoundException('Unable to find Account entity.');
         }
 
-        return array('account'=> $account);
+        //var_dump($account->getTicketValue() ); die();
+        if( ! $account->getTicketValue() ) {
+            $account->setTicketValue(1);
+        }
+
+        if($account->getBalance() > 0) {
+            $class = 'positive';
+        } else {
+            $class = 'negative';
+        }
+
+        return array('account'=> $account, 'class' => $class);
     }
 
     /**
@@ -172,8 +183,8 @@ class CustomerController extends Controller
     {
         $entity  = new Account();
         $em = $this->getDoctrine()->getEntityManager();
-        $merchant = $em->getRepository('PiggyBoxUserBundle:Merchant')->find(2);
 
+        $merchant = $em->getRepository('PiggyBoxUserBundle:Merchant')->find(1);
 
         $request = $this->getRequest();
         $form    = $this->createForm(new AccountType(), $entity);
@@ -232,6 +243,7 @@ class CustomerController extends Controller
     public function updateAction($id)
     {
         $em = $this->getDoctrine()->getEntityManager();
+        $eventManager = $this->em->getEventManager();
 
         $account = $em->getRepository('PiggyBoxTicketBundle:Account')->find($id);
 
@@ -247,8 +259,13 @@ class CustomerController extends Controller
         $editForm->bindRequest($request);
 
         if ($editForm->isValid()) {
+
+            $eventManager->removeEventListener('onFlush', $this);
+
             $em->persist($account);
             $em->flush();
+
+            $eventManager->addEventListener('onFlush', $this);
 
             return $this->redirect($this->generateUrl('customer_edit', array('id' => $id)));
         }
@@ -285,7 +302,7 @@ class CustomerController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('customer'));
+        return $this->redirect($this->generateUrl('customer_list'));
     }
 
     private function createDeleteForm($id)
@@ -321,5 +338,41 @@ class CustomerController extends Controller
         }
 
     return $this->redirect($this->generateUrl('customer_operation', array('id' => $id)));
+    }
+
+    /**
+     * Display stats.
+     *
+     * @Route("/statistiques", name="customer_stats")
+     * @Template()
+     */
+    public function statsAction()
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $accounts = $em->getRepository('PiggyBoxTicketBundle:Account')->findAll();
+
+        /*
+        $query = $em->createQuery('SELECT SUM(p.balance) FROM PiggyBoxTicketBundle:Account p');
+        $sum_balance = $query->getResult();
+        var_dump($sum_balance[0][1]);
+        $sum_balance = round(floatval($sum_balance[0][1]), 2);
+        var_dump($sum_balance);
+
+        $query = $em->createQuery('SELECT MAX(p.balance) FROM PiggyBoxTicketBundle:Account p');
+        $max_balance = $query->getResult();
+        var_dump($max_balance[0][1]);
+        echo "string"; intval($sum_balance[0][1]);
+        var_dump($max_balance); die();
+
+        
+
+        $stats = array( 'sum_balance' => $sum_balance,
+                        'max_balance' => $max_balance
+                        );
+
+        var_dump($stats); die();
+
+        */
+
     }
 }

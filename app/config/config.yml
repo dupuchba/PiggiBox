@@ -84,9 +84,9 @@ fos_user:
     firewall_name: main
     user_class: PiggyBox\UserBundle\Entity\Merchant
     registration:
-        confirmation:
-            enabled:    true # change to true for required email confirmation
-            template:   FOSUserBundle:Registration:email.txt.twig
+        #confirmation:
+        #    enabled:    true # change to true for required email confirmation
+        #    template:   FOSUserBundle:Registration:email.txt.twig
         form:
             type: piggybox_userbundle_merchanttype
 

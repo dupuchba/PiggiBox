@@ -117,6 +117,7 @@ small {
     margin: 0;
     padding-bottom: 11px;
     padding-top: 11px;
+    font-size: 21px;
 }
 .subnav .nav > .active > a, .subnav .nav > .active > a:hover {
     background-color: #E9E9E9;
