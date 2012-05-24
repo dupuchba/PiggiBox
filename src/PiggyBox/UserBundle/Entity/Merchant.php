@@ -244,6 +244,7 @@ class Merchant extends BaseUser
     {
         parent::__construct();
         $this->accounts = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->addRole('role_merchant');
     }
 
     /**
