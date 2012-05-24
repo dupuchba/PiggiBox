@@ -23,14 +23,7 @@ class MerchantController extends Controller
      */
     public function indexAction()
     {
-        //$em = $this->getDoctrine()->getEntityManager();
-
-        //$entities = $em->getRepository('PiggyBoxUserBundle:Merchant')->findAll();
-
-
-        //TODO: Si user est loggé rediriger vers page recherche
-
-        return null;
+        return $this->redirect($this->generateUrl('fos_user_security_login'));
     }
 
 }
