@@ -68,10 +68,8 @@ class CustomerController extends Controller
     if ('html' === $this->getRequest()->getRequestFormat()) {
         $view->setData(array('form'=> $form,
                              'searchresult' => $searchresult));
-        var_dump('HTML');
     } else {
         $view->setData($searchresult);
-        var_dump('json');
     }
     $view->setTemplate('PiggyBoxTicketBundle:Customer:index.html.twig');
 
@@ -98,11 +96,11 @@ class CustomerController extends Controller
         }
 
         //var_dump($account->getTicketValue() ); die();
-        if( ! $account->getTicketValue() ) {
+        if ( ! $account->getTicketValue() ) {
             $account->setTicketValue(1);
         }
 
-        if($account->getBalance() > 0) {
+        if ($account->getBalance() > 0) {
             $class = 'positive';
         } else {
             $class = 'negative';
@@ -131,30 +129,6 @@ class CustomerController extends Controller
         return array(
             'accounts'      => $accounts->toArray(),
             'letters'       => $letters        );
-    }
-
-    /**
-     * Finds and displays a Customer entity.
-     *
-     * @Route("/{id}/show", name="customer_show")
-     * @Secure(roles="ROLE_MERCHANT")
-     * @Template()
-     */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $entity = $em->getRepository('PiggyBoxTicketBundle:Customer')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Customer entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-
-        return array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        );
     }
 
     /**
@@ -225,7 +199,6 @@ class CustomerController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
 
         $account = $em->getRepository('PiggyBoxTicketBundle:Account')->find($id);
-
 
         if (!$account) {
             throw $this->createNotFoundException('Unable to find Account entity.');
@@ -377,8 +350,6 @@ class CustomerController extends Controller
         var_dump($max_balance[0][1]);
         echo "string"; intval($sum_balance[0][1]);
         var_dump($max_balance); die();
-
-        
 
         $stats = array( 'sum_balance' => $sum_balance,
                         'max_balance' => $max_balance
