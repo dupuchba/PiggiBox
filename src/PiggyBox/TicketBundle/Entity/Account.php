@@ -72,7 +72,7 @@ class Account
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -92,7 +92,7 @@ class Account
     /**
      * Get balance
      *
-     * @return float 
+     * @return float
      */
     public function getBalance()
     {
@@ -112,7 +112,7 @@ class Account
     /**
      * Get ticket_value
      *
-     * @return float 
+     * @return float
      */
     public function getTicketValue()
     {
@@ -122,7 +122,7 @@ class Account
     /**
      * Get createdat
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getCreatedat()
     {
@@ -132,7 +132,7 @@ class Account
     /**
      * Get modifiedat
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getModifiedat()
     {
@@ -152,7 +152,7 @@ class Account
     /**
      * Get customer
      *
-     * @return PiggyBox\TicketBundle\Entity\Customer 
+     * @return PiggyBox\TicketBundle\Entity\Customer
      */
     public function getCustomer()
     {
@@ -176,7 +176,7 @@ class Account
     /**
      * Get operations
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getOperations()
     {
@@ -196,7 +196,7 @@ class Account
     /**
      * Get merchant
      *
-     * @return PiggyBox\UserBundle\Entity\Merchant 
+     * @return PiggyBox\UserBundle\Entity\Merchant
      */
     public function getMerchant()
     {

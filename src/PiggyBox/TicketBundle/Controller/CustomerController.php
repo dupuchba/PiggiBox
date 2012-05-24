@@ -7,11 +7,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use PiggyBox\TicketBundle\Entity\Customer;
-use PiggyBox\TicketBundle\Form\CustomerType;
+use PiggyBox\TicketBundle\Form\CustomerSearchType;
 use PiggyBox\TicketBundle\Entity\Account;
 use PiggyBox\TicketBundle\Form\AccountType;
 use PiggyBox\TicketBundle\Entity\Merchant;
 use FOS\RestBundle\View\View;
+use Doctrine\Common\Collections\ArrayCollection;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 
 /**
  * Customer controller.
@@ -23,46 +25,65 @@ class CustomerController extends Controller
     /**
      * Lists all Customer entities.
      *
-     * @Route("/search.{_format}", name="customer_search", defaults={"_format" = "~"})
+     * @Route("/search.{_format}", name="customer_search", defaults={"_format" = "~"},options={"expose"=true})
+     * @Secure(roles="ROLE_MERCHANT")
      * @Template()
      */
     public function indexAction()
     {
-        //requete qui recupere le parameter mais je test 2,3 truk sur backbone
-        /*$request = $this->getRequest();
-        
-        if ($request->getMethod() == 'POST') {
+    $securityContext = $this->get('security.context');
+    $user = $securityContext->getToken()->getUser();
+
+    $form = $this->container->get('form.factory')->create(new CustomerSearchType());
+
+    $searchresult = new ArrayCollection();
+    $keyword = '';
+
+    $request = $this->container->get('request');
+
+    if ($request->isXmlHttpRequest()) {
+
+    $keyword = $request->request->get('keyword');
+    $keyword = rtrim($keyword);
+
+        if ($keyword != '') {
             $em = $this->getDoctrine()->getEntityManager();
-            $request_param = $request->request->get('lastname');
-            $customer = $em->getRepository('PiggyBoxTicketBundle:Customer')->findByLastname($request_param);
-            if($customer){
-                var_dump('nothing');                
-            }
-            else var_dump('yeah');
-            die();
-        }*/
+            $repository = $this->getDoctrine()->getRepository('PiggyBoxTicketBundle:Customer');
 
-        $em = $this->getDoctrine()->getEntityManager();
-        $account = $em->getRepository('PiggyBoxTicketBundle:Customer')->findAll();
+                $query = $repository->createQueryBuilder('a')
+                    ->where('a.firstname LIKE :keyword OR a.lastname LIKE :keyword')
+                    ->orderBy('a.lastname', 'ASC')
+                    ->setParameter('keyword', '%'.$keyword.'%')
+                    ->getQuery();
 
-        $view = View::create();
-        $handler = $this->get('fos_rest.view_handler');
-        if ('html' === $this->getRequest()->getRequestFormat()){
-            $view->setData(array('account'=> $account));
+               $searchresult = $query->getResult();
+        } else {
+            $searchresult = '[]';
         }
-            
-        else{
-            $view->setData($account);
-        }
-        $view->setTemplate('PiggyBoxTicketBundle:Customer:index.html.twig');
+    }
 
-        return $view;
+    $view = View::create();
+    $handler = $this->get('fos_rest.view_handler');
+
+    if ('html' === $this->getRequest()->getRequestFormat()) {
+        $view->setData(array('form'=> $form,
+                             'searchresult' => $searchresult));
+        var_dump('HTML');
+    } else {
+        $view->setData($searchresult);
+        var_dump('json');
+    }
+    $view->setTemplate('PiggyBoxTicketBundle:Customer:index.html.twig');
+
+    return $view;
+
     }
 
     /**
      * Make an operation with a Customer entity.
      *
      * @Route("/operation/{id}", name="customer_operation")
+     * @Secure(roles="ROLE_MERCHANT")
      * @Template()
      */
     public function operationAction($id)
@@ -90,29 +111,25 @@ class CustomerController extends Controller
         return array('account'=> $account, 'class' => $class);
     }
 
-
     /**
      * Finds and displays a Customer entity.
      *
      * @Route("/list", name="customer_list")
+     * @Secure(roles="ROLE_MERCHANT")
      * @Template()
      */
     public function listAction()
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $securityContext = $this->get('security.context');
+        $user = $securityContext->getToken()->getUser();
 
-        $customers = $em->getRepository('PiggyBoxTicketBundle:Customer')->findAll();
-        //TODO: findMyCustomer() pour obtenir la liste des SES clients
-        //TODO: recuperer seulement l'account du marchant en cours
-
-        if (!$customers) {
-            throw $this->createNotFoundException('Unable to find Customer entity.');
-        }
+        $customers = new ArrayCollection();
+        $accounts = $user->getAccounts();
 
         $letters = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
 
         return array(
-            'customers'      => $customers,
+            'accounts'      => $accounts->toArray(),
             'letters'       => $letters        );
     }
 
@@ -120,6 +137,7 @@ class CustomerController extends Controller
      * Finds and displays a Customer entity.
      *
      * @Route("/{id}/show", name="customer_show")
+     * @Secure(roles="ROLE_MERCHANT")
      * @Template()
      */
     public function showAction($id)
@@ -143,6 +161,7 @@ class CustomerController extends Controller
      * Displays a form to create a new Customer entity.
      *
      * @Route("/new", name="customer_new")
+     * @Secure(roles="ROLE_MERCHANT")
      * @Template()
      */
     public function newAction()
@@ -161,6 +180,7 @@ class CustomerController extends Controller
      * Creates a new Customer entity.
      *
      * @Route("/create", name="customer_create")
+     * @Secure(roles="ROLE_MERCHANT")
      * @Method("post")
      * @Template("PiggyBoxTicketBundle:Customer:new.html.twig")
      */
@@ -168,14 +188,15 @@ class CustomerController extends Controller
     {
         $entity  = new Account();
         $em = $this->getDoctrine()->getEntityManager();
-        $merchant = $em->getRepository('PiggyBoxUserBundle:Merchant')->find(1);
 
+        $securityContext = $this->get('security.context');
+        $merchant = $securityContext->getToken()->getUser();
 
         $request = $this->getRequest();
         $form    = $this->createForm(new AccountType(), $entity);
         $form->bindRequest($request);
 
-        $entity->getCustomer()->addMerchant($merchant);
+        $entity->setMerchant($merchant);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
@@ -183,7 +204,7 @@ class CustomerController extends Controller
             $em->flush();
 
             return $this->redirect($this->generateUrl('customer_show', array('id' => $entity->getId())));
-            
+
         }
 
         return array(
@@ -196,6 +217,7 @@ class CustomerController extends Controller
      * Displays a form to edit an existing Customer entity.
      *
      * @Route("/{id}/edit", name="customer_edit")
+     * @Secure(roles="ROLE_MERCHANT")
      * @Template()
      */
     public function editAction($id)
@@ -203,6 +225,7 @@ class CustomerController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
 
         $account = $em->getRepository('PiggyBoxTicketBundle:Account')->find($id);
+
 
         if (!$account) {
             throw $this->createNotFoundException('Unable to find Account entity.');
@@ -222,13 +245,14 @@ class CustomerController extends Controller
      * Edits an existing Customer entity.
      *
      * @Route("/{id}/update", name="customer_update",options={"expose"=true})
+     * @Secure(roles="ROLE_MERCHANT")
      * @Method("post")
      * @Template("PiggyBoxTicketBundle:Customer:edit.html.twig")
      */
     public function updateAction($id)
     {
         $em = $this->getDoctrine()->getEntityManager();
-        $eventManager = $this->em->getEventManager();
+        //$eventManager = $this->em->getEventManager();
 
         $account = $em->getRepository('PiggyBoxTicketBundle:Account')->find($id);
 
@@ -245,12 +269,12 @@ class CustomerController extends Controller
 
         if ($editForm->isValid()) {
 
-            $eventManager->removeEventListener('onFlush', $this);
+            //$eventManager->removeEventListener('onFlush', $this);
 
             $em->persist($account);
             $em->flush();
 
-            $eventManager->addEventListener('onFlush', $this);
+            //$eventManager->addEventListener('onFlush', $this);
 
             return $this->redirect($this->generateUrl('customer_edit', array('id' => $id)));
         }
@@ -266,6 +290,7 @@ class CustomerController extends Controller
      * Deletes a Customer entity.
      *
      * @Route("/{id}/delete", name="customer_delete")
+     * @Secure(roles="ROLE_MERCHANT")
      * @Method("post")
      */
     public function deleteAction($id)
@@ -289,7 +314,9 @@ class CustomerController extends Controller
 
         return $this->redirect($this->generateUrl('customer_list'));
     }
-
+    /**
+    * @Secure(roles="ROLE_MERCHANT")
+    */
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder(array('id' => $id))
@@ -302,13 +329,14 @@ class CustomerController extends Controller
      * Edits an existing Customer entity.
      *
      * @Route("/{id}/{balance}/setbalance", name="customer_setbalance",options={"expose"=true})
+     * @Secure(roles="ROLE_MERCHANT")
      * @Method("post")
      */
     public function setBalanceAction($id,$balance)
     {
          $request = $this->container->get('request');
 
-        if($request->isXmlHttpRequest()){
+        if ($request->isXmlHttpRequest()) {
            $em = $this->getDoctrine()->getEntityManager();
 
             $account = $em->getRepository('PiggyBoxTicketBundle:Account')->find($id);
@@ -320,14 +348,16 @@ class CustomerController extends Controller
             $account->setBalance($balance);
             $em->persist($account);
             $em->flush();
-        } 
-    return $this->redirect($this->generateUrl('customer_operation', array('id' => $id)));    
+        }
+
+    return $this->redirect($this->generateUrl('customer_operation', array('id' => $id)));
     }
 
     /**
      * Display stats.
      *
      * @Route("/statistiques", name="customer_stats")
+     * @Secure(roles="ROLE_MERCHANT")
      * @Template()
      */
     public function statsAction()

@@ -118,6 +118,13 @@ small {
 	background: none;
 }
 
+.navbar .nav > li {
+    margin-right: 21px;
+}
+.navbar .nav > li > a {
+    font-size: 21px;
+}
+
 .subnav {
     background-color: #EEEEEE;
     background-image: -moz-linear-gradient(center top , #F5F5F5 0%, #EEEEEE 100%);
@@ -137,7 +144,6 @@ small {
     margin: 0;
     padding-bottom: 11px;
     padding-top: 11px;
-    font-size: 21px;
 }
 .subnav .nav > .active > a, .subnav .nav > .active > a:hover {
     background-color: #E9E9E9;
@@ -199,11 +205,15 @@ h2 {
 h4{
 	margin-bottom: 12px;
 }
-#searchbyname{
+#customersearch_keyword{
 	font-size: 36px;
     height: 36px;
     line-height: 36px;
     margin-bottom: 0;
+}
+
+#customersearch_button{
+	float: left;
 }
 
 

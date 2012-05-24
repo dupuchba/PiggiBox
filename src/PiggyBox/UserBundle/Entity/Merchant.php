@@ -93,7 +93,7 @@ class Merchant extends BaseUser
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -113,7 +113,7 @@ class Merchant extends BaseUser
     /**
      * Get merchant_lastname
      *
-     * @return string 
+     * @return string
      */
     public function getMerchantLastname()
     {
@@ -133,7 +133,7 @@ class Merchant extends BaseUser
     /**
      * Get merchant_firstname
      *
-     * @return string 
+     * @return string
      */
     public function getMerchantFirstname()
     {
@@ -153,7 +153,7 @@ class Merchant extends BaseUser
     /**
      * Get shop_name
      *
-     * @return string 
+     * @return string
      */
     public function getShopName()
     {
@@ -173,7 +173,7 @@ class Merchant extends BaseUser
     /**
      * Get street_number
      *
-     * @return string 
+     * @return string
      */
     public function getStreetNumber()
     {
@@ -193,7 +193,7 @@ class Merchant extends BaseUser
     /**
      * Get zipcode
      *
-     * @return string 
+     * @return string
      */
     public function getZipcode()
     {
@@ -213,7 +213,7 @@ class Merchant extends BaseUser
     /**
      * Get city
      *
-     * @return string 
+     * @return string
      */
     public function getCity()
     {
@@ -233,7 +233,7 @@ class Merchant extends BaseUser
     /**
      * Get shop_type
      *
-     * @return string 
+     * @return string
      */
     public function getShopType()
     {
@@ -244,8 +244,9 @@ class Merchant extends BaseUser
     {
         parent::__construct();
         $this->accounts = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->addRole('role_merchant');
     }
-    
+
     /**
      * Add accounts
      *
@@ -259,7 +260,7 @@ class Merchant extends BaseUser
     /**
      * Get accounts
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getAccounts()
     {
@@ -279,7 +280,7 @@ class Merchant extends BaseUser
     /**
      * Get phone
      *
-     * @return string 
+     * @return string
      */
     public function getPhone()
     {
@@ -299,7 +300,7 @@ class Merchant extends BaseUser
     /**
      * Get street_name
      *
-     * @return string 
+     * @return string
      */
     public function getStreetName()
     {

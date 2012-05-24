@@ -11,7 +11,7 @@
 
                 <h2><span class="caps">{{ account.customer.firstname }}</span> <span class="uppercase">{{ account.customer.lastname }}</span></h2>
 
-    			
+
                 <ul class="unstyled userinfo">
                     <li title='Email'><i class='icon-envelope'></i>
                         <a href='mailto:{{ account.customer.email }}'>{{ account.customer.email }}
@@ -29,12 +29,12 @@
 
 
 
-                 
-
-                <a href="{{ path('customer_edit', { 'id': account.id} ) }}" class="btn pull-right"><i class="icon-pencil"></i> Modifier</a>  
 
 
-    			
+                <a href="{{ path('customer_edit', { 'id': account.id} ) }}" class="btn pull-right"><i class="icon-pencil"></i> Modifier</a>
+
+
+
     		</div>
 
             <div class="span3 offset1">
@@ -53,49 +53,49 @@
                     <input type="hidden" name="solde" value="" />
                     <button id="resetbalance" class="btn btn-inverse pull-right" name="action" value="raz" type="submit"><i class="icon-refresh icon-white"></i> Remise à zéro</button>
                 </form>
-                
+
             </div>
 
         </div>
-        
+
 
 		<hr />
 
         <div class="row">
 
-    		
+
             <div id="payer" class="span6 well">
-            
+
                 <h2 class="">Payer <a class="hint label label-info" rel="hint1">Aide</a></h2>
 
                 <div id="hint1" class="hintcontent alert alert-info">
                     <a class="close" data-dismiss="alert">&times;</a>
                     <p>Montant à payer = Nombre de ticket x Valeur d'un ticket</p>
                 </div>
-                
+
                 <form id="setbalanceform" class="form-horizontal" method="post" action="#">
-                
+
                     <input id="set-id" type="hidden" name="id" value="#" />
                     <input type="text" name="solde" id="thesolde" class="hide" value="#" />
 
-                    
+
                     <div class="input-append">
                         <input name="montant" id="montant" class="input-small" type="text" value="" placeholder="Ex: 22,37" /><span class="add-on">&euro;</span>
                     </div>
-                
+
                     =
-                    
+
                     <input name="nombre" id="nombre" class="input-mini" type="text" placeholder="Ex: 2" value="" />
-                    
+
                     <i class="icon-remove"></i>
-                    
+
                     <div class="input-append">
                         <input name="valeur" id="valeur" class="input-mini" type="text" value="{{ account.ticketvalue }}" /><span class="add-on">&euro;</span>
                     </div>
-                    
+
 
                     <button class="btn btn-primary pull-right" name="action" value="calcul" type="submit">Payer</button>
-                
+
                 </form>
 
 
@@ -115,25 +115,26 @@
                     </table>
 
                 </div>
-                
+
             </div>
 
 
             <div id="" class="span4 offset1">
-                
+
                 <h4 class="marged">Modifier solde <a class="hint label label-info" rel="hint2">Aide</a></h4>
 
                 <div id="hint2" class="hintcontent alert alert-info">
                     <a class="close" data-dismiss="alert">&times;</a>
                     <p>Pour modifier un solde entrez le montant total du solde. 
+
                     Cette case peut servir pour des cas particulier ou bien pour corriger une erreur.</p>
                 </div>
-                
-                
-                <form class="form-horizontal" method="post" action="">
 
-                    <input type="hidden" name="id" value="" />
-                    <input type="hidden" name="solde" value="" />
+
+                <form id="modifybalanceform" class="form-horizontal" method="post" action="">
+
+                    <input id="modify-id" type="hidden" name="id" value="{{ account.id }}" />
+                    <input id="modify-balance" type="hidden" name="solde" value="" />
 
                     <div class="input-append">
                         <input name="newsolde" id="newsolde" class="input-small" type="text" value="" placeholder="Ex: 10,24" /><span class="add-on">&euro;</span>
@@ -154,19 +155,21 @@
                     de créditer son compte. Entrez le nombre de ticket et la valeur d'un ticket pour les
                     ajouter à son solde.</p>
                 </div>
-                
-                <form class="form-horizontal" method="post" action="#">
 
-                    <input type="hidden" name="id" value="" />
+                <form id="addbalanceform" class="form-horizontal" method="post" action="">
+
+                    <input id="add-id" type="hidden" name="id" value="{{account.id}}" />
                     <input type="hidden" name="solde" value="" />
-                
 
-                    <input name="nombre" id="nombre" class="input-mini" type="text" placeholder="Ex: 2" value="" />
+
+                    <input id="add-ticket-number" name="nombre"  class="input-mini" type="text" placeholder="Ex: 2" value="" />
 
                     <i class="icon-remove"></i>
 
                     <div class="input-append">
+
                         <input name="valeur" id="valeur" class="input-mini" type="text" value="{{ account.ticketvalue }}" /><span class="add-on">&euro;</span>
+
                     </div>
 
                     <button class="btn" name="action" value="addcredit" type="submit">Créditer</button>
@@ -177,18 +180,18 @@
 
 
             </div>
-            
-            
-        
+
+
+
         </div>
-		
+
 
         <hr />
 
 
         <div class="row">
-            
-            
+
+
             <div id="historique" class="span6 offset3">
 
                 <h2>Historique <a class="hint label label-info" rel="hint4">Aide</a></h2>
@@ -211,7 +214,7 @@
                         <th width="12px">=</th>
                         <th class="black">Nouveau solde</th>
                     </tr>
-                    
+
                     {% for operation in account.operations %}
                     <tr>
                         <td class="caps">{{ operation.createdat|date("m/d/Y") }}</td>
@@ -221,18 +224,18 @@
                         <td>=</td>
                         <td> {{ operation.newBalance }} &euro;</td>
                     </tr>
-                    {% endfor %}                          
-            
+                    {% endfor %}
+
                 </table>
-                
+
             </div>
-            
+
 
         </div>
-        
-        
-			
-		
+
+
+
+
 	</div>
 
-{% endblock %}    
+{% endblock %}

@@ -68,6 +68,55 @@ $('#setbalanceform').submit(function(){
     return false;
 });
 
+$('#modifybalanceform').submit(function(){
+    $.ajax({    
+        url: Routing.generate('customer_setbalance', { id: $('input#modify-id').val(), "balance": $('input#newsolde.input-small').val() }),
+        type:"POST",
+        success: function() {
+			$('span#thesolde').html($('input#newsolde.input-small').val());
+        }
+    });
+    return false;
+});
+
+$('#addbalanceform').submit(function(){
+var ticketValue = $('input#add-ticket-value').val();
+var ticketNumber = $('input#add-ticket-number').val();
+
+console.log("ticket value" + ticketValue + " ticket number " + ticketNumver);
+
+var newbalance = addcredit + Number($('span#thesolde').val());
+console.log("balance " + newbalance);
+    $.ajax({    
+        url: Routing.generate('customer_setbalance', { id: $('input#add-id').val(), "balance": Math.ceil(newbalance) }),
+        type:"POST",
+        success: function() {
+			$('span#thesolde').html(newbalance);
+        }
+    });
+    return false;
+});
+
+//NOTE: index.html.twig => fonction permettant de rechercher dynamiquement les utilisateurs
+$('.loading').hide();
+$('#searchform').keyup(function(){
+    $('.loading').show();
+    var keyword = $('#customersearch_keyword').val();
+
+    var DATA = 'keyword='+keyword;
+
+    $.ajax({    
+        url: Routing.generate('customer_search' , { "_format": "json"}),
+        data: DATA,
+        type:"POST",
+        cache: false,
+        success: function(data) {
+            $('#searchresult').html(data);
+            //$('.loading').hide();
+        }
+    });
+    return false;
+});
 
 });
 

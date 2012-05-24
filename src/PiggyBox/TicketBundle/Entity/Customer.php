@@ -6,14 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * PiggyBox\TicketBundle\Entity\Customer
  *
  * @ORM\Table()
  * @ORM\Entity
- * @UniqueEntity(fields = "email", message = "L'email est déjà utilisé par un autre utilisateur")
  */
 class Customer
 {
@@ -46,7 +44,7 @@ class Customer
      * @var string $email
      *
      * @Assert\Email()
-     * @ORM\Column(name="email", type="string", length=255,unique=true, nullable=true)
+     * @ORM\Column(name="email", type="string", length=255, nullable=true)
      */
     private $email;
 
@@ -85,22 +83,15 @@ class Customer
      */
     private $accounts;
 
-    /**
-    * @ORM\ManyToMany(targetEntity="\PiggyBox\UserBundle\Entity\Merchant", inversedBy="users")
-    * @ORM\JoinTable(name="user_merchants")
-    */
-    private $merchants;
-
     public function __construct()
     {
         $this->accounts = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->merchants = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -120,7 +111,7 @@ class Customer
     /**
      * Get firstname
      *
-     * @return string 
+     * @return string
      */
     public function getFirstname()
     {
@@ -140,7 +131,7 @@ class Customer
     /**
      * Get lastname
      *
-     * @return string 
+     * @return string
      */
     public function getLastname()
     {
@@ -160,7 +151,7 @@ class Customer
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -180,7 +171,7 @@ class Customer
     /**
      * Get phone
      *
-     * @return string 
+     * @return string
      */
     public function getPhone()
     {
@@ -200,7 +191,7 @@ class Customer
     /**
      * Get comment
      *
-     * @return string 
+     * @return string
      */
     public function getComment()
     {
@@ -210,7 +201,7 @@ class Customer
     /**
      * Get createdat
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getCreatedat()
     {
@@ -220,7 +211,7 @@ class Customer
     /**
      * Get modifiedat
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getModifiedat()
     {
@@ -240,30 +231,10 @@ class Customer
     /**
      * Get accounts
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getAccounts()
     {
         return $this->accounts;
-    }
-
-    /**
-     * Add merchants
-     *
-     * @param \PiggyBox\UserBundle\Entity\Merchant $merchants
-     */
-    public function addMerchant(\PiggyBox\UserBundle\Entity\Merchant $merchants)
-    {
-        $this->merchants[] = $merchants;
-    }
-
-    /**
-     * Get merchants
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getMerchants()
-    {
-        return $this->merchants;
     }
 }

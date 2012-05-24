@@ -8,44 +8,46 @@
             <h2>Vos informations</h2>
 
                 <form class="form-horizontal" action="{{ path('fos_user_registration_register') }}" method="post" class="fos_user_registration_register" {{ form_enctype(form) }}>
-                
+
+                    {{ form_errors(form) }}
+
                     {{ form_row(form.merchant_lastname) }}
 
                     {{ form_row(form.merchant_firstname) }}
 
                     {{ form_row(form.plainPassword) }}
 
-            <h2>Les informations de votre magasin</h2>       
-            
+            <h2>Les informations de votre magasin</h2>
+
 					<div class="alert alert-block">
 						<a class="close" data-dismiss="alert" href="#">×</a>
 						<h4 class="alert-heading"><span class="label label-warning">Attention</span></h4>
 							Les infomations suivantes doivent être celle communiquées à vos clients. Par exemple le numéro de téléphone ne doit pas être votre portable mais numéro où vos clients peuvent vous joindre.
-					</div> 
+					</div>
 
-                    {{ form_row(form.shop_name) }} 
+                    {{ form_row(form.shop_name) }}
 
-                    {{ form_row(form.email) }} 
+                    {{ form_row(form.email) }}
 
-                    {{ form_row(form.phone) }} 
+                    {{ form_row(form.phone) }}
 
 
                     <div class="form-inline">
-	                   	{{ form_widget(form.street_number) }} 
+	                   	{{ form_widget(form.street_number) }}
 
-	                    {{ form_widget(form.street_name) }} 
+	                    {{ form_widget(form.street_name) }}
 
-	                    {{ form_row(form.zipcode) }} 
+	                    {{ form_row(form.zipcode) }}
 
-	                    {{ form_row(form.city) }}                   	
+	                    {{ form_row(form.city) }}
                     </div>
- 
-                    
 
-                    {{ form_row(form.shop_type) }}   
+
+
+                    {{ form_row(form.shop_type) }}
 
                     {{ form_rest(form) }}
-                    
+
 
                     <div class="form-actions">
                         <button type="submit" class="btn btn-large btn-success" name="action" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}"><i class='icon-plus icon-white'></i> Ajouter</button>

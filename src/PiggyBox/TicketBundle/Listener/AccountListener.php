@@ -16,6 +16,7 @@ class AccountListener
         private $uow = null;
         private $attachedEvents;
 
+
         /*TODO: gérer la modification de l'utilisateur pour ne pas appeller cet évenement */
         public function onFlush(OnFlushEventArgs $args) {
                 //var_dump($this->getPreviousBalance());die();
@@ -28,10 +29,10 @@ class AccountListener
 
                 //Iterate through Update:
                 foreach ($this->uow->getScheduledEntityUpdates() as $account) {
-                        
+
                         if ($account instanceof Account ) {
 
-                                $meta = $this->em->getClassMetadata('PiggyBox\TicketBundle\Entity\Account');                        
+                                $meta = $this->em->getClassMetadata('PiggyBox\TicketBundle\Entity\Account');
                                 $balance = $meta->getReflectionProperty('balance')->getValue($account);
                                 $previousBalance = 0;
 
@@ -43,7 +44,7 @@ class AccountListener
                                 $operation = new Operation();
                                 $operation->setAccount($account);
                                 $operation->setNewBalance($balance);
-                                $operation->setPreviousBalance($previousBalance);                                
+                                $operation->setPreviousBalance($previousBalance);
 
                                 $this->em->persist($operation);
                                 $this->em->flush();

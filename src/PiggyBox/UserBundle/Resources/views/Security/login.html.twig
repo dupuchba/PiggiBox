@@ -1,0 +1,57 @@
+{% extends "PiggyBoxUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+
+    <div id="content" class="container">
+
+
+       	<div class="row">
+            <div class="span12">
+                <div id="branding"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="span8 offset2">
+                
+				{% if error %}
+					<div>{{ error|trans({}, 'FOSUserBundle') }}</div>
+				{% endif %}
+
+				<form action="{{ path("fos_user_security_check") }}" method="post">
+				
+					<h3>Connexion</h3>
+					
+					<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+					<input type="text" id="username" class="span4" name="_username" placeholder="Adresse Email" value="{{ last_username }}" />
+
+					<input type="password" id="password" class="span2" name="_password" placeholder="Mot de passe" />
+
+					<button type="submit" id="_submit" name="_submit" class="btn btn-primary">Ok</button>
+
+				</form>
+
+                <div class="pull-right"><small><a href="#">Mot de passe oublié ?</a></small></div>
+
+            </div>
+        </div>
+
+        <hr class="soften" />
+
+        <div class="row">
+            <div class="span5 offset4">
+
+                <a href="http://www.piggybox.fr/" class="btn btn-info btn-xlarge">Découvrir</a>
+                &nbsp; &nbsp; &nbsp; 
+                <a href="{{ path('fos_user_registration_register') }}" class="btn btn-success btn-xlarge">Utiliser</a>
+
+            </div>
+        </div>
+
+        <hr class="soften" />
+
+        
+    </div>
+
+{% endblock fos_user_content %}
