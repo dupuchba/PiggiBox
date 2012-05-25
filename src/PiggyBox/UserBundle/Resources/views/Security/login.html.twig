@@ -18,8 +18,9 @@
 					<div>{{ error|trans({}, 'FOSUserBundle') }}</div>
 				{% endif %}
 
-				<form action="{{ path("fos_user_security_check") }}" method="post">
 
+				<form class="well form-horizontal" action="{{ path("fos_user_security_check") }}" method="post">
+				
 					<h3>Connexion</h3>
 
 					<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />

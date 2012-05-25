@@ -288,3 +288,16 @@ footer#footer {
 	padding: 20px;
 	text-align: center;
 }
+
+
+
+
+
+
+
+textarea#contactform { 
+    width:527px !important; 
+    min-width:527px !important; 
+    height:100px !important; 
+    min-height:100px !important; 
+}

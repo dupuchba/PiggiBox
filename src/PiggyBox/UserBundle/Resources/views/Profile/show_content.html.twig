@@ -1,13 +1,82 @@
-<div class="fos_user_user_show">
-    <p>{{ 'profile.show.username'|trans({}, 'FOSUserBundle') }}: {{ user.username }}</p>
-    <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.email }}</p>
-    <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.merchantlastname }}</p>
-    <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.merchantfirstname }}</p>
-    <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.shopname }}</p>
-    <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.streetnumber }}</p>
-    <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.zipcode }}</p>
-    <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.city }}</p>
-    <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.shoptype }}</p>
-    <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.phone }}</p>
-    <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.streetname }}</p>
+<div id="content" class="container">
+
+    <div class="row">
+        <div class="span12">
+
+            <div class="fos_user_user_show">
+
+                <h2>Vos Informations <small>{{ user.shopname }}</small></h2>
+
+                <p>Les informations ci-dessous correspondent à celle que vous nous avez communiquées lors de votre inscription.
+                Ces informations sont notamment utilisées dans les email de relance envoyées vos clients.</p>
+
+                <p>Si vous souhaitez les modifier il faut pour l'instant <a href="#">nous contacter</a>.</p>
+
+                <div class="row">
+                    <div class="span8 offset2 well-large">
+                        <table class="table table-bordered">
+
+                            <tr><td> Nom de la boutique </td> <td> {{ user.shopname }} </td></tr>
+
+                            <tr><td> Nom </td> <td> {{ user.merchantlastname }} </td></tr>
+                            <tr><td> Prénom </td> <td> {{ user.merchantfirstname }} </td></tr>
+
+                            <tr><td> Email </td> <td> {{ user.email }} </td></tr>
+                            <tr><td> Téléphone </td> <td> {{ user.phone }} </td></tr>
+                            <tr><td> Adresse </td> 
+                                                <td> {{ user.streetnumber }} {{ user.streetname }} <br />
+                                                     {{ user.zipcode }} {{ user.city }}
+                                                 </td></tr>
+
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+//// COPY FROM HERE
+
+<div id="content" class="container">
+
+    <div class="row">
+        <div class="span12">
+
+            <h2>Nous contacter</h2>
+
+            <p>N'hésitez pas à nous contacter en cas de problème avec l'application.</p>
+            <br />
+
+            <div class="row">
+                <div class="span4">
+                    <h3>Nos coordonnées</h3>
+                    <br />
+
+                    <div class="well">
+                        <h3>06.49.74.43.64.</h3>
+                        <br />
+                        <h3><a href="mailto:support@piggybox.fr">support@piggybox.fr</a></h3>
+                    </div>
+                </div>
+
+                <div class="span7 offset1">
+                    <h3>Envoyez nous un message <small>Nous vous rappellerons</small> </h3>
+                    <br />
+                    <form action="#" method="post">
+                        <textarea id="contactform" placeholder="Entrez votre message ici"></textarea>
+                        <br />
+                        <button type="submit" class="btn btn-success btn-large pull-right"><i class="icon icon-comment icon-white"></i> Envoyer</button>
+                    </form>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+
 </div>
