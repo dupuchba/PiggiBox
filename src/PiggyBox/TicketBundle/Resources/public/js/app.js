@@ -111,7 +111,10 @@ $('#customersearch_keyword').typeahead({
             }   
         });
     },
-    onselect: function(obj) { console.log(obj) }
+    onselect: function(obj) { 
+        /*console.log(obj.id)*/
+        window.location.replace(Routing.generate('customer_operation' , { id: obj.id}));
+         }
 });
 
 //NOTE: index.html.twig permet de faire un focus sur le champ de recherche

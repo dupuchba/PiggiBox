@@ -80,7 +80,7 @@ class CustomerController extends Controller
     /**
      * Make an operation with a Customer entity.
      *
-     * @Route("/operation/{id}", name="customer_operation")
+     * @Route("/operation/{id}", name="customer_operation",options={"expose"=true})
      * @Secure(roles="ROLE_MERCHANT")
      * @Template()
      */
