@@ -41,6 +41,13 @@ class Customer
     private $lastname;
 
     /**
+     * @var string $firstnamelastname
+     *
+     * @ORM\Column(name="firstnamelastname", type="string", length=255, nullable=true)
+     */
+    private $firstnamelastname;
+
+    /**
      * @var string $email
      *
      * @Assert\Email()
@@ -237,4 +244,25 @@ class Customer
     {
         return $this->accounts;
     }
+
+    /**
+     * Set firstnamelastname
+     *
+     * @param string $firstnamelastname
+     */
+    public function setFirstnamelastname($firstnamelastname)
+    {
+        $this->firstnamelastname = $firstnamelastname;
+    }
+
+    /**
+     * Get firstnamelastname
+     *
+     * @return string 
+     */
+    public function getFirstnamelastname()
+    {
+        return $this->firstnamelastname;
+    }
+
 }

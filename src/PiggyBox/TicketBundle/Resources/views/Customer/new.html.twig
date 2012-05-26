@@ -10,6 +10,8 @@
 
                 <form class="form-horizontal" action="{{ path('customer_create') }}" method="post" {{ form_enctype(form) }}>
 
+                    {{ form_errors(form) }}
+                    
                     {{ form_row(form.customer.lastname) }}
 
                     {{ form_row(form.customer.firstname) }}

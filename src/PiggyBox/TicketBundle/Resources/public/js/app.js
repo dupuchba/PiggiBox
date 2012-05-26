@@ -97,6 +97,7 @@ console.log("balance " + newbalance);
     return false;
 });
 
+//NOTE: index.html.twig => fonction de field de recherche
 $('#customersearch_keyword').typeahead({
     property: "firstname",
     source: function(typehead, query){

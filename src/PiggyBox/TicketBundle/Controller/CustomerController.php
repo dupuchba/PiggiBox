@@ -170,6 +170,8 @@ class CustomerController extends Controller
         $form    = $this->createForm(new AccountType(), $entity);
         $form->bindRequest($request);
 
+        //NOTE: set firsname lastname pour la recherche
+        $entity->getCustomer()->setFirstnamelastname($entity->getCustomer()->getFirstname()." ".$entity->getCustomer()->getLastname());
         $entity->setMerchant($merchant);
 
         if ($form->isValid()) {
@@ -239,6 +241,9 @@ class CustomerController extends Controller
         $request = $this->getRequest();
 
         $editForm->bindRequest($request);
+
+        //NOTE: set firsname lastname pour la recherche
+        $account->getCustomer()->setFirstnamelastname($account->getCustomer()->getFirstname()." ".$account->getCustomer()->getLastname());
 
         if ($editForm->isValid()) {
 
