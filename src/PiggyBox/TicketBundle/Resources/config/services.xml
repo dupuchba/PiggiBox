@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="piggybox.account_listener" class="PiggyBox\TicketBundle\Listener\AccountListener">
+        <service id="piggybox.account_listener" class="PiggyBox\TicketBundle\EventListener\AccountListener">
             <tag name="doctrine.event_listener" event="onFlush" />
         </service>
     </services>
