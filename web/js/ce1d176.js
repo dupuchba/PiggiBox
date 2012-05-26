@@ -1997,8 +1997,9 @@ console.log("balance " + newbalance);
     return false;
 });
 
+//NOTE: index.html.twig => fonction de field de recherche
 $('#customersearch_keyword').typeahead({
-    property: "firstname",
+    property: "firstnamelastname",
     source: function(typehead, query){
         $.ajax({
             url: Routing.generate('customer_search' , { "_format": "json"}),

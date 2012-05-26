@@ -51,8 +51,8 @@ class CustomerController extends Controller
             $repository = $this->getDoctrine()->getRepository('PiggyBoxTicketBundle:Customer');
 
                 $query = $repository->createQueryBuilder('a')
-                    ->where('a.firstname LIKE :keyword OR a.lastname LIKE :keyword')
-                    ->orderBy('a.lastname', 'ASC')
+                    ->where('a.firstnamelastname LIKE :keyword')
+                    ->orderBy('a.firstnamelastname', 'ASC')
                     ->setParameter('keyword', '%'.$keyword.'%')
                     ->getQuery();
 

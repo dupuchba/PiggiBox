@@ -258,7 +258,7 @@ class Customer
     /**
      * Get firstnamelastname
      *
-     * @return string 
+     * @return string
      */
     public function getFirstnamelastname()
     {
