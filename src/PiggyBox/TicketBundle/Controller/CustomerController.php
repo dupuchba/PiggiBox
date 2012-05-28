@@ -13,6 +13,10 @@ use PiggyBox\TicketBundle\Form\AccountType;
 use PiggyBox\TicketBundle\Entity\Merchant;
 use FOS\RestBundle\View\View;
 use JMS\SecurityExtraBundle\Annotation\Secure;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
+use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
+use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -89,15 +93,23 @@ class CustomerController extends Controller
      */
     public function operationAction($id)
     {
+
         $em = $this->getDoctrine()->getEntityManager();
 
         $account = $em->getRepository('PiggyBoxTicketBundle:Account')->find($id);
+
+        $securityContext = $this->get('security.context');
+
+        // check for edit access
+        if (false === $securityContext->isGranted('EDIT', $account)) {
+            throw new AccessDeniedException();
+        }
 
         if (!$account) {
             throw $this->createNotFoundException('Unable to find Account entity.');
         }
 
-        //var_dump($account->getTicketValue() ); die();
+        //TODO: demander a julien ce qui lui est passer par la tete
         if ( ! $account->getTicketValue() ) {
             $account->setTicketValue(1);
         }
@@ -183,6 +195,18 @@ class CustomerController extends Controller
             $em->persist($entity);
             $em->flush();
 
+            // creating the ACL
+            $aclProvider = $this->get('security.acl.provider');
+            $objectIdentity = ObjectIdentity::fromDomainObject($entity);
+            $acl = $aclProvider->createAcl($objectIdentity);
+
+            // retrieving the security identity of the currently logged-in user
+            $securityIdentity = UserSecurityIdentity::fromAccount($merchant);
+
+            // grant owner access
+            $acl->insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
+            $aclProvider->updateAcl($acl);
+
             $eventManager->addEventListener('onFlush', $this->get('piggybox.account_listener'));
 
             return $this->redirect($this->generateUrl('customer_operation', array('id' => $entity->getId())));
@@ -205,8 +229,15 @@ class CustomerController extends Controller
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getEntityManager();
-
         $account = $em->getRepository('PiggyBoxTicketBundle:Account')->find($id);
+
+        $securityContext = $this->get('security.context');
+
+        // check for edit access
+        if (false === $securityContext->isGranted('EDIT', $account))
+        {
+            throw new AccessDeniedException();
+        }
 
         if (!$account) {
             throw $this->createNotFoundException('Unable to find Account entity.');
@@ -245,10 +276,9 @@ class CustomerController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         $request = $this->getRequest();
-
         $editForm->bindRequest($request);
 
-        //NOTE: set firsname lastname pour la recherche
+        //NOTE: set firsname lastname pour le champ de recherche
         $account->getCustomer()->setFirstnamelastname($account->getCustomer()->getFirstname()." ".$account->getCustomer()->getLastname());
 
         if ($editForm->isValid()) {

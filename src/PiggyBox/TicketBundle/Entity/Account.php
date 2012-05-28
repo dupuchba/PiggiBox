@@ -26,7 +26,6 @@ class Account
     /**
      * @var float $balance
      *
-     * @Assert\NotBlank()
      * @ORM\Column(name="balance", type="float")
      */
     private $balance;
