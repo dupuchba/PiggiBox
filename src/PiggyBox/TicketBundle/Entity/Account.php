@@ -4,6 +4,7 @@ namespace PiggyBox\TicketBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * PiggyBox\TicketBundle\Entity\Account
@@ -25,6 +26,7 @@ class Account
     /**
      * @var float $balance
      *
+     * @Assert\NotBlank()
      * @ORM\Column(name="balance", type="float")
      */
     private $balance;
