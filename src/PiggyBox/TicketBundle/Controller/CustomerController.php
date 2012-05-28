@@ -12,9 +12,7 @@ use PiggyBox\TicketBundle\Entity\Account;
 use PiggyBox\TicketBundle\Form\AccountType;
 use PiggyBox\TicketBundle\Entity\Merchant;
 use FOS\RestBundle\View\View;
-use Doctrine\Common\Collections\ArrayCollection;
 use JMS\SecurityExtraBundle\Annotation\Secure;
-use Doctrine\Common\EventSubscriber;
 
 /**
  * Customer controller.
@@ -48,7 +46,6 @@ class CustomerController extends Controller
     $keyword = rtrim($keyword);
 
         if ($keyword != '') {
-            $em = $this->getDoctrine()->getEntityManager();
             $repository = $this->getDoctrine()->getRepository('PiggyBoxTicketBundle:Customer');
 
                 $query = $repository->createQueryBuilder('a')
@@ -122,7 +119,6 @@ class CustomerController extends Controller
         $securityContext = $this->get('security.context');
         $user = $securityContext->getToken()->getUser();
 
-        $customers = new ArrayCollection();
         $accounts = $user->getAccounts();
 
         $letters = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
@@ -253,7 +249,7 @@ class CustomerController extends Controller
 
         if ($editForm->isValid()) {
 
-            $eventManager->removeEventListener('onFlush', $this->get('piggybox.account_listener'));            
+            $eventManager->removeEventListener('onFlush', $this->get('piggybox.account_listener'));
 
             $em->persist($account);
             $em->flush();
