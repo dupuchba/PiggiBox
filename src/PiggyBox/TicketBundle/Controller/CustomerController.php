@@ -13,6 +13,7 @@ use PiggyBox\TicketBundle\Form\AccountType;
 use PiggyBox\TicketBundle\Entity\Merchant;
 use FOS\RestBundle\View\View;
 use JMS\SecurityExtraBundle\Annotation\Secure;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Customer controller.
@@ -31,7 +32,7 @@ class CustomerController extends Controller
     public function indexAction()
     {
     $securityContext = $this->get('security.context');
-    $user = $securityContext->getToken()->getUser();
+    $merchant = $securityContext->getToken()->getUser();
 
     $form = $this->container->get('form.factory')->create(new CustomerSearchType());
 
@@ -46,15 +47,16 @@ class CustomerController extends Controller
     $keyword = rtrim($keyword);
 
         if ($keyword != '') {
-            $repository = $this->getDoctrine()->getRepository('PiggyBoxTicketBundle:Customer');
+            $repository = $this->getDoctrine()->getRepository('PiggyBoxTicketBundle:Account')->findBy(array('merchant' => $merchant->getId()));
 
-                $query = $repository->createQueryBuilder('a')
-                    ->where('a.firstnamelastname LIKE :keyword')
-                    ->orderBy('a.firstnamelastname', 'ASC')
-                    ->setParameter('keyword', '%'.$keyword.'%')
-                    ->getQuery();
+                $customer = new ArrayCollection();
 
-               $searchresult = $query->getResult();
+                foreach ($repository as $account) {
+                    if (!is_bool(strpos($account->getCustomer()->getFirstnamelastname(),$keyword))) {
+                        $customer->add($account->getCustomer());
+                    }
+                }
+               $searchresult = $customer->toArray();
         } else {
             $searchresult = '[]';
         }

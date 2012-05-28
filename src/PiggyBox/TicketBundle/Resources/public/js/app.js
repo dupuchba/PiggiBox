@@ -112,7 +112,7 @@ $('#customersearch_keyword').typeahead({
         });
     },
     onselect: function(obj) { 
-        /*console.log(obj.id)*/
+        console.log(obj);
         window.location.replace(Routing.generate('customer_operation' , { id: obj.id}));
          }
 });
