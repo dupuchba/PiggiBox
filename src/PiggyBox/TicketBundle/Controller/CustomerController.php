@@ -14,6 +14,7 @@ use PiggyBox\TicketBundle\Entity\Merchant;
 use FOS\RestBundle\View\View;
 use Doctrine\Common\Collections\ArrayCollection;
 use JMS\SecurityExtraBundle\Annotation\Secure;
+use Doctrine\Common\EventSubscriber;
 
 /**
  * Customer controller.
@@ -160,12 +161,7 @@ class CustomerController extends Controller
      */
     public function createAction()
     {
-        $this->get('event_dispatcher')->removeListener('onFlush',$this->get('piggybox.account_listener'));
-
-
-
         $entity  = new Account();
-        $em = $this->getDoctrine()->getEntityManager();
 
         $securityContext = $this->get('security.context');
         $merchant = $securityContext->getToken()->getUser();
@@ -180,8 +176,14 @@ class CustomerController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
+            $eventManager = $em->getEventManager();
+
+            $eventManager->removeEventListener('onFlush', $this->get('piggybox.account_listener'));
+
             $em->persist($entity);
             $em->flush();
+
+            $eventManager->addEventListener('onFlush', $this->get('piggybox.account_listener'));
 
             return $this->redirect($this->generateUrl('customer_operation', array('id' => $entity->getId())));
 
@@ -231,7 +233,7 @@ class CustomerController extends Controller
     public function updateAction($id)
     {
         $em = $this->getDoctrine()->getEntityManager();
-        //$eventManager = $this->em->getEventManager();
+        $eventManager = $em->getEventManager();
 
         $account = $em->getRepository('PiggyBoxTicketBundle:Account')->find($id);
 
@@ -251,12 +253,12 @@ class CustomerController extends Controller
 
         if ($editForm->isValid()) {
 
-            //$eventManager->removeEventListener('onFlush', $this);
+            $eventManager->removeEventListener('onFlush', $this->get('piggybox.account_listener'));            
 
             $em->persist($account);
             $em->flush();
 
-            //$eventManager->addEventListener('onFlush', $this);
+            $eventManager->addEventListener('onFlush', $this->get('piggybox.account_listener'));
 
             return $this->redirect($this->generateUrl('customer_edit', array('id' => $id)));
         }

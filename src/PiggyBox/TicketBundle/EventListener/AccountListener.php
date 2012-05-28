@@ -35,6 +35,7 @@ class AccountListener
                                 $balance = $meta->getReflectionProperty('balance')->getValue($account);
                                 $previousBalance = 0;
 
+
                                 if (!$account->getOperations()->isEmpty()) {
                                         $previousBalance =  $account->getOperations()->last()->getNewBalance();
                                 }
