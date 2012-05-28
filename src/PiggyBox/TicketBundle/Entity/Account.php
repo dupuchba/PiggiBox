@@ -8,7 +8,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * PiggyBox\TicketBundle\Entity\Account
  *
- * @ORM\Table()
+ * @ORM\Table(name="piggybox_account")
  * @ORM\Entity
  */
 class Account

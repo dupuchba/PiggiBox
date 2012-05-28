@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * PiggyBox\TicketBundle\Entity\Customer
  *
- * @ORM\Table()
+ * @ORM\Table(name="piggybox_customer")
  * @ORM\Entity
  */
 class Customer

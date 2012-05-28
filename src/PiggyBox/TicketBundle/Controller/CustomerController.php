@@ -160,6 +160,10 @@ class CustomerController extends Controller
      */
     public function createAction()
     {
+        $this->get('event_dispatcher')->removeListener('onFlush',$this->get('piggybox.account_listener'));
+
+
+
         $entity  = new Account();
         $em = $this->getDoctrine()->getEntityManager();
 
