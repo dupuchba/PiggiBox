@@ -53,6 +53,9 @@ class CustomerController extends Controller
 
                 foreach ($repository as $account) {
                     if (!is_bool(strpos($account->getCustomer()->getFirstnamelastname(),$keyword))) {
+                        //NOTE: methode interne permettant de bien rediriger la requete
+                        //TODO: trouver un moyen de faire ca plus joliment...
+                        $account->getCustomer()->setId($account->getId());
                         $customer->add($account->getCustomer());
                     }
                 }
@@ -86,7 +89,6 @@ class CustomerController extends Controller
      */
     public function operationAction($id)
     {
-
         $em = $this->getDoctrine()->getEntityManager();
 
         $account = $em->getRepository('PiggyBoxTicketBundle:Account')->find($id);

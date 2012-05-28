@@ -106,6 +106,16 @@ class Customer
     }
 
     /**
+     * Set id
+     *
+     * @return integer $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
      * Set firstname
      *
      * @param string $firstname
