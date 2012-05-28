@@ -38,7 +38,7 @@
                                 <p>Etes-vous sure de vouloir supprimer ce client? <br />
                                 Cette opération est irreversible.<p>
                                 <a class="btn btn-large hidesuppr"> Non </a>
-                                <a class="btn btn-large btn-danger" href="{{ path('customer_delete', { 'id': account.customer.id }) }}"><i class='icon-trash icon-white'></i> Oui</a>
+                                <a class="btn btn-large btn-danger" href="{{ path('customer_delete', { 'id': account.id }) }}" method="post"><i class='icon-trash icon-white'></i> Oui</a>
                                 <?php //TODO: checker que tout est deleete en cascade, pour l'isntnat on surppime que le customer ?>
                             </div>
                     </div>

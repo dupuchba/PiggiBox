@@ -305,16 +305,10 @@ class CustomerController extends Controller
      *
      * @Route("/{id}/delete", name="customer_delete")
      * @Secure(roles="ROLE_MERCHANT")
-     * @Method("post")
      */
     public function deleteAction($id)
     {
-        $form = $this->createDeleteForm($id);
-        $request = $this->getRequest();
 
-        $form->bindRequest($request);
-
-        if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
             $entity = $em->getRepository('PiggyBoxTicketBundle:Customer')->find($id);
 
@@ -324,7 +318,6 @@ class CustomerController extends Controller
 
             $em->remove($entity);
             $em->flush();
-        }
 
         return $this->redirect($this->generateUrl('customer_list'));
     }

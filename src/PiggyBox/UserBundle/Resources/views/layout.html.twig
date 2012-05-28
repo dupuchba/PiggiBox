@@ -58,11 +58,6 @@
         </div>
         #}
 
-        {% for key, message in app.session.getFlashes() %}
-        <div class="{{ key }}">
-            {{ message|trans({}, 'FOSUserBundle') }}
-        </div>
-        {% endfor %}
 
         <div>
 

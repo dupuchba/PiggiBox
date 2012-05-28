@@ -54,7 +54,7 @@ class Account
     private $modifiedat;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Customer", inversedBy="accounts",cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Customer", inversedBy="accounts",cascade={"persist","remove"})
      * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
      */
     private $customer;
