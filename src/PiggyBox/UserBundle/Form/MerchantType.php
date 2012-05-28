@@ -115,7 +115,8 @@ class MerchantType extends BaseType
                 'label'        => 'Type de commerce',
                 'choices'      => array(
                     '1' => 'Boucherie',
-                    '2' => 'Boulangerie'),
+                    '2' => 'Boulangerie',
+                    '3' => 'Commerce de bouche'),
             ))
         ;
     }
