@@ -215,7 +215,7 @@
                         <th class="black">Nouveau solde</th>
                     </tr>
 
-                    {% for operation in account.operations %}
+                    {% for operation in account.operations | reverse %}
                     <tr>
                         <td class="caps">{{ operation.createdat|localizeddate('long', 'short') }}</td>
                         <td><strong> {{ operation.previousBalance }} &euro;</strong></td>
