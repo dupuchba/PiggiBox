@@ -34,7 +34,11 @@ class ProfileController extends ContainerAware
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
-        return $this->container->get('templating')->renderResponse('FOSUserBundle:Profile:contact.html.'.$this->container->getParameter('fos_user.template.engine'), array('user' => $user));
+            $form = $this->container->get('form.factory')->createBuilder("textarea")
+            ->getForm();
+
+
+        return $this->container->get('templating')->renderResponse('FOSUserBundle:Profile:contact.html.'.$this->container->getParameter('fos_user.template.engine'), array('form' => $form->createView()));
     }
 
     /**

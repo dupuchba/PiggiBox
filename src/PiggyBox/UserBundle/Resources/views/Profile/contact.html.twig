@@ -27,8 +27,11 @@
                 <div class="span7 offset1">
                     <h3>Envoyez nous un message <small>Nous vous rappellerons</small> </h3>
                     <br />
-                    <form action="#" method="post">
-                        <textarea id="contactform" placeholder="Entrez votre message ici"></textarea>
+                    <form class="form-horizontal" action="{{ path('fos_user_profile_contact') }}" method="post" {{ form_enctype(form) }}>
+                        
+                        {{ form_widget(form) }}
+                        <!-- <textarea id="contactform" placeholder="Entrez votre message ici"></textarea> -->
+                        <br />
                         <br />
                         <button type="submit" class="btn btn-success btn-large pull-right"><i class="icon icon-comment icon-white"></i> Envoyer</button>
                     </form>

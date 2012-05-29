@@ -78,12 +78,6 @@ $('#modifybalanceform').submit(function(){
     return false;
 });
 
-function addCredit(){
-    var ticketValue = $('input#add-ticket-value').val();
-    var ticketNumber = $('input#add-ticket-number').val();
-    alert("ticket value" + ticketValue + " ticket number " + ticketNumver);    
-}
-
 $('#addcreditbalanceform').submit(function(){
     $.ajax({    
         url: Routing.generate('customer_setbalance', { id: $('input#add-id').val(), "balance": (Number($('span#thesolde').text()) + Number(($('input#add-ticket-value').val() * $('input#add-ticket-number').val()))).toFixed(2) }),
@@ -115,7 +109,7 @@ $('#customersearch_keyword').typeahead({
 });
 
 //NOTE: index.html.twig permet de faire un focus sur le champ de recherche
-$('#customersearch_keyword').focus();
+$('input#customersearch_keyword').focus();
 
 //NOTE: new.html.twig permet de faire un focus sur le champ de nom
 $('input#accounts_customer_lastname').focus();
