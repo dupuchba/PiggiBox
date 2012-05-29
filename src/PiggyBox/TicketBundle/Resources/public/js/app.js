@@ -79,21 +79,30 @@ $('#modifybalanceform').submit(function(){
     return false;
 });
 
-$('#addbalanceform').submit(function(){
+function addCredit(){
+    var ticketValue = $('input#add-ticket-value').val();
+    var ticketNumber = $('input#add-ticket-number').val();
+    alert("ticket value" + ticketValue + " ticket number " + ticketNumver);    
+}
+
+$('#addcreditbalanceform').submit(function(){
 var ticketValue = $('input#add-ticket-value').val();
 var ticketNumber = $('input#add-ticket-number').val();
-
+alert("ticket value" + ticketValue + " ticket number " + ticketNumver);
 console.log("ticket value" + ticketValue + " ticket number " + ticketNumver);
 
-var newbalance = addcredit + Number($('span#thesolde').val());
-console.log("balance " + newbalance);
+/*var newbalance = addcredit + Number($('span#thesolde').val());
+
+console.log("newbalance = " + newbalance);*/
+
+/*console.log("balance " + newbalance);
     $.ajax({    
         url: Routing.generate('customer_setbalance', { id: $('input#add-id').val(), "balance": Math.ceil(newbalance) }),
         type:"POST",
         success: function() {
 			$('span#thesolde').html(newbalance);
         }
-    });
+    });*/
     return false;
 });
 

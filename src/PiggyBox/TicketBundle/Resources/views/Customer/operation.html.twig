@@ -156,10 +156,10 @@
                     ajouter à son solde.</p>
                 </div>
 
-                <form id="addbalanceform" class="form-horizontal" method="post" action="">
+                <form id="addcreditbalanceform" class="form-horizontal" method="post" action="">
 
                     <input id="add-id" type="hidden" name="id" value="{{account.id}}" />
-                    <input type="hidden" name="solde" value="" />
+                    <input type="hidden" name="addsolde" value="" />
 
 
                     <input id="add-ticket-number" name="nombre"  class="input-mini" type="text" placeholder="Ex: 2" value="" />
@@ -168,7 +168,7 @@
 
                     <div class="input-append">
 
-                        <input name="valeur" id="valeur" class="input-mini" type="text" value="{{ account.ticketvalue }}" /><span class="add-on">&euro;</span>
+                        <input name="valeur" id="add-ticket-value" class="input-mini" type="text" value="" placeholder="Ex: {{ account.ticketvalue }}" /><span class="add-on">&euro;</span>
 
                     </div>
 
