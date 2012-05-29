@@ -61,7 +61,7 @@ $('#paybalanceform').submit(function(){
         url: Routing.generate('customer_setbalance', { id: $('input#pay-id').val(), "balance": (Number($('span#thesolde').text()) + Number(($('input#nombre.input-mini').val() * $('input#valeur.input-mini').val())) - Number($('input#montant.input-small').val())).toFixed(2) }),
         type:"POST",
         success: function() {
-            alert("It has been a fucking success");
+            $('span#thesolde').html((Number($('span#thesolde').text()) + Number(($('input#nombre.input-mini').val() * $('input#valeur.input-mini').val())) - Number($('input#montant.input-small').val())).toFixed(2));
         }
     });
     return false;

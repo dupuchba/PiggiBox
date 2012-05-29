@@ -63,9 +63,9 @@
     version=v1.0.1
 
 [MopaBootstrapBundle]
-    git=http://github.com/phiamo/MopaBootstrapBundle.git
-    target=/bundles/Mopa/BootstrapBundle
-    version=origin/v2.x_sf2.0
+    git = "http://github.com/phiamo/MopaBootstrapBundle.git"
+    target = "/bundles/Mopa/Bundle/BootstrapBundle"
+    version=origin/v2.0.x
 
 [StofDoctrineExtensionsBundle]
     git=https://github.com/stof/StofDoctrineExtensionsBundle.git

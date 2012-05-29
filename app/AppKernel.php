@@ -18,7 +18,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new PiggyBox\TicketBundle\PiggyBoxTicketBundle(),
-            new Mopa\BootstrapBundle\MopaBootstrapBundle(),
+            new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 			new JMS\SerializerBundle\JMSSerializerBundle($this),
 			new FOS\RestBundle\FOSRestBundle(),
