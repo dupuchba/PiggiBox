@@ -80,7 +80,7 @@ class MerchantType extends BaseType
                         'text' => 'N°'
                 ),
                 'attr' => array(
-                    'class' => 'span1',
+                    'class' => 'input-xlarge',
                 )
             ))
             ->add('street_name', 'text', array(
@@ -89,7 +89,7 @@ class MerchantType extends BaseType
                         'text' => 'Rue'
                 ),
                 'attr' => array(
-                    'class' => 'span4',
+                    'class' => 'input-xlarge',
                 )
             ))
             ->add('zipcode', 'text', array(
@@ -98,7 +98,7 @@ class MerchantType extends BaseType
                         'text' => 'CP'
                 ),
                 'attr' => array(
-                    'class' => 'span2',
+                    'class' => 'input-xlarge',
                 )
             ))
             ->add('city', 'text', array(
@@ -107,7 +107,7 @@ class MerchantType extends BaseType
                         'text' => 'Ville'
                 ),
                 'attr' => array(
-                    'class' => 'span3',
+                    'class' => 'input-xlarge',
                 )
             ))
             ->add('username','hidden')
