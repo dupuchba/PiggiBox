@@ -86,23 +86,13 @@ function addCredit(){
 }
 
 $('#addcreditbalanceform').submit(function(){
-var ticketValue = $('input#add-ticket-value').val();
-var ticketNumber = $('input#add-ticket-number').val();
-alert("ticket value" + ticketValue + " ticket number " + ticketNumver);
-console.log("ticket value" + ticketValue + " ticket number " + ticketNumver);
-
-/*var newbalance = addcredit + Number($('span#thesolde').val());
-
-console.log("newbalance = " + newbalance);*/
-
-/*console.log("balance " + newbalance);
     $.ajax({    
-        url: Routing.generate('customer_setbalance', { id: $('input#add-id').val(), "balance": Math.ceil(newbalance) }),
+        url: Routing.generate('customer_setbalance', { id: $('input#add-id').val(), "balance": (Number($('span#thesolde').text()) + Number(($('input#add-ticket-value').val() * $('input#add-ticket-number').val()))).toFixed(2) }),
         type:"POST",
         success: function() {
-			$('span#thesolde').html(newbalance);
+			$('span#thesolde').html(Number($('span#thesolde').text()) + Number(($('input#add-ticket-value').val() * $('input#add-ticket-number').val())));
         }
-    });*/
+    });
     return false;
 });
 
