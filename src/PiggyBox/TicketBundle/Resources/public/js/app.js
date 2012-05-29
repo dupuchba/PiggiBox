@@ -17,7 +17,7 @@ $(function() {
 
 //NOTE: fichier operation.html.twig fonction de calcul instantané pour le prix ficher
 function updatecalcul() {
-    var solde = $('span#thesolde').val();
+    var solde = $('span#thesolde').text();
     var montant = $('input#montant.input-small').val();
     var nombre = $('input#nombre.input-mini').val();
     var valticket = $('input#valeur.input-mini').val();
@@ -56,10 +56,9 @@ $('#resetbalanceform').submit(function(){
 });
 
 //NOTE: operation.html.twig => fonction permettant de setter la valeur de balance lors du paiement
-//TODO: trouver un moyen pour savoir si c'est un avoir ou un credit (aller chercher du coté nom)
-$('#setbalanceform').submit(function(){
+$('#paybalanceform').submit(function(){
     $.ajax({    
-        url: Routing.generate('customer_setbalance', { id: $('input#set-id').val(), "balance": 0 }),
+        url: Routing.generate('customer_setbalance', { id: $('input#pay-id').val(), "balance": (Number($('span#thesolde').text()) + Number(($('input#nombre.input-mini').val() * $('input#valeur.input-mini').val())) - Number($('input#montant.input-small').val())).toFixed(2) }),
         type:"POST",
         success: function() {
             alert("It has been a fucking success");
