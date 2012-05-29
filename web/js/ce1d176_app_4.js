@@ -17,7 +17,7 @@ $(function() {
 
 //NOTE: fichier operation.html.twig fonction de calcul instantané pour le prix ficher
 function updatecalcul() {
-    var solde = $('span#thesolde').val();
+    var solde = $('span#thesolde').text();
     var montant = $('input#montant.input-small').val();
     var nombre = $('input#nombre.input-mini').val();
     var valticket = $('input#valeur.input-mini').val();
@@ -49,20 +49,19 @@ $('#resetbalanceform').submit(function(){
         url: Routing.generate('customer_setbalance', { id: $('input#reset-id').val(), "balance": 0 }),
         type:"POST",
         success: function() {
-            alert("It has been a fucking success");
+            $('span#thesolde').html(0);
         }
     });
     return false;
 });
 
 //NOTE: operation.html.twig => fonction permettant de setter la valeur de balance lors du paiement
-//TODO: trouver un moyen pour savoir si c'est un avoir ou un credit (aller chercher du coté nom)
-$('#setbalanceform').submit(function(){
+$('#paybalanceform').submit(function(){
     $.ajax({    
-        url: Routing.generate('customer_setbalance', { id: $('input#set-id').val(), "balance": 0 }),
+        url: Routing.generate('customer_setbalance', { id: $('input#pay-id').val(), "balance": (Number($('span#thesolde').text()) + Number(($('input#nombre.input-mini').val() * $('input#valeur.input-mini').val())) - Number($('input#montant.input-small').val())).toFixed(2) }),
         type:"POST",
         success: function() {
-            alert("It has been a fucking success");
+            $('span#thesolde').html((Number($('span#thesolde').text()) + Number(($('input#nombre.input-mini').val() * $('input#valeur.input-mini').val())) - Number($('input#montant.input-small').val())).toFixed(2));
         }
     });
     return false;
@@ -79,19 +78,18 @@ $('#modifybalanceform').submit(function(){
     return false;
 });
 
-$('#addbalanceform').submit(function(){
-var ticketValue = $('input#add-ticket-value').val();
-var ticketNumber = $('input#add-ticket-number').val();
+function addCredit(){
+    var ticketValue = $('input#add-ticket-value').val();
+    var ticketNumber = $('input#add-ticket-number').val();
+    alert("ticket value" + ticketValue + " ticket number " + ticketNumver);    
+}
 
-console.log("ticket value" + ticketValue + " ticket number " + ticketNumver);
-
-var newbalance = addcredit + Number($('span#thesolde').val());
-console.log("balance " + newbalance);
+$('#addcreditbalanceform').submit(function(){
     $.ajax({    
-        url: Routing.generate('customer_setbalance', { id: $('input#add-id').val(), "balance": Math.ceil(newbalance) }),
+        url: Routing.generate('customer_setbalance', { id: $('input#add-id').val(), "balance": (Number($('span#thesolde').text()) + Number(($('input#add-ticket-value').val() * $('input#add-ticket-number').val()))).toFixed(2) }),
         type:"POST",
         success: function() {
-			$('span#thesolde').html(newbalance);
+			$('span#thesolde').html(Number($('span#thesolde').text()) + Number(($('input#add-ticket-value').val() * $('input#add-ticket-number').val())));
         }
     });
     return false;
@@ -111,7 +109,10 @@ $('#customersearch_keyword').typeahead({
             }   
         });
     },
-    onselect: function(obj) { console.log(obj) }
+    onselect: function(obj) { 
+        console.log(obj);
+        window.location.replace(Routing.generate('customer_operation' , { id: obj.id}));
+         }
 });
 
 //NOTE: index.html.twig permet de faire un focus sur le champ de recherche

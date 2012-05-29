@@ -56,7 +56,7 @@ class CustomerController extends Controller
                 $customer = new ArrayCollection();
 
                 foreach ($repository as $account) {
-                    if (!is_bool(strpos($account->getCustomer()->getFirstnamelastname(),$keyword))) {
+                    if (!is_bool(stripos($account->getCustomer()->getFirstnamelastname(),$keyword))) {
                         //NOTE: methode interne permettant de bien rediriger la requete
                         //TODO: trouver un moyen de faire ca plus joliment...
                         $account->getCustomer()->setId($account->getId());
