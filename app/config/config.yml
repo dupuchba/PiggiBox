@@ -4,7 +4,7 @@ imports:
 
 framework:
     #esi:             ~
-    translator:      { fallback: %locale% }
+    translator:      { fallback: fr }
     secret:          %secret%
     ide:             textmate
     charset:         UTF-8
@@ -97,6 +97,11 @@ services:
        class: Twig_Extensions_Extension_Text
        tags:
            - { name: twig.extension }
+    #NOTE: Permet de gerer les dates en francais
+    twig.extension.intl:
+           class: Twig_Extensions_Extension_Intl
+           tags:
+               - { name: twig.extension }
 
 # FOSRestBundle configuration
 fos_rest:

@@ -1,10 +1,11 @@
-set :application, "set your application name here"
-set :domain,      "#{application}.com"
-set :deploy_to,   "/var/www/#{domain}"
+set :application, "Piggybox"
+set :domain,      "http://ks220446.kimsufi.com"
+set :deploy_to,   "/var/www/Piggybox"
 set :app_path,    "app"
 
-set :repository,  "#{domain}:/var/repos/#{application}.git"
 set :scm,         :git
+set :repository,  "git@github.com:dupuchba/PiggiBox.git"
+git@github.com:dupuchba/PiggiBox.git
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `subversion`, `mercurial`, `perforce`, `subversion` or `none`
 
 set :model_manager, "doctrine"

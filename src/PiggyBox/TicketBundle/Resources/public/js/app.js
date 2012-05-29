@@ -49,7 +49,7 @@ $('#resetbalanceform').submit(function(){
         url: Routing.generate('customer_setbalance', { id: $('input#reset-id').val(), "balance": 0 }),
         type:"POST",
         success: function() {
-            alert("It has been a fucking success");
+            $('span#thesolde').html(0);
         }
     });
     return false;

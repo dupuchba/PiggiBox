@@ -217,10 +217,10 @@
 
                     {% for operation in account.operations %}
                     <tr>
-                        <td class="caps">{{ operation.createdat|date("m/d/Y") }}</td>
+                        <td class="caps">{{ operation.createdat|localizeddate('long', 'short') }}</td>
                         <td><strong> {{ operation.previousBalance }} &euro;</strong></td>
                         <td>+</td>
-                        <td> {{ operation.previousBalance - operation.newBalance}} &euro;</td>
+                        <td> {{ operation.newBalance - operation.previousBalance}} &euro;</td>
                         <td>=</td>
                         <td> {{ operation.newBalance }} &euro;</td>
                     </tr>

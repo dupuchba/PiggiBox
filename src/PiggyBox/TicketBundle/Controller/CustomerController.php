@@ -93,7 +93,6 @@ class CustomerController extends Controller
      */
     public function operationAction($id)
     {
-
         $em = $this->getDoctrine()->getEntityManager();
 
         $account = $em->getRepository('PiggyBoxTicketBundle:Account')->find($id);
@@ -234,8 +233,7 @@ class CustomerController extends Controller
         $securityContext = $this->get('security.context');
 
         // check for edit access
-        if (false === $securityContext->isGranted('EDIT', $account))
-        {
+        if (false === $securityContext->isGranted('EDIT', $account)) {
             throw new AccessDeniedException();
         }
 

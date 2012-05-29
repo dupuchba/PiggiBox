@@ -8,7 +8,7 @@ use FOS\UserBundle\Entity\User as BaseUser;
 /**
  * PiggyBox\UserBundle\Entity\Merchant
  *
- * @ORM\Table(name="piggybox_user")
+ * @ORM\Table(name="piggybox_merchant")
  * @ORM\Entity
  */
 class Merchant extends BaseUser
